@@ -10,20 +10,20 @@ public class OfferBoardController {
 	
 	
 	  
-    //test폼보기
-    @GetMapping("/article/ttt")
-    public Object tttest() {
+    //offerinsertForm폼보기
+    @GetMapping("/article/offerinsertForm")
+    public Object offerinsert() {
     	
     	
-    	return "/article/ttt";
+    	return "/article/offerinsertForm";
     }
   
-    //boardselect폼보기
-    @GetMapping("/article/tttselect")
-    public Object tttselect() {
+    //offerSelect폼보기
+    @GetMapping("/article/offerSelectForm")
+    public Object offerSelect() {
     	
     	
-    	return "/article/tttselect";
+    	return "/article/offerSelectForm";
     }
   //offerBoard 폼보기
     @RequestMapping("/article/offerBoard")
