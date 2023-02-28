@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="mapper.article">
+ 
+ 	<resultMap type="article"  id="articleResult">
+		<!-- <result property="필드명"  column="컬럼명"/>	 -->
+		<result property="articleNo"  column="articleno"/>	
+		<result property="title"  column="title"/>	
+		<result property="content"  column="content"/>	
+		<result property="writeDate"  column="writedate"/>	
+		<result property="memberId"  column="memberid"/>	
+	</resultMap>
+ 
+ 
+	<!-- select요소 :select쿼리문실행 
+	     id속성 : unique해야한다. 각 요소를 구분하기 위한 용도 -->
+	<!-- 전체 게시물수 조회 -->
+	<select id="totalCnt" resultType="int">
+	  <![CDATA[		
+		select count(*) from article
+	  ]]>
+	</select>
+	
+	<!-- 특정글의 글번호 조회 -->
+	<select id="getArticleNo" 
+	        resultType="int"
+	        parameterType="int">
+	  <![CDATA[		
+		select articleno from article where articleno=#{no}
+	  ]]>
+	</select>
+ 
+ 	<!-- 특정글의 제목 조회 -->
+	 <select id="titleByArticleNo" 
+	 		resultType="string"
+	 		parameterType="int">
+	  <![CDATA[		
+		select title from article where articleno=#{no}
+	  ]]>
+	</select>
+	
+	<!-- 특정글의 상세 조회 : 
+	       쿼리실행결과로 받은 레코드 수가 1개
+	      쿼리실행결과로 받은   컬럼  수가 n개..타입이 다양하다 -->
+	<select id="articleDetail"
+			resultType="article"
+	        parameterType="int">
+	  <![CDATA[	
+	select * from article where articleno=#{no}
+	  ]]>
+	</select>
+		
+	<select id="articleDetail2"
+			resultMap="articleResult"     
+	        parameterType="int">
+	  <![CDATA[	
+	select articleno,title,content,writedate,memberid from article where articleno=#{no}
+	  ]]>
+	</select>
+	
+	
+	<!-- 전체목록조회 -->
+	<select id="articleAllList"  resultType="article">
+	<![CDATA[
+		select * from article
+	]]>
+	</select>
+	
+	<!-- 전체목록조회2 :resultMap사용 -->
+	<select id="articleAllList2"  resultMap="articleResult">
+	<![CDATA[
+		select * from article
+	]]>
+	</select>
+	
+	<!-- 글등록  -->
+	<insert id="insertArticle"  parameterType="com.ourcom.article.domain.Article">
+		<![CDATA[
+		insert into article(articleno,title,content,writeDate,memberId)
+		values(seq_article.nextval,#{title},#{content},sysdate,#{memberId})
+		]]>
+	</insert>
+	
+	<!-- 특정글 수정 -->
+	<update id="updateArticle" parameterType="com.ourcom.article.domain.Article">
+		<![CDATA[
+		update article 
+		set title=#{title},content=#{content} 
+		where articleno=#{articleNo}
+		]]>
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="deleteArticle" 
+	        parameterType="java.lang.Integer">
+		<![CDATA[
+		delete from article
+		where articleno=#{articleNo}
+		]]>
+	</delete>
+	
+	<!--   -->
+	<!-- 글등록:article테이블에 등록 -->
+	<insert id="insertNewArticle" parameterType="java.util.Map">
+		<selectKey resultType="String" keyProperty="article_id" order="BEFORE">
+	    	select seq_article.nextval from dual
+	    </selectKey>
+	<![CDATA[
+	 insert into article(articleno,title,content,writeDate,memberId)
+	 values(#{article_id},#{title},#{content},sysdate-100,#{memberId})	
+	]]>
+	</insert>
+
+	
+	<!-- 첨부파일:article_image테이블에 등록  -->
+	<insert id="insertArticleImageFile" parameterType="com.ourcom.article.domain.ImageFileVO">
+	   <selectKey resultType="int" keyProperty="image_id" order="BEFORE"> 
+ 		select seq_article_Image.nextval from dual
+	   </selectKey>
+	<![CDATA[
+	 insert into article_image(image_id,articleno,filename,memberid,credate)
+	 values(#{image_id},#{article_id},#{fileName},#{reg_id},sysdate-100)	
+	]]>
+	</insert>
+</mapper>    
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
