@@ -16,7 +16,7 @@ public class OfferRepositoryImpl implements OfferRepository {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	//전체목록조회
+	//전체목록조회 //spring resultview.jsp 에 뷰 작업해야함
 	public List<OfferBoard> getOfferAllList() throws DataAccessException{
 		List<OfferBoard> list= sqlSession.selectList("mapper.offerBoard.offerAllList");
 		return list;
