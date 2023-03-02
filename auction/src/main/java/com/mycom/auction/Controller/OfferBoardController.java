@@ -1,36 +1,39 @@
 package com.mycom.auction.Controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-// 구인구직게시판 컨트롤러
-
+// 구인구직컨트롤러
+@Controller
 public class OfferBoardController {
 
 	
 	
+	
+	
 	  
-    //offerinsertForm폼보기
-    @GetMapping("/article/offerinsertForm")
-    public Object offerinsert() {
+    //offerinsertForm�뤌蹂닿린
+    @GetMapping("/offerBoard/offerInsertForm")
+    public String offerinsert() {
     	
     	
-    	return "/article/offerinsertForm";
+    	return "/offerBoard/offerInsertForm";
     }
   
-    //offerSelect폼보기
-    @GetMapping("/article/offerSelectForm")
+    //offerSelect�뤌蹂닿린
+    @GetMapping("/offerBoard/offerSelectForm")
     public Object offerSelect() {
     	
     	
-    	return "/article/offerSelectForm";
+    	return "/offerBoard/offerSelectForm";
     }
-  //offerBoard 폼보기
-    @RequestMapping("/article/offerBoard")
+  //offerBoard �뤌에ㅇ
+    @RequestMapping("/offerBoard/offerBoardForm")
     public Object offerBoard() {
     	
     	
-    	return "/article/offerBoard";
+    	return "/offerBoard/offerBoardForm";
     }
     
     
