@@ -18,7 +18,8 @@ public class OfferRepositoryImpl implements OfferRepository {
 	
 	//전체목록조회
 	public List<OfferBoard> getOfferAllList() throws DataAccessException{
-		List<OfferBoard> list= sqlSession.selectList(~~~);
+		List<OfferBoard> list= sqlSession.selectList("mapper.offerBoard.offerAllList");
+		return list;
 	}
 	
 }
