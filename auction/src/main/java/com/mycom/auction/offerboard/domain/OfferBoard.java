@@ -1,10 +1,11 @@
 package com.mycom.auction.offerboard.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class OfferBoard {
 
-	
+	//필드
 	private int offerno; //게시글 번호
 	private String id;	//사용자 ID
 	private String offertitle; //제목
@@ -16,101 +17,172 @@ public class OfferBoard {
 	private String offerhard; //말머리
 	
 	
+	//페이징 필드
+	private int total;
+	private int currentpage;
+	private List<OfferBoard> contents;
+	private int totalpages;
+	private int startpage;
+	private int endpage;
+	
+	//기본생성자
+	public OfferBoard() {}
+	//게시글정보 생성자
+	public OfferBoard(int offerno, String id, String offertitle, String offerpoint, int pay, Date offertime,
+			String offercontent, int viewcnt, String offerhard) {
+		this.offerno = offerno;
+		this.id = id;
+		this.offertitle = offertitle;
+		this.offerpoint = offerpoint;
+		this.pay = pay;
+		this.offertime = offertime;
+		this.offercontent = offercontent;
+		this.viewcnt = viewcnt;
+		this.offerhard = offerhard;
+	}
+		//페이징 생성자
+		public OfferBoard(int total, int currentPage, 
+				   int size, List<OfferBoard> contents) {
+			this.total = total;
+			this.currentpage = currentPage;
+			this.contents = contents;
+			if (total == 0) { 		//게시물이 존재하지 않는 경우
+				totalpages = 0;
+				startpage = 0;
+				endpage = 0;
+			}else{ 				//게시물이 존재하는 경우
+				totalpages = total/size; //총페이지수=전체게시물수/1page당 보여줄 게시물수
+				if (total%size>0) {      //나머지가 0보다 크면
+					totalpages++;        //전체페이수를 1씩증가
+				}
+				int modVal=currentPage%5;  //user가보고싶은 요청페이지를 5로 나눈 나머지를 저장
+				startpage =currentPage/5*5 + 1;
+				//modVal==0은 요청페이지가 5의배수인 5 10 15....
+				if (modVal==0) 
+				startpage-=5;//startPage=startPage-5;
+				endpage = startpage + 4;
+				//endPage가 전체페이수보다크면  endPage값을 전체페이수로 적용해라
+				if(endpage>totalpages)endpage=totalpages;
+			}
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
 	public void setOfferno(int offerno) {
 		this.offerno = offerno;
 	}
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
 	public void setOffertitle(String offertitle) {
 		this.offertitle = offertitle;
 	}
-
 	public void setOfferpoint(String offerpoint) {
 		this.offerpoint = offerpoint;
 	}
-
 	public void setPay(int pay) {
 		this.pay = pay;
 	}
-
 	public void setOffertime(Date offertime) {
 		this.offertime = offertime;
 	}
-
 	public void setOffercontent(String offercontent) {
 		this.offercontent = offercontent;
 	}
-
 	public void setViewcnt(int viewcnt) {
 		this.viewcnt = viewcnt;
 	}
-
 	public void setOfferhard(String offerhard) {
 		this.offerhard = offerhard;
 	}
-
+	public void setTotal(int total) {
+		this.total = total;
+	}
+	public void setCurrentpage(int currentpage) {
+		this.currentpage = currentpage;
+	}
+	public void setContents(List<OfferBoard> contents) {
+		this.contents = contents;
+	}
+	public void setTotalpages(int totalpages) {
+		this.totalpages = totalpages;
+	}
+	public void setStartpage(int startpage) {
+		this.startpage = startpage;
+	}
+	public void setEndpage(int endpage) {
+		this.endpage = endpage;
+	}
 	public int getOfferno() {
 		return offerno;
 	}
-
 	public String getId() {
 		return id;
 	}
-
 	public String getOffertitle() {
 		return offertitle;
 	}
-
 	public String getOfferpoint() {
 		return offerpoint;
 	}
-
 	public int getPay() {
 		return pay;
 	}
-
 	public Date getOffertime() {
 		return offertime;
 	}
-
 	public String getOffercontent() {
 		return offercontent;
 	}
-
 	public int getViewcnt() {
 		return viewcnt;
 	}
-
 	public String getOfferhard() {
 		return offerhard;
+	}
+	public int getTotal() {
+		return total;
+	}
+	public int getCurrentpage() {
+		return currentpage;
+	}
+	public List<OfferBoard> getContents() {
+		return contents;
+	}
+	public int getTotalpages() {
+		return totalpages;
+	}
+	public int getStartpage() {
+		return startpage;
+	}
+	public int getEndpage() {
+		return endpage;
 	}
 
 	@Override
 	public String toString() {
 		return "OfferBoard [offerno=" + offerno + ", id=" + id + ", offertitle=" + offertitle + ", offerpoint="
 				+ offerpoint + ", pay=" + pay + ", offertime=" + offertime + ", offercontent=" + offercontent
-				+ ", viewcnt=" + viewcnt + ", offerhard=" + offerhard + "]";
+				+ ", viewcnt=" + viewcnt + ", offerhard=" + offerhard + ", total=" + total + ", currentpage="
+				+ currentpage + ", contents=" + contents + ", totalpages=" + totalpages + ", startpage=" + startpage
+				+ ", endpage=" + endpage + "]";
 	}
-
-	public OfferBoard(int offerno, String id, String offertitle, String offerpoint, int pay, Date offertime,
-			String offercontent, int viewcnt, String offerhard) {
-		super();
-		this.offerno = offerno;
-		this.id = id;
-		this.offertitle = offertitle;
-		this.offerpoint = offerpoint;
-		this.pay = pay;
-		this.offertime = offertime;
-		this.offercontent = offercontent;
-		this.viewcnt = viewcnt;
-		this.offerhard = offerhard;
-	}
+	
 	
 	
 	
