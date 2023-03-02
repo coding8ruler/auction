@@ -5,13 +5,13 @@ import java.util.Date;
 public class OfferBoard {
 
 	
-	private int offerno;
-	private String id;
-	private String offertitle;
+	private int offerno; //게시글 번호
+	private String id;	//사용자 ID
+	private String offertitle; //제목
 	private String offerpoint; // 거래장소
 	private int pay; 			//급여
-	private Date offertime;
-	private String offercontent;
+	private Date offertime;	//거래 일시
+	private String offercontent; //본문내용
 	private int viewcnt; //조회수
 	private String offerhard; //말머리
 	

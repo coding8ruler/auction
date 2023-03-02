@@ -1,14 +1,18 @@
 package com.mycom.auction.offerboard.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.ourcom.article.controller.ArticleController;
 
 // 구인구직컨트롤러
 @Controller
 public class OfferBoardController {
 
-	
+	private static final Logger logger = LoggerFactory.getLogger(OfferBoardController.class);
 	
 	
 	
