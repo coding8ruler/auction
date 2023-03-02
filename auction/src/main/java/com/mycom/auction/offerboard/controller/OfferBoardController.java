@@ -1,4 +1,4 @@
-package com.mycom.auction.Controller;
+package com.mycom.auction.offerboard.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
