@@ -13,33 +13,48 @@ import com.mycom.auction.goods.domain.ProductDTO;
 @Repository
 public class GoodsRepository{
 
-	
-	 @Autowired 
-	 private SqlSession sqlSession;
-	 
+	@Autowired
+	private SqlSession sqlSession;
 	
 	public String insertNewGoods(Map newGoodsMap) throws DataAccessException {
-		/*
-		 * //sqlSession.insert("실행쿼리문id",파라미터);
-		 * sqlSession.insert("mapper.auctionGoods.insertNewGoods",newGoodsMap); return
-		 * (String)newGoodsMap.get("goods");
-		 */
-		return null;
+		 sqlSession.insert("mapper.auctionGoods.insertNewGoods",newGoodsMap);
+		return (String)newGoodsMap.get("goods");
 	}
 
 	public void insertGoodsImageFile(List<ProductDTO> fileList) throws DataAccessException {
-		/*
-		 * //첨부파일의 수 만큼 insert문을 실행 for(int i=0; i<fileList.size();i++){ ProductDTO
-		 * productDTO=(ProductDTO)fileList.get(i);
-		 * sqlSession.insert("mapper.auctionGoods.insertGoodsImageFile",productDTO); }
-		 */
+		for(int i=0; i<fileList.size();i++){ 
+		ProductDTO productDTO=(ProductDTO)fileList.get(i);
+		 sqlSession.insert("mapper.auctionGoods.insertGoodsImageFile",productDTO); }
+		 
 	}
 
-	public void insertGoodsSize(List<ProductDTO> fileList) throws DataAccessException {
-		/*
-		 * for(int i=0; i<fileList.size();i++){ ProductDTO
-		 * productDTO=(ProductDTO)fileList.get(i);
-		 * sqlSession.insert("mapper.acutionGoods.insertGoodsImageFile",productDTO); }
-		 */
+	public void insertGoodsSize(Map newGoodsMap) throws DataAccessException {
+		for(int i=0; i<newGoodsMap.size();i++){
+			if(newGoodsMap.containsKey("goodsSize"+i)) {
+				newGoodsMap.put("goodsSize", newGoodsMap.get("goodsSize"+i));
+				System.out.println("insertGoodsSize에서 newGoodsMap.put"+newGoodsMap.get("goodsSize"));
+				sqlSession.insert("mapper.auctionGoods.insertGoodsSizeFile",newGoodsMap);
+			}
+		}
+	}
+
+	public List<ProductDTO> selectAllGoodsList() {
+		List<ProductDTO> goodsAllInfo = sqlSession.selectList("mapper.auctionGoods.selectGoodsAllInfo");
+		return goodsAllInfo;
+	}
+
+	public ProductDTO selectImageInfo(String goods) {
+		ProductDTO ImageInfo=sqlSession.selectOne("mapper.auctionGoods.selectImageInfo", goods);
+		return ImageInfo;
+	}
+
+	public ProductDTO selectGoodsList(String goods) {
+		ProductDTO goodsInfo = sqlSession.selectOne("mapper.auctionGoods.selectGoodsInfo",goods);
+		return goodsInfo;
+	}
+
+	public List<ProductDTO> selectImageAllInfo(String goods) {
+		List<ProductDTO> ImageAllInfo=sqlSession.selectList("mapper.auctionGoods.selectImageAllInfo", goods);
+		return ImageAllInfo;
 	}
 }

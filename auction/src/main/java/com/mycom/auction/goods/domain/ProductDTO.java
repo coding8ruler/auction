@@ -3,7 +3,7 @@ package com.mycom.auction.goods.domain;
 import java.util.Date;
 
 public class ProductDTO {
-	private String goods	;
+	private String goods;
 	private String goodsName;
 	private String color;
 	private String goodsContent;
@@ -12,6 +12,8 @@ public class ProductDTO {
 	private Date releaseDate;
 	private String goodsSize;
 	private String image;
+	
+	
 	@Override
 	public String toString() {
 		return "ProductDTO [goods=" + goods + ", goodsName=" + goodsName + ", color=" + color + ", goodsContent="

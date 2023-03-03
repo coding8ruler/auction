@@ -195,25 +195,22 @@ main {
 
 
 
-
-
+${goodsInfo}
+<!-- mv.addObject("goodsInfo",goodsInfo);
+ goodsInfo[ProductDTO [goods=test, goodsName=test, color=tes, 
+ goodsContent=test, firstPrice=32, imageNo=0, releaseDate=Wed Mar 29 00:00:00 KST 2023, goodsSize=null, image=null], 
+  -->
+  
+  
    <main>
    	<div class="auction-details" style="text-align: center;">
-			<img src="product-image.jpg" alt="Product Image">
+			<img src="${path}/download?goods=${goodsInfo.goods}">
 		</div>
 		<section class="auction-details">
-			<h2>Auction Title</h2>
-			<p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-			<p>Start Time: 2023-03-01 10:00:00</p>
-			<p>End Time: 2023-03-08 10:00:00</p>
-			<p>Minimum Bid: $100.00</p>
-			<p>Current Bid: $150.00</p>
-			<p>Bid Increment: $10.00</p>
-			<form>
-				<label for="bid-amount">Your Bid:</label>
-				<input type="number" id="bid-amount" name="bid-amount" min="110" step="10">
-				<button type="submit">Place Bid</button>
-			</form>
+			<h2>상품명 : ${goodsInfo.goodsName}</h2>
+			<p>모델명: ${goodsInfo.goods}</p>
+			<p>출시일 : ${goodsInfo.releaseDate}</p>
+			<p>출시가격: ${goodsInfo.firstPrice}</p>
 				<div>
   <label for="size-select">Size:</label>
   <select id="size-select">
@@ -258,9 +255,12 @@ main {
 	</div>
 		</section>
 	
+	
+	<c:forEach var="imageFileName" items="${map.fileList}">
 		<div class="auction-details" style="text-align: center;">
-			<img src="product-image.jpg" alt="Product Image">
+			<img src="${path}/download2?goods=${goodsInfo.goods}">
 		</div>
+	</c:forEach>
 		
 	</main>
 

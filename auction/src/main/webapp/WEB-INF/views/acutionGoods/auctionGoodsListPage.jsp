@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -131,51 +132,30 @@
             <td>
               
 
-
-
-
-
-
-<div class="row">
-  <div class="column">
-    <img src="product1.jpg" alt="Product 1">
-    <h3>Product 1</h3>
-    <p>Description of Product 1</p>
-    <p>$10.00</p>
-  </div>
-  <div class="column">
-    <img src="product2.jpg" alt="Product 2">
-    <h3>Product 2</h3>
-    <p>Description of Product 2</p>
-    <p>$15.00</p>
-  </div>
-  <div class="column">
-    <img src="product3.jpg" alt="Product 3">
-    <h3>Product 3</h3>
-    <p>Description of Product 3</p>
-    <p>$20.00</p>
-  </div>
-</div>
-<div class="row">
-  <div class="column">
-    <img src="product4.jpg" alt="Product 4">
-    <h3>Product 4</h3>
-    <p>Description of Product 4</p>
-    <p>$25.00</p>
-  </div>
-  <div class="column">
-    <img src="product5.jpg" alt="Product 5">
-    <h3>Product 5</h3>
-    <p>Description of Product 5</p>
-    <p>$30.00</p>
-  </div>
-  <div class="column">
-    <img src="product6.jpg" alt="Product 6">
-    <h3>Product 6</h3>
-    <p>Description of Product 6</p>
-    <p>$35.00</p>
-  </div>
-</div>
+<!-- mv.addObject("goodsInfo",goodsInfo);
+ goodsInfo[ProductDTO [goods=test, goodsName=test, color=tes, 
+ goodsContent=test, firstPrice=32, imageNo=0, releaseDate=Wed Mar 29 00:00:00 KST 2023, goodsSize=null, image=null], 
+  -->
+ 
+ <c:set  var="goods_count" value="2" />
+<c:forEach items="${goodsInfo}" var="item">
+	   <c:set var="goods_count" value="${goods_count+1 }" />
+	   
+	<c:if test="${goods_count%3 == 0}">
+		<div class="row">
+	</c:if>
+	  <div class="column">
+	  <a href="${path}/goodsDetail?goods=${item.goods}">
+	    <img src="${path}/download?goods=${item.goods}">
+		</a> 
+	    <h3>${item.goods}</h3>
+	    <p>${item.goodsName}</p>
+	    <p>${item.firstPrice}원</p>
+	  </div>
+	<c:if test="${goods_count%3 ==2}">
+		</div>
+	</c:if>
+</c:forEach>
 
 
 

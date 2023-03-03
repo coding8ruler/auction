@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="mapper.auctionGoods">
+ 
+ 
+ 	<resultMap type="productDTO" id="productResult">
+	   <result property="goods" column="goods" />
+	   <result property="goodsName" column="goodsName" />
+	   <result property="color" column="color" />
+	   <result property="goodsContent"   column="goodsContent" />
+	   <result property="firstPrice" column="firstPrice" />
+	   <result property="imageNo"  column="imageNo" />
+	   <result property="releaseDate"  column="releaseDate" />
+	   <result property="goodsSize"  column="goodsSize" />
+	   <result property="image"  column="image" />
+	</resultMap>
+ 
+ 
+	<insert id="insertNewGoods" parameterType="java.util.Map">
+	<![CDATA[
+		insert into product(goods,goodsName,firstPrice,releaseDate,color,goodsContent)
+		values(#{goods},#{goodsName},#{firstPrice},#{releaseDate},#{color},#{goodsContent})
+	]]>
+	</insert>
+
+
+	<insert id="insertGoodsImageFile"  parameterType="com.mycom.auction.goods.domain.ProductDTO">
+	   <selectKey resultType="int" keyProperty="imageNo" order="BEFORE"> 
+ 		select SEQ_GOODS_IMAGE.nextval from dual
+	   </selectKey>
+	<![CDATA[
+			insert into productimage(goods,image,imageNo)
+			values(#{goods},#{image},#{imageNo})
+	]]>
+	</insert>
+	
+	
+	<insert id="insertGoodsSizeFile"  parameterType="java.util.Map">
+	<![CDATA[
+			insert into productSize(goods,goodssize)
+			values(#{goods},#{goodsSize})
+	]]>
+	</insert>
+	
+	
+	<select id="selectGoodsAllInfo" parameterType="java.lang.String" resultMap="productResult">
+	 <![CDATA[			
+		select goods,goodsName,firstPrice,releaseDate,color,goodsContent
+		from product
+	 ]]>	
+	</select>
+	
+	
+	 <select id="selectImageInfo"  parameterType="java.lang.String" resultMap="productResult">
+	  <![CDATA[		
+		SELECT goods, image, imageNo
+		FROM productimage
+		WHERE goods = #{goods} AND imageNo = (
+		  SELECT MIN(imageNo) FROM productimage WHERE goods = #{goods})
+	  ]]>
+	</select>
+	
+		
+	<select id="selectGoodsInfo" parameterType="java.lang.String" resultMap="productResult">
+	 <![CDATA[			
+		select goods,goodsName,firstPrice,releaseDate,color,goodsContent
+		from product
+		where goods=#{goods}
+	 ]]>	
+	</select>
+	
+	
+	<select id="selectImageAllInfo" parameterType="java.lang.String" resultMap="productResult">
+	 <![CDATA[			
+		SELECT goods, image, imageNo
+		FROM productimage
+		wehre goods=#{goods}
+	 ]]>	
+	</select>
+	
+	
+</mapper>    

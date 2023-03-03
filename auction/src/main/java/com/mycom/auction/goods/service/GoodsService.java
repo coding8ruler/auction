@@ -28,8 +28,34 @@ public class GoodsService{
 				System.out.println("서비스 for문안 imageFileVO="+productDTO);
 			}
 			goodsRepository.insertGoodsImageFile(imageFileList);
-			goodsRepository.insertGoodsSize(imageFileList);
+			goodsRepository.insertGoodsSize(newGoodsMap);
 			return goods;
+	}
+
+
+	public List<ProductDTO> selectAllGoodsList() {
+		List<ProductDTO> goodsInfo = goodsRepository.selectAllGoodsList();
+		System.out.println("Servic goodsInfo"+goodsInfo);
+		return goodsInfo;
+	}
+
+
+	public ProductDTO selectImageInfo(String goods) {
+		ProductDTO ImageInfo=goodsRepository.selectImageInfo(goods);
+		return ImageInfo;
+	}
+
+
+	public ProductDTO selectGoodsList(String goods) {
+		ProductDTO goodsInfo = goodsRepository.selectGoodsList(goods);
+		return goodsInfo;
+	}
+
+
+	public List<ProductDTO> selectImageAllInfo(String goods) {
+		List<ProductDTO> ImageInfo=goodsRepository.selectImageAllInfo(goods);
+		return ImageInfo;
+
 	}
 
 	

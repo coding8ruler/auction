@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<c:set var="path" value="${pageContext.request.contextPath}"/>
   <title>ss</title>
     <script>
 let sizeCount =1;
@@ -18,10 +18,7 @@ $(document).ready(function(){
 			alert("1개이상은 있어야 합니다.");
 			return; //함수종료
 		}
-		let tr=$("#sizes"+sizeCount).closest("tr");
-		//id가 "i1"요소의 바로 앞에 위치한 형제(자매)를 삭제한다.
-		//$(기준요소).remove(추가할요소) => 선택요소는 남고, 그 자손요소가 제거 된다.
-		//기준요소(선택자 =>부모요소).remove(자식요소제거)
+		let tr=$("#goodSizes"+sizeCount).closest("tr");
 		$(tr).remove()
 		sizeCount--;
 	});
@@ -34,7 +31,7 @@ $(document).ready(function(){
 			return; //함수종료
 		}
 		let tr = "<tr><th>사이즈"+sizeCount+"</th><td>";
-				tr+= "<input type='text' name='goodSize"+sizeCount+"' id='goodSizes"+sizeCount+"'/></td></tr>";
+				tr+= "<input type='text' name='goodsSize"+sizeCount+"' id='goodsSizes"+sizeCount+"'/></td></tr>";
 		//id가 i1인 요소의 바로 앞에 추가할것
 		//$(기준요소).before(추가할 요소);
 		$("#insertSize").before(tr);
@@ -138,7 +135,7 @@ $(document).ready(function(){
             
             
             
-<form id="uploadForm" method="post" enctype="multipart/form-data" action="${contextPath}/upload">
+<form id="uploadForm" method="post" enctype="multipart/form-data" action="${path}/goodsRegisterForm">
 	<table>
 		<tr>
 			<th>
@@ -207,7 +204,7 @@ $(document).ready(function(){
 				사이즈1
 			</th>
 			<td>
-					<input type="text" name="goodSize1" id="goodSizes1"/>
+					<input type="text" name="goodsSize1" id="goodsSizes1"/>
 			</td>
 		</tr>
 		
