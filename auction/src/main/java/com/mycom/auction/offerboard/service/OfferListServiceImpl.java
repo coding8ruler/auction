@@ -14,10 +14,19 @@ public class OfferListServiceImpl implements OfferListService {
 	@Autowired
 	OfferRepository offerRepository ;
 	
+	//전체 데이터 리스트 조회
 	public List<OfferBoard> getOfferAllList() throws Exception{
 		
 		return offerRepository.getOfferAllList();
 	}
+	//특정글 상세조회
+	 @Override 
+	 public OfferBoard getOfferDetail(int no) throws Exception {
+	 
+	 return offerRepository.getOfferDetail(no);
+	 
+	 }
+	 
 	
 	
 	

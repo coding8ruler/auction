@@ -2,6 +2,7 @@ package com.mycom.auction.offerboard.repository;
 
 import java.util.List;
 
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -22,4 +23,10 @@ public class OfferRepositoryImpl implements OfferRepository {
 		return list;
 	}
 	
-}
+	//특정글번호 조회
+	@Override
+	public OfferBoard getOfferDetail(int no) throws DataAccessException {
+		return (OfferBoard)sqlSession.selectOne("mapper.offerBoard.offerDetail",no);
+		
+	}
+} 

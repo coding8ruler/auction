@@ -14,22 +14,24 @@ public class OfferBoard {
 	private Date offertime;	//거래 일시
 	private String offercontent; //본문내용
 	private int viewcnt; //조회수
-	private String offerhard; //말머리
+	private int offercnt; //말머리
 	
 	
 	//페이징 필드
+	
 	private int total;
 	private int currentpage;
 	private List<OfferBoard> contents;
 	private int totalpages;
 	private int startpage;
 	private int endpage;
-	
+
 	//기본생성자
 	public OfferBoard() {}
+	
 	//게시글정보 생성자
 	public OfferBoard(int offerno, String id, String offertitle, String offerpoint, int pay, Date offertime,
-			String offercontent, int viewcnt, String offerhard) {
+			String offercontent, int viewcnt, int offercnt) {
 		this.offerno = offerno;
 		this.id = id;
 		this.offertitle = offertitle;
@@ -38,7 +40,7 @@ public class OfferBoard {
 		this.offertime = offertime;
 		this.offercontent = offercontent;
 		this.viewcnt = viewcnt;
-		this.offerhard = offerhard;
+		this.offercnt = offercnt;
 	}
 		//페이징 생성자
 		public OfferBoard(int total, int currentPage, 
@@ -67,22 +69,6 @@ public class OfferBoard {
 		}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public void setOfferno(int offerno) {
 		this.offerno = offerno;
 	}
@@ -107,9 +93,11 @@ public class OfferBoard {
 	public void setViewcnt(int viewcnt) {
 		this.viewcnt = viewcnt;
 	}
-	public void setOfferhard(String offerhard) {
-		this.offerhard = offerhard;
+	public void setOffercnt(int offercnt) {
+		this.offercnt = offercnt;
 	}
+	
+	
 	public void setTotal(int total) {
 		this.total = total;
 	}
@@ -128,6 +116,8 @@ public class OfferBoard {
 	public void setEndpage(int endpage) {
 		this.endpage = endpage;
 	}
+	
+	
 	public int getOfferno() {
 		return offerno;
 	}
@@ -152,9 +142,20 @@ public class OfferBoard {
 	public int getViewcnt() {
 		return viewcnt;
 	}
-	public String getOfferhard() {
-		return offerhard;
+	public int getOffercnt() {
+		return offercnt;
 	}
+
+	@Override
+	public String toString() {
+		return "OfferBoard [offerno=" + offerno + ", id=" + id + ", offertitle=" + offertitle + ", offerpoint="
+				+ offerpoint + ", pay=" + pay + ", offertime=" + offertime + ", offercontent=" + offercontent
+				+ ", viewcnt=" + viewcnt + ", offercnt=" + offercnt + ", total=" + total + ", currentpage="
+				+ currentpage + ", contents=" + contents + ", totalpages=" + totalpages + ", startpage=" + startpage
+				+ ", endpage=" + endpage + "]";
+	}
+	
+	
 	public int getTotal() {
 		return total;
 	}
@@ -174,15 +175,6 @@ public class OfferBoard {
 		return endpage;
 	}
 
-	@Override
-	public String toString() {
-		return "OfferBoard [offerno=" + offerno + ", id=" + id + ", offertitle=" + offertitle + ", offerpoint="
-				+ offerpoint + ", pay=" + pay + ", offertime=" + offertime + ", offercontent=" + offercontent
-				+ ", viewcnt=" + viewcnt + ", offerhard=" + offerhard + ", total=" + total + ", currentpage="
-				+ currentpage + ", contents=" + contents + ", totalpages=" + totalpages + ", startpage=" + startpage
-				+ ", endpage=" + endpage + "]";
-	}
-	
 	
 	
 	
