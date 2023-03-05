@@ -29,4 +29,10 @@ public class OfferRepositoryImpl implements OfferRepository {
 		return (OfferBoard)sqlSession.selectOne("mapper.offerBoard.offerDetail",no);
 		
 	}
+	//전체 게시글 수 
+	@Override
+	public int getTotalCnt() throws DataAccessException {
+		int cnt = (Integer)sqlSession.selectOne("");
+		return cnt;
+	}
 } 

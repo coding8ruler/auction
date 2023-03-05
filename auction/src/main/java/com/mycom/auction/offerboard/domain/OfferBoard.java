@@ -1,6 +1,7 @@
 package com.mycom.auction.offerboard.domain;
 
 import java.util.Date;
+
 import java.util.List;
 
 public class OfferBoard {
@@ -19,7 +20,7 @@ public class OfferBoard {
 	
 	//페이징 필드
 	
-	private int total;
+	private int totalcnt;
 	private int currentpage;
 	private List<OfferBoard> contents;
 	private int totalpages;
@@ -43,18 +44,18 @@ public class OfferBoard {
 		this.offercnt = offercnt;
 	}
 		//페이징 생성자
-		public OfferBoard(int total, int currentPage, 
+		public OfferBoard(int totalcnt, int currentPage, 
 				   int size, List<OfferBoard> contents) {
-			this.total = total;
+			this.totalcnt = totalcnt;
 			this.currentpage = currentPage;
 			this.contents = contents;
-			if (total == 0) { 		//게시물이 존재하지 않는 경우
+			if (totalcnt == 0) { 		//게시물이 존재하지 않는 경우
 				totalpages = 0;
 				startpage = 0;
 				endpage = 0;
 			}else{ 				//게시물이 존재하는 경우
-				totalpages = total/size; //총페이지수=전체게시물수/1page당 보여줄 게시물수
-				if (total%size>0) {      //나머지가 0보다 크면
+				totalpages = totalcnt/size; //총페이지수=전체게시물수/1page당 보여줄 게시물수
+				if (totalcnt%size>0) {      //나머지가 0보다 크면
 					totalpages++;        //전체페이수를 1씩증가
 				}
 				int modVal=currentPage%5;  //user가보고싶은 요청페이지를 5로 나눈 나머지를 저장
@@ -98,8 +99,8 @@ public class OfferBoard {
 	}
 	
 	
-	public void setTotal(int total) {
-		this.total = total;
+	public void setTotalCnt(int totalcnt) {
+		this.totalcnt = totalcnt;
 	}
 	public void setCurrentpage(int currentpage) {
 		this.currentpage = currentpage;
@@ -150,14 +151,14 @@ public class OfferBoard {
 	public String toString() {
 		return "OfferBoard [offerno=" + offerno + ", id=" + id + ", offertitle=" + offertitle + ", offerpoint="
 				+ offerpoint + ", pay=" + pay + ", offertime=" + offertime + ", offercontent=" + offercontent
-				+ ", viewcnt=" + viewcnt + ", offercnt=" + offercnt + ", total=" + total + ", currentpage="
+				+ ", viewcnt=" + viewcnt + ", offercnt=" + offercnt + ", totalcnt=" + totalcnt + ", currentpage="
 				+ currentpage + ", contents=" + contents + ", totalpages=" + totalpages + ", startpage=" + startpage
 				+ ", endpage=" + endpage + "]";
 	}
 	
 	
-	public int getTotal() {
-		return total;
+	public int getTotalCnt() {
+		return totalcnt;
 	}
 	public int getCurrentpage() {
 		return currentpage;

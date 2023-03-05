@@ -17,6 +17,13 @@
  		<result property="offercnt"  column="offercnt"/>
  
  </resultMap>
+	<!-- 전체 게시물수 조회 -->
+	<select id="totalCnt" resultType="int">
+	  <![CDATA[		
+		select count(*) from offerboard
+	  ]]>
+	</select>
+ 
  
  
  	<!-- 구인게시판 전체 목록보기 -->

@@ -26,6 +26,10 @@ public class OfferListServiceImpl implements OfferListService {
 	 return offerRepository.getOfferDetail(no);
 	 
 	 }
+	@Override
+	public int getTotalCnt() throws Exception {
+		return  offerRepository.getTotalCnt();
+	}
 	 
 	
 	

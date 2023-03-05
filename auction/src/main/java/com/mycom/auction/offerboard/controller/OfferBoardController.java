@@ -9,7 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.mycom.auction.offerboard.domain.OfferBoard;
 import com.mycom.auction.offerboard.service.OfferListService;
@@ -30,18 +32,37 @@ public class OfferBoardController {
     	//전체 리스트 조회
     	List<OfferBoard> list= offerListService.getOfferAllList();
     	
+    	//전체 게시글 수
+    	int totalCnt = offerListService.getTotalCnt();
+    	
+    	
     	//특정글번호 조회
     	OfferBoard offerBoard = offerListService.getOfferDetail(no);
     	
     	model.addAttribute("list",list); //전체 목록 검색
     	model.addAttribute("offerBoard",offerBoard); //전체 목록 검색
+    	model.addAttribute("totalCnt",totalCnt); //전체 게시물 수
+    	
     	
     	return "/offerBoard/offerBoardForm";
     }
     
     
-    
-    
+    //페이징처리
+    @RequestMapping(value = "/offerBoard/offerBoardForm", method = RequestMethod.GET)
+    public ModelAndView boardList(@RequestParam(value = "page", defaultValue = "1") int page) throws Exception {
+        ModelAndView mv = new ModelAndView("/offerBoard/offerBoardForm");
+        int totalcnt = offerListService.getTotalCnt(); // 게시글 전체 수
+        
+        OfferBoard offerBoard = new OfferBoard(); // 한 페이지에 보여줄 게시글 수
+       // List<BoardVO> boardList = boardService.selectBoardList(pageVO); // 해당 페이지에 보여줄 게시글 목록
+        List<OfferBoard> pagelist= offerListService.sele(); // 해당 페이지에 보여줄 게시글 목록
+       
+        mv.addObject("pagelist", pagelist);
+        mv.addObject("offerBoard", offerBoard);
+        mv.addObject("totalcnt", totalcnt);
+        return mv;
+    }
     
     
     
