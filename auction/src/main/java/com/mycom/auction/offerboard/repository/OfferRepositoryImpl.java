@@ -9,6 +9,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.mycom.auction.offerboard.domain.OfferBoard;
+import com.mycom.auction.offerboard.domain.Page;
 
 @Repository
 public class OfferRepositoryImpl implements OfferRepository {
@@ -18,10 +19,17 @@ public class OfferRepositoryImpl implements OfferRepository {
 	private SqlSession sqlSession;
 	
 	//전체목록조회 //spring resultview.jsp 에 뷰 작업해야함
-	public List<OfferBoard> getOfferAllList() throws DataAccessException{
-		List<OfferBoard> list= sqlSession.selectList("mapper.offerBoard.offerAllList");
-		return list;
+	public List<OfferBoard> getOfferAllList(Page pageNo) throws DataAccessException{
+		return sqlSession.selectList("mapper.offerBoard.offerAllList",pageNo);
+		
 	}
+	//전체 게시글 수 
+	@Override
+	public int getTotal() throws DataAccessException {
+		
+		return sqlSession.selectOne("mapper.offerBoard.total");
+	}
+
 	
 	//특정글번호 조회
 	@Override
@@ -29,10 +37,5 @@ public class OfferRepositoryImpl implements OfferRepository {
 		return (OfferBoard)sqlSession.selectOne("mapper.offerBoard.offerDetail",no);
 		
 	}
-	//전체 게시글 수 
-	@Override
-	public int getTotalCnt() throws DataAccessException {
-		int cnt = (Integer)sqlSession.selectOne("");
-		return cnt;
-	}
+
 } 

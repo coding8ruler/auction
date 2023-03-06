@@ -18,9 +18,9 @@
  
  </resultMap>
 	<!-- 전체 게시물수 조회 -->
-	<select id="totalCnt" resultType="int">
+	<select id="total" resultType="int">
 	  <![CDATA[		
-		select count(*) from offerboard
+		select count(offerno) from offerboard
 	  ]]>
 	</select>
  
@@ -29,8 +29,9 @@
  	<!-- 구인게시판 전체 목록보기 -->
  	<select id="offerAllList" resultType="offerBoard">
 	 	<![CDATA[
-		 	select offerno,id,offertitle,offerpoint,pay,offertime,viewcnt
-		 	from offerboard
+			select * from(select s.*, row_number()over(order by s.offerno desc) as num from offerboard s)
+			where num>#{start} and num<=#{end}
+			order by offerno desc
 		]]>
 	</select>
 	

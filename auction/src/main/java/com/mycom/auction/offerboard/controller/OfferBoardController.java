@@ -2,6 +2,8 @@ package com.mycom.auction.offerboard.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.mycom.auction.offerboard.domain.OfferBoard;
+import com.mycom.auction.offerboard.domain.Page;
 import com.mycom.auction.offerboard.service.OfferListService;
 
 // 구인구직컨트롤러
@@ -24,7 +25,7 @@ public class OfferBoardController {
 	
 	@Autowired
 	OfferListService offerListService;
-	
+	/*
 	  //offerBoard 구인게시판 목록 보여주기
     @RequestMapping("/offerBoard/offerBoardForm")
     public String offerBoard(Model model,@RequestParam(name="ano", required=false,defaultValue="1") int no) throws Exception {
@@ -46,8 +47,36 @@ public class OfferBoardController {
     	
     	return "/offerBoard/offerBoardForm";
     }
+    */
     
     
+    
+    
+  //게시글전체조회
+  	@GetMapping("/offerBoard/offerBoardForm")
+  	public String articleList(Model model,HttpServletRequest request) throws Exception {
+  		
+  		
+  		String strPageNo = request.getParameter("pageNo"); //보고싶은페이지
+  		int pageNo = 1;   
+  		if(strPageNo!=null) {
+  			pageNo = Integer.parseInt(strPageNo);			
+  		}
+  		Page page = new Page(pageNo);
+  		
+  		OfferBoard offerBoard  = offerListService.getArticlePage(page);
+  		model.addAttribute("offerBoard", offerBoard);
+  		
+  		return "/offerBoard/offerBoardForm";
+  	}
+    
+    
+    
+    
+    
+    
+    
+    /*
     //페이징처리
     @RequestMapping(value = "/offerBoard/offerBoardForm", method = RequestMethod.GET)
     public ModelAndView boardList(@RequestParam(value = "page", defaultValue = "1") int page) throws Exception {
@@ -56,14 +85,14 @@ public class OfferBoardController {
         
         OfferBoard offerBoard = new OfferBoard(); // 한 페이지에 보여줄 게시글 수
        // List<BoardVO> boardList = boardService.selectBoardList(pageVO); // 해당 페이지에 보여줄 게시글 목록
-        List<OfferBoard> pagelist= offerListService.sele(); // 해당 페이지에 보여줄 게시글 목록
+        List<OfferBoard> pagelist= offerListService.sele(page); // 해당 페이지에 보여줄 게시글 목록
        
         mv.addObject("pagelist", pagelist);
         mv.addObject("offerBoard", offerBoard);
         mv.addObject("totalcnt", totalcnt);
         return mv;
     }
-    
+    */
     
     
     //offerinsertForm 구인등록 폼 보여주기

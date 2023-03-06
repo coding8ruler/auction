@@ -2,12 +2,14 @@ package com.mycom.auction.offerboard.service;
 
 import java.util.List;
 
+
 import com.mycom.auction.offerboard.domain.OfferBoard;
+import com.mycom.auction.offerboard.domain.Page;
 
 public interface OfferListService {
 
 	//전체 게시글 내용
-	public List<OfferBoard> getOfferAllList() throws Exception;
+	//public List<OfferBoard> getOfferAllList() throws Exception;
 	
 	
 	 //특정글 상세 내용 조회
@@ -15,6 +17,12 @@ public interface OfferListService {
 	
 	
 	//전체 게시글 수 
-	public int getTotalCnt() throws Exception;
+	//public int getTotalCnt() throws Exception;
+	
+	
+	public OfferBoard getArticlePage(Page pageNo) throws Exception;
+	
+	
+	
 	
 }
