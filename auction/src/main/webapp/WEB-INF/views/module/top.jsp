@@ -61,11 +61,11 @@ background-color: white;
 </div>
 
  <div class="dropdown">
-  <button class="dropbtn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;상품&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+  <button class="dropbtn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;상품&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
   <div class="dropdown-content">
     <a href="<%=request.getContextPath()%>/goodsRegisterForm">상품등록</a>
     <a href="<%=request.getContextPath()%>/goodsListForm">상품리스트</a>
-    <a href="<%=request.getContextPath()%>/goodsDetailForm">상품 상세</a>
+    <a href="<%=request.getContextPath()%>/productList">상품 결재 리스트</a>
   </div>
 </div>
 

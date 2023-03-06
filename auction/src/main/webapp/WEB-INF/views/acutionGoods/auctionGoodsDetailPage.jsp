@@ -149,7 +149,7 @@
     
     // -----------------------------------------------------
 	// 시작 시간 (2023년 3월 3일 12시 0분 0초)
-	var startTime = new Date('March 9, 2023 12:00:00').getTime();
+	var startTime = new Date('March 6, 2023 12:00:00').getTime();
 
 	var x = setInterval(function() {
 		// 현재 시간
@@ -175,6 +175,11 @@
 		}
 	}, 1000); // 1초마다 업데이트
 
+	
+	
+	function productAddForm(){
+		
+	}
     </script>
   </head>
   <body>
@@ -217,6 +222,12 @@ ${goodsImageInfo}
 					</c:forEach>			
 			</select>
 				  <span id="price">re</span>
+				</li>
+				<li>
+				<button onclick="location.href='${path}/productAddForm?goodsSize=' + document.getElementById('size-select').value + '&goods=${goodsInfo.goods}'" value="판매하기"></button>
+				</li>
+				<li>
+				  <a href="">구매하기 </a>
 				</li>
 			</ul>
 	   </div>		

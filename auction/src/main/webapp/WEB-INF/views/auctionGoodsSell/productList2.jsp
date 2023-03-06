@@ -1,19 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="<%=request.getContextPath()%>"/>
 <!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <title>W3.CSS Template</title>
+<html>
+<head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css'>
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js'></script>
-    
-    
- <script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function(){
 		
 		var actionForm = $("#actionForm");
@@ -28,107 +26,17 @@
 		});
 		
 	});
-</script>   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-      }
-      
-      #container {
-        position: relative;
-        min-height: 100vh;
-      }
-      
-      #header1 {
-        height: 130px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: #fff;
-        z-index: 1;
-      }
-      
-      #header2 {
-        height: 70px;
-        position: fixed;
-        top: 130px;
-        left: 0;
-        width: 100%;
-        background-color: #fff;
-        z-index: 1;
-      }
-      
-      #content {
-        margin-top: 200px;
-        margin-bottom: 100px;
-      }
-      
-      #footer {
-        height: 70px;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: #fff;
-        z-index: 1;
-      }
-      
-      table {
-        width: 95%;
-        margin: 0 auto;
-        border: 1px solid #ccc;
-        border-collapse: collapse;
-      }
-      
-      tr {
-        border: 1px solid #ccc;
-      }
-      
-      td {
-        border: 1px solid #ccc;
-        padding: 10px;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="container">
-      <div id="header1">
-        <jsp:include page="../module/banner.jsp" flush="false"/>
-      </div>
-      <div id="header2">
-        <jsp:include page="../module/top.jsp" flush="false"/>
-      </div>
-      <div id="content">
-        <table>
-          <tr>
-            <td>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
- <form id="actionForm" action="${contextPath}/productList" method="get">
+</script>
+<style type="text/css">
+
+.container {width:98%;}
+
+table {width:100%;}
+</style>
+<title>Insert title here</title>
+</head>
+<body>
+<form id="actionForm" action="${contextPath}/productList" method="get">
 	<div class="container">
   <h2>Bordered Table</h2>
   <table class="table table-bordered">
@@ -192,25 +100,16 @@
 		<input type="text" name="pageNum" value="${pageMaker.cri.pageNum}">
 		<input type="text" name="amount" value="${pageMaker.cri.amount}">
 	</form>
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div id="footer">
-        <jsp:include page="../module/bottom.jsp" flush="false"/>
-      </div>
-    </div>
-  </body>
+	</body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
