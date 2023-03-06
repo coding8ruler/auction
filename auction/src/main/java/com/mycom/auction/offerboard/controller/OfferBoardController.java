@@ -1,17 +1,18 @@
 package com.mycom.auction.offerboard.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.mycom.auction.offerboard.domain.OfferBoard;
 import com.mycom.auction.offerboard.domain.Page;
@@ -50,8 +51,6 @@ public class OfferBoardController {
     */
     
     
-    
-    
   //게시글전체조회
   	@GetMapping("/offerBoard/offerBoardForm")
   	public String articleList(Model model,HttpServletRequest request) throws Exception {
@@ -70,39 +69,30 @@ public class OfferBoardController {
   		return "/offerBoard/offerBoardForm";
   	}
     
-    
-    
-    
-    
-    
-    
-    /*
-    //페이징처리
-    @RequestMapping(value = "/offerBoard/offerBoardForm", method = RequestMethod.GET)
-    public ModelAndView boardList(@RequestParam(value = "page", defaultValue = "1") int page) throws Exception {
-        ModelAndView mv = new ModelAndView("/offerBoard/offerBoardForm");
-        int totalcnt = offerListService.getTotalCnt(); // 게시글 전체 수
-        
-        OfferBoard offerBoard = new OfferBoard(); // 한 페이지에 보여줄 게시글 수
-       // List<BoardVO> boardList = boardService.selectBoardList(pageVO); // 해당 페이지에 보여줄 게시글 목록
-        List<OfferBoard> pagelist= offerListService.sele(page); // 해당 페이지에 보여줄 게시글 목록
-       
-        mv.addObject("pagelist", pagelist);
-        mv.addObject("offerBoard", offerBoard);
-        mv.addObject("totalcnt", totalcnt);
-        return mv;
-    }
-    */
-    
-    
-    //offerinsertForm 구인등록 폼 보여주기
-    @GetMapping("/offerBoard/offerInsertForm")
-    public String offerinsert() {
-    	
-    	
+ 
+  //입력폼보여주기
+  	//요청방식 get
+    //offerinsertForm 구인 등록 폼 보여주기
+	@GetMapping("/offerBoard/offerInsertForm")
+    public String offerinsertform(HttpServletRequest request) {
+		//1.파라미터받기 //2.비즈니스로직
+  		//3.model
+  		//원칙적으로는 (로그인한 user가) 글입력 권한을 가진 사용자가 글입력해야지만
+  		//여기에서는 임시로 세션에 정보를 저장하여 진행하겠다
+	  		HttpSession session = request.getSession();
+	  	
+	  		
+	  		
+	  		session.setAttribute("isLogOn",true);
+	  		session.setAttribute("AUTHUSER_ID", "hongid");//임시
+  		//4.view
     	return "/offerBoard/offerInsertForm";
     }
   
+    
+    
+    
+    
     //offerSelect 입력된 구인게시글 내용폼 보여주기
     @GetMapping("/offerBoard/offerSelectForm")
     public Object offerSelect() {

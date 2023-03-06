@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,41 +84,43 @@
 	
 		<h3 style="text-align: center;">구인 게시글 (입력 폼)</h3>
 		<hr>
-	<form>
+	<form name="offeraddform" id="offeraddform" method="post" action="/offerBoard/addnewoffer">
 			<div class="tablemain">
 			<br>
 			<br>
 			  <div class="table1">
-			    	<div class="table-cell">사용자 ID 및 정보(세션에서 로그인한 사용자정보 받아옴)</div>
+			    	<div class="table-cell">글쓴이<br/>${sessionScope.AUTHUSER_ID}</div>
+			    	
+			    	<input type="hidden" name="memberId" value="${sessionScope.AUTHUSER_ID}"/>
 			  </div><br>
 			  
 			  <div class="table2">
-			    	<div class="table-cell">구인게시글제목<br/>
-			    	<input type="text" id="">
+			    	<div class="table-cell">구인 글제목<br/>
+			    	<input type="text" name="offertitle" id="offertitle" required="required">
 			    	</div>
 			  </div>
 			
 			  <div class="table3">
 			   	 	<div class="table-cell">급여<br/>
-			   	 	<input type="text" id="">원
+			   	 	<input type="text" name="pay"id="pay">원
 			   	 	</div>
 			  </div>
 			  
 			   <div class="table4">
-			   	 	<div class="table-cell">근무 일시<br/>
-			   	 	<input type="date" id="">
+			   	 	<div class="table-cell">대행 날짜<br/>
+			   	 	<input type="date" id="date">
 			   	 	</div>
 			  </div>
 			  
 			    <div class="table5">
-			   	 	<div class="table-cell">근무 시간<br/>
-			   	 	<input type="time" value="13:10" min="13:00" max="15:00">
+			   	 	<div class="table-cell">대행 시작 시간<br/>
+			   	 	<input type="time" value="00:00" min="00:00" max="24:00">
 			   	 	</div>
 			  </div>
 			  
 			   <div class="table6">
-			    	<div class="table-cell">본문 TEXT<br/>
-			    	<input type="text" id="offermainText">
+			    	<div class="table-cell">내용<br/>
+			    	<textarea name="offermaincontent" id="offermaincontent" cols="30" rows="5" required="required"></textarea>
 			    	</div>
 			    	
 			  </div><br>
