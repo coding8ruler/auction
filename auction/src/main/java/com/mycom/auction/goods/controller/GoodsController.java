@@ -255,6 +255,7 @@ public class GoodsController {
 		List<ProductDTO> goodsSizeInfo=goodsService.selectGoodsSizeList(goods);
 		List<ProductDTO> goodsImageInfo=goodsService.selectImageAllInfo(goods);
 		System.out.println("goodsImageInfo"+goodsImageInfo);
+		System.out.println("goodsSizeInfo"+goodsSizeInfo);
 		
 		model.addAttribute("goodsInfo",goodsInfo);
 		model.addAttribute("goodsImageInfo",goodsImageInfo);

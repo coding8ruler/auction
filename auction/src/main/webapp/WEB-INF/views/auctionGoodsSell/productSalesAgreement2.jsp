@@ -1,94 +1,37 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
-<html lang="ko">
-  <head>
- <meta name='viewport' content='width=device-width, initial-scale=1'>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css'>
 <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js'></script>
-    <title>W3.CSS Template</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-      }
-      
-      #container {
-        position: relative;
-        min-height: 100vh;
-      }
-      
-      #header1 {
-        height: 130px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: #fff;
-        z-index: 1;
-      }
-      
-      #header2 {
-        height: 70px;
-        position: fixed;
-        top: 130px;
-        left: 0;
-        width: 100%;
-        background-color: #fff;
-        z-index: 1;
-      }
-      
-      #content {
-        margin-top: 200px;
-        margin-bottom: 100px;
-      }
-      
-      #footer {
-        height: 70px;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background-color: #fff;
-        z-index: 1;
-      }
-      
-      table {
-        width: 95%;
-        margin: 0 auto;
-        border: 1px solid #ccc;
-        border-collapse: collapse;
-      }
-      
-      tr {
-        border: 1px solid #ccc;
-      }
-      
-      td {
-        border: 1px solid #ccc;
-        padding: 10px;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="container">
-      <div id="header1">
-        <jsp:include page="../module/banner.jsp" flush="false"/>
-      </div>
-      <div id="header2">
-        <jsp:include page="../module/top.jsp" flush="false"/>
-      </div>
-      <div id="content">
-        <table>
-          <tr>
-            <td>
-             		  <button onclick="window.history.back()" style="width: 50px; height: 50px; border:none; font-size: 2em;">←</button>
+<title>Insert title here</title>
+</head>
+<style>
+.table {
+  border-collapse: collapse;
+}
+.table td, .table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+label {
+  font-size: 1.2em; /* 글자 크기 */
+  font-weight: bold; /* 글자 굵기 */
+}
+.form-check-input {
+  width: 20px;
+  height: 20px;
+  transform: scale(1.5);
+}
+</style>
+<body>
+		  <button onclick="window.history.back()" style="width: 50px; height: 50px; border:none; font-size: 2em;">←</button>
 		  <h2 align="center" style="font-weight: bold;">판매 동의</h2>
 		<h2 style="font-weight: bold;">
 			<span style="color: #03C988; ">판매</span>하시기 전에 <br>
@@ -174,22 +117,5 @@
      </table>
     </div>
 </form>
-              
-              
-              
-              
-              
-              
-              
-              
-              
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div id="footer">
-        <jsp:include page="../module/bottom.jsp" flush="false"/>
-      </div>
-    </div>
-  </body>
+</body>
 </html>

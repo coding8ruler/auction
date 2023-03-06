@@ -55,12 +55,13 @@ public class productSellController extends  BaseController implements WebMvcConf
 	
 	 //판매하기 글 등록 페이지
 	 @RequestMapping(value="/productAddForm", method= {RequestMethod.GET})
-		public String productSell(HttpServletRequest request) {
+		public String productSell(HttpServletRequest request, String goodsSize,String goods,Model model) {
 		 	
 		 	//임시 userId
 		 	HttpSession session = request.getSession();
 			session.setAttribute("AUTHUSER_ID", "hongid");//임시
-			
+			model.addAttribute("goodsSize",goodsSize);
+			model.addAttribute("goods", goods);
 			return "auctionGoodsSell/productAddForm";
 		}
 	 //판매동의 페이지
