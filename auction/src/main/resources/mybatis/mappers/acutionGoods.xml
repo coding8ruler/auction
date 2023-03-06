@@ -75,7 +75,15 @@
 	 <![CDATA[			
 		SELECT goods, image, imageNo
 		FROM productimage
-		wehre goods=#{goods}
+		where goods=#{goods}
+	 ]]>	
+	</select>
+	
+		<select id="selectSizeAllInfo" parameterType="java.lang.String" resultMap="productResult">
+	 <![CDATA[			
+		SELECT goods,goodssize
+		FROM productsize
+		where goods=#{goods}
 	 ]]>	
 	</select>
 	

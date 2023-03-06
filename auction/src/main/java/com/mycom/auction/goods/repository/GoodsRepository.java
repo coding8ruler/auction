@@ -57,4 +57,9 @@ public class GoodsRepository{
 		List<ProductDTO> ImageAllInfo=sqlSession.selectList("mapper.auctionGoods.selectImageAllInfo", goods);
 		return ImageAllInfo;
 	}
+
+	public List<ProductDTO> selectSizeAllInfo(String goods) {
+		List<ProductDTO> SizeAllInfo=sqlSession.selectList("mapper.auctionGoods.selectSizeAllInfo", goods);
+		return SizeAllInfo;
+	}
 }

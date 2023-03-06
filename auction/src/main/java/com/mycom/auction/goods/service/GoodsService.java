@@ -58,6 +58,12 @@ public class GoodsService{
 
 	}
 
+
+	public List<ProductDTO> selectGoodsSizeList(String goods) {
+		List<ProductDTO> SizeInfo=goodsRepository.selectSizeAllInfo(goods);
+		return SizeInfo;
+	}
+
 	
 }
 

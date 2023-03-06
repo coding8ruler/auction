@@ -3,17 +3,16 @@ package com.mycom.auction.goods.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -22,6 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,6 +41,7 @@ import net.coobird.thumbnailator.Thumbnails;
 
 
 @Controller
+@EnableScheduling
 public class GoodsController {
 
 	private static final Logger logger = LoggerFactory.getLogger(GoodsController.class);
@@ -212,39 +214,35 @@ public class GoodsController {
 	
 	
   	@RequestMapping("/download2")
-	public void goodsGetImageForm2(@RequestParam("goods") String goods,
-			Model model,
-            HttpServletResponse response) throws Exception {
-
-  		List<ProductDTO> goodsImageInfo=goodsService.selectImageAllInfo(goods);
-  		
-		System.out.println("1번째 download");
+	public void goodsGetImageForm2(@RequestParam("goods") String goods,	String imageName,Model model, HttpServletResponse response) throws Exception {
+  		System.out.println("goods"+goods);
+  		System.out.println("imageName"+imageName);
 		OutputStream out = response.getOutputStream();
-		for(ProductDTO productDTO : goodsImageInfo) {
-			
-			String downFile = REPO_PATH + "\\"+goods+"\\"+productDTO.getImage();
-			File file = new File(downFile);//다운로드할 파일객체생성
-			//response.setHeader()  응답헤더정보 설정
-			//Cache-Control   HTTP 1.1 버전에서 지원하는 헤더로서, 이 헤더의 값을 "no-cache"로 지정하면 웹 브라우저는 응답 결과를 캐시하지 않는다.
-			/*캐시란?-브라우저(클라이언트)가 저장해 놓은 데이터
-			-웹 브라우저가 WAS에 같은 jsp파일을 2번 이상 요청할 때 불필요한 응답 요청을 방지하기 위해 사용한다.
-			-웹 브라우저의 응답속도 향상되는 효과가 있다.*/
-			response.setHeader("Cache-Control","no-cache");
-			response.addHeader("Content-disposition","attachment; fileName="+productDTO);//Content-Disposition을 통해 파일명을 설정
-			//버퍼를 이용하여   파일정보를     한 번에 8byte씩  읽어들이고 
-			FileInputStream in = new FileInputStream(file);
-			byte[] buffer = new byte[1024 * 8];
-			while (true) {
-				int count = in.read(buffer); 
-				if (count == -1) //더 이상 읽어들일 것이 없다면
-				break; //읽어들이는 것을 멈추어라
-				out.write(buffer, 0, count); //읽은 내용 브라우저에 전송하기(-> 웹브라우저에 출력됨. 여기에서는 result.jsp문서에 출력됨)
-			}
-			model.addAttribute("goodsImageInfo", productDTO.getImage());
-		in.close();//입력스트림닫기
-		out.close();//출력스트림닫기
-		}
-		
+		//이미지저장위치에  글번호별로 폴더생성하여 다운로드할 파일을 저장
+		String filePath = REPO_PATH + "\\" + goods+"\\"+ imageName;
+
+  		File image = new File(filePath);//다운로드할 파일객체생성
+
+  		//thumbnail용 이미지 출력
+  		if(image.exists()) {
+  			//가로세로size를 지정하여 png썸네일이미지로 출력
+  			Thumbnails.of(image).size(800,750).outputFormat("png").toOutputStream(out);
+  		}else {
+  			return;
+  		}
+  		
+  		//response.setHeader()  응답헤더정보 설정
+  		//Cache-Control	HTTP 1.1 버전에서 지원하는 헤더로서, 이 헤더의 값을 "no-cache"로 지정하면 웹 브라우저는 응답 결과를 캐시하지 않는다.
+  		/*캐시란?-브라우저(클라이언트)가 저장해 놓은 데이터
+  		 -웹 브라우저가 WAS에 같은 jsp파일을 2번 이상 요청할 때 불필요한 응답 요청을 방지하기 위해 사용한다.
+  		 -웹 브라우저의 응답속도 향상되는 효과가 있다.*/
+  		response.setHeader("Cache-Control", "no-cache");
+  		response.addHeader("Content-disposition", "attachment; fileName=" + imageName);//Content-Disposition을 통해 파일명을 설정
+  		
+
+  		byte[] buffer = new byte[1024 * 8];
+  		out.write(buffer); //읽은 내용 브라우저에 전송하기(-> 웹브라우저에 출력됨. 여기에서는 result.jsp문서에 출력됨)
+  		out.close();//출력스트림닫기
 	}
 	
 	
@@ -254,19 +252,70 @@ public class GoodsController {
 	public String DetailGetGoods(@RequestParam("goods") String goods,Model model) {
 		
 		ProductDTO goodsInfo=goodsService.selectGoodsList(goods);
+		List<ProductDTO> goodsSizeInfo=goodsService.selectGoodsSizeList(goods);
+		List<ProductDTO> goodsImageInfo=goodsService.selectImageAllInfo(goods);
+		System.out.println("goodsImageInfo"+goodsImageInfo);
+		
 		model.addAttribute("goodsInfo",goodsInfo);
+		model.addAttribute("goodsImageInfo",goodsImageInfo);
+		model.addAttribute("goodsSizeInfo",goodsSizeInfo);
 		
 		return "/acutionGoods/auctionGoodsDetailPage";
 	}
 	
 	
-	@PostMapping("/goodsDetailForm")
+	@PostMapping("/goodsDetail")
 	public String DetailPostGoods(Model model) {
 		return "/acutionGoods/auctionGoodsDetailPage";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
 
 
 
 
 
+
+/*
+ * @Scheduled(fixedRate = 60000) // 1분 후에 한 번만 실행
+ * 
+ * @RequestMapping(value = "/hello", method = RequestMethod.GET) public void
+ * hello() {
+ * 
+ * @Component public class ReservationScheduler {
+ * 
+ * @Autowired private ReservationRepository reservationRepository;
+ * 
+ * @Scheduled(fixedRate = 60000) // 60초마다 실행 public void executeReservation() {
+ * // 현재 시간을 가져옵니다. LocalDateTime now = LocalDateTime.now();
+ * 
+ * // DB에서 현재 시간 이전의 예약 목록을 가져옵니다. List<Reservation> reservations =
+ * reservationRepository.findByReservationTimeBefore(now);
+ * 
+ * // 가져온 예약 목록을 실행합니다. for (Reservation reservation : reservations) {
+ * execute(reservation); } }
+ * 
+ * private void execute(Reservation reservation) { // TODO: 예약된 작업을 실행하는 로직을
+ * 작성합니다. // reservation.getId() 등을 사용하여 해당 예약 작업을 실행합니다. } }
+ * System.out.println("Hello, world!"); }
+ */
