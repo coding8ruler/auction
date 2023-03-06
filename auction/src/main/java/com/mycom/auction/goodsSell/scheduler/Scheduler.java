@@ -15,14 +15,12 @@ public class Scheduler {
 	private ProductService productService; 
 	
 	// 초 분 시 일 월 주 (연도)
-	@Scheduled(cron = "* */20 * * * *")
+	@Scheduled(cron = "* */30 * * * *")
 	public void autoUpdate() throws Exception {
 		int cnt=0;
 		cnt=productService.productAutoDelete();
 		if(cnt!=0) {
 			System.out.println("삭제 완료");
-		}else {
-			System.out.println("삭제할 게시글이 없습니다.");
 		}
 	}
 }
