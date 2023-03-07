@@ -1,6 +1,5 @@
 package com.mycom.auction.offerboard.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,13 +8,11 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.mycom.auction.offerboard.domain.OfferBoard;
 import com.mycom.auction.offerboard.domain.Page;
@@ -92,18 +89,30 @@ public class OfferBoardController {
   //입력폼보여주기
   	//요청방식 get
     //offerinsertForm 구인 등록 폼 보여주기
-	@GetMapping("/offerBoard/offerInsert")
-    public String offerinsert(OfferBoard offerBoard,HttpServletRequest request)  throws Exception{
+	@RequestMapping(value="/offerBoard/offerInsert", method= {RequestMethod.GET})
+    public String offerinsert(Model model,HttpServletRequest request,
+    						String offertitle,
+    						int pay,
+    						Date wttime,
+    						Date starttime,
+    						String offercontent,
+    						String offerpoint)  throws Exception{
 		//1.파라미터받기 //2.비즈니스로직
   		//3.model
+		
   		//원칙적으로는 (로그인한 user가) 글입력 권한을 가진 사용자가 글입력해야지만
   		//여기에서는 임시로 세션에 정보를 저장하여 진행하겠다
-	  		
-	  		offerListService.insertOffer(offerBoard);
-	  		HttpSession session = request.getSession();
-	  		
-	  		session.setAttribute("AUTHUSER_NO", "offerno"); //임시
-	  		
+		//OfferBoard offerBoard =new OfferBoard();
+		
+		model.addAttribute("offertitle",offertitle);
+		model.addAttribute("pay",pay);
+		model.addAttribute("wttime",wttime);
+		model.addAttribute("starttime",starttime);
+		model.addAttribute("offercontent",offercontent);
+		model.addAttribute("offerpoint",offerpoint);
+		
+		
+		
   		//4.view
     	return "/offerBoard/offerInsertForm";
     }
