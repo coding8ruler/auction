@@ -139,7 +139,7 @@
 	 	<th>사이즈</th>
 	 	<td>
 	 		<input type="hidden" value="1" name="goodsGrade" id="goodsGrade"/>
-	 		<input type="text" value="230" name="itemSize" id="itemSize" readonly="readonly"/>
+	 		<input type="text" value="${goodsSize}" name="itemSize" id="itemSize" readonly="readonly"/>
 	 	</td>
 	 </tr>
 	 <tr>

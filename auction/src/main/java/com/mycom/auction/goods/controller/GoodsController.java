@@ -3,7 +3,6 @@ package com.mycom.auction.goods.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -22,7 +21,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,14 +28,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycom.auction.goods.domain.ProductDTO;
+import com.mycom.auction.goods.domain.ProductPurchaseDTO;
 import com.mycom.auction.goods.service.GoodsService;
+import com.mycom.auction.goodsSell.domain.Product;
 
 import net.coobird.thumbnailator.Thumbnails;
+import net.sf.json.JSONObject;
 
 
 @Controller
@@ -270,10 +272,41 @@ public class GoodsController {
 		return "/acutionGoods/auctionGoodsDetailPage";
 	}
 	
+	@RequestMapping(value="/sizeSearch",method=RequestMethod.GET,produces="application/text;charset=utf8")
+	public @ResponseBody String sizeGoodsSearch(@RequestParam("goodsSize") String goodsSize,
+								  		 @RequestParam("goods") String goods) throws Exception  {
+		
+		List<Product> goodsSell=goodsService.selectSellGoodsList(goodsSize,goods);
+		
+		
+		
+		//JSONObject객체생성
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("goodsSell",goodsSell);
+		
+		//JSONObject객체를 문자열로 변환
+		String jsonInfo = jsonObject.toString(); 
+		
+		return jsonInfo; //클라이언트에게 응답
+	}
 	
 	
-	
-	
+	@RequestMapping(value="/sellNoSearch",method=RequestMethod.GET,produces="application/text;charset=utf8")
+	public @ResponseBody String sellNoGoodsSearch(@RequestParam("sellNo") int sellNo) throws Exception  {
+		
+		List<ProductPurchaseDTO> sellNoSearch=goodsService.sellNoGoodsSearch(sellNo);
+		
+		
+		
+		//JSONObject객체생성
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("sellNoSearch",sellNoSearch);
+		
+		//JSONObject객체를 문자열로 변환
+		String jsonInfo = jsonObject.toString(); 
+		
+		return jsonInfo; //클라이언트에게 응답
+	}
 	
 	
 	

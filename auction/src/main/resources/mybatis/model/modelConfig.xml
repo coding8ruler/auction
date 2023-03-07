@@ -32,6 +32,7 @@
 <configuration>
 	<typeAliases>
 	  <typeAlias type="com.mycom.auction.goods.domain.ProductDTO" alias="productDTO"/>	
+	  <typeAlias type="com.mycom.auction.goods.domain.ProductPurchaseDTO" alias="productPurchaseDTO"/>	
 	  <typeAlias type="com.mycom.auction.goodsSell.domain.Product" alias="product"/>
 	  <typeAlias type="com.mycom.auction.goodsSell.domain.ImageFileVO" alias="imageFileVO"/>                                   
 	</typeAliases>

@@ -1,5 +1,6 @@
 package com.mycom.auction.goods.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.mycom.auction.goods.domain.ProductDTO;
+import com.mycom.auction.goods.domain.ProductPurchaseDTO;
+import com.mycom.auction.goodsSell.domain.Product;
 
 @Repository
 public class GoodsRepository{
@@ -61,5 +64,29 @@ public class GoodsRepository{
 	public List<ProductDTO> selectSizeAllInfo(String goods) {
 		List<ProductDTO> SizeAllInfo=sqlSession.selectList("mapper.auctionGoods.selectSizeAllInfo", goods);
 		return SizeAllInfo;
+	}
+
+	public List<Product> selectSellGoodsList(String goodsSize, String goods) {
+		ProductDTO productDTO = new ProductDTO();
+		productDTO.setGoods(goods);
+		productDTO.setGoodsSize(goodsSize);
+		
+		List<Product> goodsSell= sqlSession.selectList("mapper.auctionGoods.selectGoodsSize", productDTO);
+		
+		
+		for(Product product :goodsSell) {
+		System.out.println(product);
+		}
+		
+		return goodsSell;
+	}
+
+	public List<ProductPurchaseDTO> sellNoGoodsSearch(int sellNo) {
+		System.out.println("sellNo="+sellNo);
+		List<ProductPurchaseDTO> sellNoList= sqlSession.selectList("mapper.auctionGoods.sellNoGoodsSearch", sellNo);
+		for(ProductPurchaseDTO productPurchaseDTO :sellNoList) {
+			System.out.println(productPurchaseDTO);
+		}
+		return sellNoList;
 	}
 }
