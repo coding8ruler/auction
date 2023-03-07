@@ -57,12 +57,12 @@ public class MemberServiceImpl implements MemberService {
 			return memberRepository.memberLogin(memeber);
 		}
 		//아이디찾기
-		public User memberFindId(User user)throws Exception {
-			return memberRepository.memberFindId(user);
+		public Member memberFindId(Member member)throws Exception {
+			return memberRepository.memberFindId(member);
 		}
 		//비밀번호찾기
-		public User memberFindPwd(User user) throws Exception {
-			return memberRepository.memberFindPwd(user);
+		public Member memberFindPwd(Member member) throws Exception {
+			return memberRepository.memberFindPwd(member);
 		}
 		//아이디 중복체크
 		public int idChk(Member member) throws Exception {

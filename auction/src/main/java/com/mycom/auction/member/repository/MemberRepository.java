@@ -30,9 +30,9 @@ public interface MemberRepository {
 		//로그인
 		public Member memberLogin(Member member) throws DataAccessException;
 		//아이디찾기
-		public User memberFindId(User user)throws DataAccessException;
+		public Member memberFindId(Member member)throws DataAccessException;
 		//비밀번호찾기
-		public User memberFindPwd(User user) throws DataAccessException;
+		public Member memberFindPwd(Member member) throws DataAccessException;
 		//아이디 중복체크
 		public int idChk(Member member) throws DataAccessException;
 

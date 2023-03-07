@@ -133,15 +133,15 @@ public class MemberController {
 		}
 		return "main";
 	}
-	//아이디찾기 폼
+	//아이디찾기폼
 	@GetMapping("/member/findId")
-	public String memberFindIdFrm(@ModelAttribute("NewUser") User user) {
+	public String memberFindIdFrm(@ModelAttribute("NewMember") Member member) {
 		return "member/findIdFrm";
 	}
 	//아이디찾기
 	@PostMapping("/member/findId")
-	public String memberFindId(@ModelAttribute("NewUser") User user, Model model) throws Exception {
-		User idFindUser = memberService.memberFindId(user);
+	public String memberFindId(@ModelAttribute("NewMember") Member member, Model model) throws Exception {
+		Member idFindUser = memberService.memberFindId(member);
 	
 		if(idFindUser == null) { 
 			model.addAttribute("check", 0);
@@ -151,15 +151,15 @@ public class MemberController {
 		}
 		return "member/findId";
 	}
-	//비밀번호찾기 폼
+	//비밀번호찾기폼
 	@GetMapping("/member/findPwd")
-	public String memberFindPwdFrm(@ModelAttribute("NewUser") User user) {
+	public String memberFindPwdFrm(@ModelAttribute("NewMember") Member member) {
 		return "member/findPwdFrm";
 	}
 	//비밀번호찾기
 	@PostMapping("/member/findPwd")
-	public String memberFindPwd(@ModelAttribute("NewUser") User user, Model model) throws Exception {
-		User pwdFindUser = memberService.memberFindPwd(user);
+	public String memberFindPwd(@ModelAttribute("NewMember") Member member, Model model) throws Exception {
+		Member pwdFindUser = memberService.memberFindPwd(member);
 		
 		if(pwdFindUser == null) { 
 			model.addAttribute("check", 0);

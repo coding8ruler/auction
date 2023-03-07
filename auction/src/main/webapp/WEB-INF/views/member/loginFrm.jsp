@@ -28,27 +28,26 @@ $(document).ready(function(){
 	});	
 });
 </script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/login.css" />
 <body>
-	<h3>로그인</h3>
-	<hr/>
- <f:form modelAttribute="NewMember" method="post" action="./login" id="LoginFrm">
- <table border="1">
- 	<tr>
-	<th>아이디</th>
-	<td><f:input path="id" name="id" /></td>
-	</tr>
-	<tr>
-  	<th>비밀번호</th>
-  	<td><f:password path="password" name="password" /></td>
- 	</tr>
- 	<tr>
-	<td colspan="2" style="text-align:center;">
-	<f:button type="submit">로그인</f:button> 
-	<f:button type="button" onclick="location.href='./findId'">아이디 찾기</f:button> 
-	<f:button type="button" onclick="location.href='./findPwd'">비밀번호 찾기</f:button> 
-	</td>
-	</tr>
-</table>
-</f:form>
+	<article class="loginpage">
+        <section class=" login">
+            <h2>로그인</h2>
+            <h5>WELCOME BACK</h5>
+        </section>
+    <div>
+	<f:form modelAttribute="NewMember" method="post" action="./login" id="LoginFrm">
+          	<f:input path="id" name="id" class="logform" placeholder="아이디"/>
+          	<f:password path="password" name="password" class="logform" placeholder="비밀번호" />
+      		<f:button type="submit" class="loginbnt">로그인</f:button> 
+     </f:form>
+     <br> <br>
+     <div>
+       <p><a href="<%=request.getContextPath()%>/member/findId">아이디찾기</a></p>&verbar;
+       <p><a href="<%=request.getContextPath()%>/member/findPwd">비밀번호찾기</a></p>&verbar;
+       <p><a href="<%=request.getContextPath()%>/member/join">회원가입</a></p>
+     </div> 
+ 	 </div>
+  </article>
 </body>
 </html>

@@ -28,9 +28,9 @@ public interface MemberService {
 		//로그인
 		public Member memberLogin(Member member) throws Exception;
 		//아이디찾기
-		public User memberFindId(User user) throws Exception;
+		public Member memberFindId(Member member) throws Exception;
 		//비밀번호찾기
-		public User memberFindPwd(User user) throws Exception;
+		public Member memberFindPwd(Member member) throws Exception;
 		//아이디 중복체크
 		public int idChk(Member member) throws Exception;
 

@@ -60,12 +60,12 @@ public class MemberRepositoryImpl implements MemberRepository {
 		return (Member)sqlSession.selectOne("mapper.member.memberLogin", member);
 	}
 	//아이디찾기
-	public User memberFindId(User user) throws DataAccessException {
-		return (User)sqlSession.selectOne("mapper.member.memberFindId", user);
+	public Member memberFindId(Member member) throws DataAccessException {
+		return (Member)sqlSession.selectOne("mapper.member.memberFindId", member);
 	}
 	//비밀번호찾기
-	public User memberFindPwd(User user) throws DataAccessException {
-		return (User)sqlSession.selectOne("mapper.member.memberFindPwd", user);
+	public Member memberFindPwd(Member member) throws DataAccessException {
+		return (Member)sqlSession.selectOne("mapper.member.memberFindPwd", member);
 	}
 	//아이디 중복체크
 	public int idChk(Member member) throws DataAccessException {

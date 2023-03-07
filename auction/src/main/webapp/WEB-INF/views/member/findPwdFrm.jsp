@@ -45,39 +45,34 @@ $(function(){
 	});
 });
 </script>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/find.css" />
 </head>
 <body>
-	<h3>비밀번호 찾기</h3>
-	<hr/>
-	<f:form modelAttribute="NewUser" method="post" action="./findPwd" id="FindPwdFrm">
-	<table border="1">
-	<tr>
-	<th>아이디 </th> 
-	<td><f:input path="id" name="id"/></td>
-	</tr>
-	<tr>
-	<th>이름 </th> 
-	<td><f:input path="name" name="name"/></td>
-	</tr>
-	<tr>
-	<th>이메일</th>
-	<td><f:input path="email1" name="email1" id="email1"/>@<f:input path="email2" name="email2" id="email2"/>
-				<select name="email_op" id="email_op">
-	 				<option value="">직접입력</option>
-	 				<option value="gmail.com">gmail.com</option>
-	 				<option value="naver.com">naver.com</option>
-	 				<option value="daum.net">daum.net</option>
-	 				<option value="nate.com">nate.com</option>
- 			 	</select>
- 	</td>
-	</tr>
-	<tr>
-	<td colspan="2" style="text-align:center;">
-	<f:button type="submit">찾기</f:button>
-	<f:button type="button" onclick="location.href='./login'">취소</f:button>
-	</td>
-	</tr>
-	</table>
+	<article class="findidpage">
+		<section class="findid">
+			<h2>비밀번호 찾기</h2>
+		</section>
+	<div>	
+	<f:form modelAttribute="NewMember" method="post" action="./findPwd" id="FindPwdFrm">
+	<f:input path="id" name="id" id="id" placeholder="아이디" class="findidform1"/>
+	<f:input path="name" name="name" id="name" placeholder="이름" class="findidform1" />
+	<f:select path="phone1" name="phone1" id="phone1" class="findidform2">
+                <option value="010">010</option>
+                <option value="011">011</option>
+                <option value="016">016</option>
+                <option value="070">070</option>
+            </f:select>    
+		- <f:input path="phone2" name="phone2" id="phone2" class="findidform2"/>
+		- <f:input path="phone3" name="phone3" id="phone3" class="findidform2"/>
+	<f:button type="submit" class="findidbnt">찾기</f:button>
 	</f:form>
+	<br> <br>
+	<div>
+       <p><a href="<%=request.getContextPath()%>/member/findId">아이디 찾기</a></p>&verbar;
+       <p><a href="<%=request.getContextPath()%>/member/login">로그인</a></p>&verbar;
+       <p><a href="<%=request.getContextPath()%>/main">메인</a></p>
+     </div> 
+	</div>
+	</article>
 </body>
 </html>
