@@ -34,45 +34,11 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 				
-		<!-- AspectJ : AOP를 사용하는 AspectJ라이브러리
-		     참고  AOP(Aspect Oriented Programming) 
-		      핵심 비즈니스 로직 외에 부가적인 기능(예외처리, 트랜젝션처리, 로깅처리 등)을
-		      효율적으로 관리하도록 하여
-		      응집도가 높은 코드를 유지할 수 있도록 함
-		   참고 
-		  - 모듈은 시스템의 각 기능으로 소프트웨어의 성능을 향상시키거나 
-		         수정 및 재사용을 용이하게 하기 위해 기능 단위로 분해한 것을 말한다.
-		  - 모듈의 독립성은 결합도(Coupling)를 약하게, 응집도(Cohesion)를 강하게, 
-		         모듈의 크기가 작을 때 독립성이 높아진다.
-		  - 독립성이 높은 모듈일수록 모듈을 수정하더라도 다른 모듈들에게는 거의 영향을 미치지 않고, 
-		         오류가 발생하더라도 쉽게 발견하고 수정할 수 있다.
-		  -응집도(Cohesion)는 명령어나 호출문 등의 모듈의 내부 요소들의 서로 관련있는 정도, 
-		                   즉 모듈이 독립적인 기능으로 구성됐는지 정도를 의미한다. 
-		                  응집도가 강할수록 독립적인 모듈  	
-          -결합도(Coupling)는 모듈 간에 상호 의존하는 정도 또는 두 모듈 사이의 연관 관계를 의미한다. 
-                                    결합도가 약할수록 독립적인 모듈. 결합도는 약할수록 좋다.     -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>	
-		
-		<!-- Logging -->
-		<!-- Logging :로그기록하는 slf4j관련 라이브러리  -->
-			<!-- Logger 클래스는 log4j를 지원하는 핵심클래스로서, 아래와 같은  레벨이 있다
-			     로그출력여부는 레벨에 따라 결정된다
-			  레벨
-			 FATAL - 조기 종료를 유발하는 심각한 오류가 발생하는 상태를 뜻한다
-			 ERROR - 기타 런타임오류 or 예기치 않는 상태
-			 WARN  - 경고성메세지. 사용되지 않는 api사용
-			                  바람직하지 않거나  예기치 않는 런타임 상황
-			 INFO  - 정보제공용 메세지
-			 DEBUG - 디버그 용도
-			 TRACE - 가장 하위 로깅 레벨. 모든 로그에 대한 상세한 정보  
-			 
-			 레벨은 TRACE<DEBUG<INFO<WARN<ERROR<FATAL 순으로 레벨이 높다.
-			예) INFO레벨 이상으로 출력을 원하면 INFO,WARN,ERROR,FATAL로그까지 출력
-			     -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -163,6 +129,12 @@
 		    <artifactId>commons-io</artifactId>
 		    <version>2.6</version>
 		</dependency>
+		<!-- 썸네일 이미지 -->
+		<dependency>
+			<groupId>net.coobird</groupId> 
+			<artifactId>thumbnailator</artifactId> 
+			<version>0.4.8</version> 
+		</dependency>
 		
 		<!-- mysql연동 -->
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
@@ -192,7 +164,6 @@
 		    <version>1.9.4</version>
 		</dependency>
        
-       
 	       <dependency>
 	         <groupId>commons-dbcp</groupId>
 	         <artifactId>commons-dbcp</artifactId>
@@ -212,20 +183,27 @@
 	         <version>3.1.0</version>
 	      </dependency>
 	      
-	      
 	      <!-- mybatis와 spring 연결 라이브러리 -->
 	      <dependency>
 	         <groupId>org.mybatis</groupId>
 	         <artifactId>mybatis-spring</artifactId>
 	         <version>1.1.0</version>
 	      </dependency>
+				<dependency>
+				    <groupId>com.fasterxml.jackson.core</groupId>
+				    <artifactId>jackson-databind</artifactId>
+				    <version>2.14.2</version>
+				</dependency>
+				
+				<dependency>
+		          <groupId>net.sf.json-lib</groupId>
+		          <artifactId>json-lib</artifactId>
+		          <version>2.4</version>
+		          <classifier>jdk15</classifier>    
+		    </dependency>
 		
-		
-		
-		
-		
-		<!-- JDBC 연동을 위한 라이브러리 -->
-		<dependency>
+				<!-- JDBC 연동을 위한 라이브러리 -->
+				<dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${org.springframework-version}</version>
