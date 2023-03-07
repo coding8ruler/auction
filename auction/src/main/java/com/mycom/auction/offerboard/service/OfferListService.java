@@ -1,8 +1,5 @@
 package com.mycom.auction.offerboard.service;
 
-import java.util.List;
-
-
 import com.mycom.auction.offerboard.domain.OfferBoard;
 import com.mycom.auction.offerboard.domain.Page;
 
@@ -22,7 +19,7 @@ public interface OfferListService {
 	
 	public OfferBoard getArticlePage(Page pageNo) throws Exception;
 	
-	
+	public void insertOffer(OfferBoard offerBoard) throws Exception; 
 	
 	
 }

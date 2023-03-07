@@ -39,9 +39,10 @@
 		    <td>${data.offertitle}</td>
 		    <td>${data.offerpoint}</td>
 		    <td>${data.pay}</td>
-		    <td>${data.offertime}</td>
+		    <td>${data.wttime}</td>
 		    <td>${data.viewcnt}</td>
 		    <td>${data.offercnt}</td>
+		     <td>${data.starttime}</td>
 		  </tr>
 		</c:forEach>  
 	

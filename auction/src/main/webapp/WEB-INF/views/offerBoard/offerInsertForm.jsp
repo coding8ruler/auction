@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<c:set var="PATH" value="<%=request.getContextPath()%>"/>  
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,52 +55,59 @@
 	
 		<h3 style="text-align: center;">구인 게시글 (입력 폼)</h3>
 		<hr>
-	<form name="offeraddform" id="offeraddform" method="post" action="/offerBoard/addnewoffer">
+	<form name="offeraddform" id="offeraddform" method="get" action="${PATH}/offerBoard/offerInsert">
 			<div class="tablemain">
 			<br>
 			<br>
 			  <div class="table1">
 			    	<div class="table-cell">글쓴이<br/>${sessionScope.AUTHUSER_ID}</div>
-			    	
-			    	<input type="hidden" name="memberId" value="${sessionScope.AUTHUSER_ID}"/>
+			    	<input type="hidden" name="id" id="id" value="${sessionScope.AUTHUSER_ID}" />
 			  </div><br>
 			  
 			  <div class="table2">
 			    	<div class="table-cell">구인 글제목<br/>
-			    	<input type="text" name="offertitle" id="offertitle" required="required">
+			    	<input type="text" name="offertitle" id="offertitle" >
 			    	</div>
 			  </div>
 			
 			  <div class="table3">
 			   	 	<div class="table-cell">급여<br/>
-			   	 	<input type="text" name="pay"id="pay">원
+			   	 	<input type="text" name="pay" id="pay">원
 			   	 	</div>
 			  </div>
 			  
 			   <div class="table4">
-			   	 	<div class="table-cell">대행 날짜<br/>
-			   	 	<input type="date" id="date">
+			   	 	<div class="table-cell">작성일<br/>
+			   	 	<input type="date" name="wttime" id="wttime">
 			   	 	</div>
 			  </div>
 			  
 			    <div class="table5">
-			   	 	<div class="table-cell">대행 시작 시간<br/>
-			   	 	<input type="time" value="00:00" min="00:00" max="24:00">
+			   	 	<div class="table-cell">대행 시작일시<br/>
+			   	 	<input type="date" name="starttime" id="starttime">
 			   	 	</div>
 			  </div>
 			  
 			   <div class="table6">
 			    	<div class="table-cell">내용<br/>
-			    	<textarea name="offermaincontent" id="offermaincontent" cols="30" rows="5" required="required"></textarea>
+			    	<textarea name="offercontent" id="offercontent" cols="30" rows="5" ></textarea>
 			    	</div>
+			   </div>
+			    
+			    <div class="table7">
+			    	<div class="table-cell">장소<br/>
+			    	<input type="text" name="offerpoint" id="offerpoint">
+			    	</div>
+			   </div>
+			   
 			    	
 			  </div><br>
 			  
-			   <div class="table7">
+			   <div class="table8">
 			    	<div class="table-cell" id="clickLatlng">상세주소 텍스트(DB에 저장될 값or히든으로 좌표받아 저장할것)</div>
 			  </div>
-		 </div>
-	 </form>
+		 
+	
 	 	
 	 					 <!-- 지도 API -->
 	
@@ -183,9 +192,11 @@ function displayCenterInfo(result, status) {
     }    
 }
 </script>
+</div>
 			<!-- 지도 API 끝 -->
-			<div class="table7"><button>지원하기 버튼</button></div>
-		</div>
+			<div class="table7"><input type="submit" name="" id="" value="작성 완료"></div>
+			
+		 </form>
 	
 </body>
 </html>

@@ -37,5 +37,10 @@ public class OfferRepositoryImpl implements OfferRepository {
 		return (OfferBoard)sqlSession.selectOne("mapper.offerBoard.offerDetail",no);
 		
 	}
+	@Override
+	public void insertOffer(OfferBoard offerBoard) throws DataAccessException {
+		
+		sqlSession.insert("mapper.offerBoard.insertoffer", offerBoard);
+	}
 
 } 

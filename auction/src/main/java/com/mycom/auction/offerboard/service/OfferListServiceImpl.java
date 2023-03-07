@@ -38,6 +38,13 @@ public class OfferListServiceImpl implements OfferListService {
 		return new OfferBoard(total,pageNo.getPageNo(),5, OfferAllList);
 	}
 
+
+	@Override
+	public void insertOffer(OfferBoard offerBoard) throws Exception {
+		offerRepository.insertOffer(offerBoard);
+		
+	}
+
 	
 	
 	 

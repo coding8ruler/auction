@@ -22,7 +22,6 @@ public interface OfferRepository {
 	//전체 게시글 수
 	public int getTotal() throws DataAccessException;
 
-
-	
+	public void insertOffer(OfferBoard offerBoard) throws DataAccessException;	
 	
 }

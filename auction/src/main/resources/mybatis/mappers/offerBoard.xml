@@ -11,10 +11,11 @@
 		<result property="offertitle"  column="offertitle"/>	
 		<result property="offerpoint"  column="offerpoint"/>	
 		<result property="pay"  column="pay"/>
-		<result property="offertime"  column="offertime"/>
+		<result property="wttime"  column="wttime"/>
 		<result property="offercontent"  column="offercontent"/>
 		<result property="viewcnt"  column="viewcnt"/>
  		<result property="offercnt"  column="offercnt"/>
+ 		<result property="starttime"  column="starttime"/>
  
  </resultMap>
 	<!-- 전체 게시물수 조회 -->
@@ -23,8 +24,15 @@
 		select count(offerno) from offerboard
 	  ]]>
 	</select>
- 
- 
+	
+	<insert id="insertoffer" parameterType="com.mycom.auction.offerboard.domain.OfferBoard">
+		 <![CDATA[		
+			insert into offerboard(offerno,id,offertitle,offerpoint,pay,wttime,offercontent,viewcnt,offercnt,starttime)
+			values(seq_offerboard.nextval,#{id},#{offertitle},#{offerpoint},#{pay},#{wttime},#{offercontent},0,0,#{starttime})
+		  ]]>
+	
+	</insert>
+	
  
  	<!-- 구인게시판 전체 목록보기 -->
  	<select id="offerAllList" resultType="offerBoard">

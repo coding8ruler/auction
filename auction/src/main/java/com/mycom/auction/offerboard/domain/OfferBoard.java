@@ -12,10 +12,11 @@ public class OfferBoard {
 	private String offertitle; //제목
 	private String offerpoint; // 거래장소
 	private int pay; 			//급여
-	private Date offertime;	//거래 일시
+	private Date wttime;	//거래 일시
 	private String offercontent; //본문내용
 	private int viewcnt; //조회수
 	private int offercnt; //말머리
+	private Date starttime; //대행 시작일시
 	
 	
 	//페이징 필드
@@ -30,18 +31,35 @@ public class OfferBoard {
 	//기본생성자
 	public OfferBoard() {}
 	
+	public Date getStarttime() {
+		return starttime;
+	}
+
+	public void setStarttime(Date starttime) {
+		this.starttime = starttime;
+	}
+
+	public int getTotalcnt() {
+		return totalcnt;
+	}
+
+	public void setTotalcnt(int totalcnt) {
+		this.totalcnt = totalcnt;
+	}
+
 	//게시글정보 생성자
-	public OfferBoard(int offerno, String id, String offertitle, String offerpoint, int pay, Date offertime,
-			String offercontent, int viewcnt, int offercnt) {
+	public OfferBoard(int offerno, String id, String offertitle, String offerpoint, int pay, Date wttime,
+			String offercontent, int viewcnt, int offercnt,Date starttime) {
 		this.offerno = offerno;
 		this.id = id;
 		this.offertitle = offertitle;
 		this.offerpoint = offerpoint;
 		this.pay = pay;
-		this.offertime = offertime;
+		this.wttime = wttime;
 		this.offercontent = offercontent;
 		this.viewcnt = viewcnt;
 		this.offercnt = offercnt;
+		this.starttime = starttime;
 	}
 		//페이징 생성자
 		public OfferBoard(int totalcnt, int currentPage, 
@@ -85,8 +103,8 @@ public class OfferBoard {
 	public void setPay(int pay) {
 		this.pay = pay;
 	}
-	public void setOffertime(Date offertime) {
-		this.offertime = offertime;
+	public void setWttime(Date wttime) {
+		this.wttime = wttime;
 	}
 	public void setOffercontent(String offercontent) {
 		this.offercontent = offercontent;
@@ -118,7 +136,6 @@ public class OfferBoard {
 		this.endpage = endpage;
 	}
 	
-	
 	public int getOfferno() {
 		return offerno;
 	}
@@ -134,8 +151,8 @@ public class OfferBoard {
 	public int getPay() {
 		return pay;
 	}
-	public Date getOffertime() {
-		return offertime;
+	public Date getWttime() {
+		return wttime;
 	}
 	public String getOffercontent() {
 		return offercontent;
@@ -147,16 +164,16 @@ public class OfferBoard {
 		return offercnt;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "OfferBoard [offerno=" + offerno + ", id=" + id + ", offertitle=" + offertitle + ", offerpoint="
-				+ offerpoint + ", pay=" + pay + ", offertime=" + offertime + ", offercontent=" + offercontent
-				+ ", viewcnt=" + viewcnt + ", offercnt=" + offercnt + ", totalcnt=" + totalcnt + ", currentpage="
-				+ currentpage + ", contents=" + contents + ", totalpages=" + totalpages + ", startpage=" + startpage
-				+ ", endpage=" + endpage + "]";
+				+ offerpoint + ", pay=" + pay + ", wttime=" + wttime + ", offercontent=" + offercontent + ", viewcnt="
+				+ viewcnt + ", offercnt=" + offercnt + ", starttime=" + starttime + ", totalcnt=" + totalcnt
+				+ ", currentpage=" + currentpage + ", contents=" + contents + ", totalpages=" + totalpages
+				+ ", startpage=" + startpage + ", endpage=" + endpage + "]";
 	}
-	
-	
+
 	public int getTotalCnt() {
 		return totalcnt;
 	}
