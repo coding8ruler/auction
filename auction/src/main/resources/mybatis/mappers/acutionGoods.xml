@@ -4,7 +4,7 @@
  <mapper namespace="mapper.auctionGoods">
  
  
- 	<resultMap type="productDTO" id="productResult">
+ <!-- 	<resultMap type="productDTO" id="productDTOResult">
 	   <result property="goods" column="goods" />
 	   <result property="goodsName" column="goodsName" />
 	   <result property="color" column="color" />
@@ -15,7 +15,21 @@
 	   <result property="goodsSize"  column="goodsSize" />
 	   <result property="image"  column="image" />
 	</resultMap>
- 
+	
+	<resultMap type="product" id="productResult">
+		<result property="sellNo"  column="sellNo"/>	
+		<result property="itemSize"  column="itemSize"/>	
+		<result property="desiredSellPrice"  column="desiredSellPrice"/>	
+		<result property="quantity"  column="quantity"/>	
+		<result property="goodsGrade"  column="goodsGrade"/>	
+		<result property="id"  column="id"/>	
+		<result property="startTime"  column="startTime"/>	
+		<result property="endTime"  column="endTime"/>	
+		<result property="goods"  column="goods"/>	
+		<result property="vailDate"  column="vailDate"/>	
+	</resultMap> -->
+	
+	
  
 	<insert id="insertNewGoods" parameterType="java.util.Map">
 	<![CDATA[
@@ -87,5 +101,20 @@
 	 ]]>	
 	</select>
 	
+	 <select id="selectGoodsSize" parameterType="com.mycom.auction.goods.domain.ProductDTO" resultType="com.mycom.auction.goodsSell.domain.Product">
+	 <![CDATA[			
+		select sellNo,itemSize,desiredSellPrice,quantity,goodsGrade,id,startTime,endTime,goods,vailDate
+		from productSell
+		where goods =#{goods} and itemSize=#{goodsSize} and goodsGrade = 2
+	 ]]>	
+	</select>
+	
+	 <select id="sellNoGoodsSearch" parameterType="int" resultType="com.mycom.auction.goods.domain.ProductPurchaseDTO">
+	 <![CDATA[			
+		select sellNo,goodsSize,desiredPurPrice,purchaseNo,goodsName,id,desireQuantity
+		from productPurchase
+		where sellNo =#{sellNo}
+	 ]]>	
+	</select>
 	
 </mapper>    
