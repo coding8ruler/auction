@@ -58,6 +58,8 @@ public class productSellController extends  BaseController implements WebMvcConf
 		public String productSell(HttpServletRequest request, String goodsSize,String goods,Model model) {
 		 	
 		 	//임시 userId
+		 System.out.println("goodsSize"+goodsSize);
+		 System.out.println("goods"+goods);
 		 	HttpSession session = request.getSession();
 			session.setAttribute("AUTHUSER_ID", "hongid");//임시
 			model.addAttribute("goodsSize",goodsSize);

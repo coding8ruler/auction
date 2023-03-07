@@ -7,7 +7,8 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <title>W3.CSS Template</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -106,24 +107,98 @@
   }
     </style>
     <script>
- // JavaScript 코드
-   /*  const sizeSelect = document.querySelector('#size-select');
-    const priceSpan = document.querySelector('#price');
-
-    $(document).ready(function(){
-    	$("#sizeSelect").change(function(){
-      alert("asd");
-    		const selectedSize = sizeSelect.value;
-      const selectedPrice = prices[selectedSize];
-      priceSpan.textContent = `$${selectedPrice}`;
-    });
-    }); */
     
-    $(document).ready(function(){
-    	  $("#size-select").change(function(){
-    	    alert("asd");
-    	  });
-    	});
+	function sizeSearch(goodsSize) {
+		  // user가 입력한 값 가져오기
+		  let goods = document.getElementById("goodsId").value;
+
+		  $.ajax({
+		    type: "GET", // 요청방식.
+		    async: "true", // 기본값은 true.(true이면 비동기식방식)
+		    url: "${path}/sizeSearch",
+		    data: { goodsSize: goodsSize, goods: goods }, // 서버로 전송할 데이터. 예){name:"홍GD"}
+		    success: function (data, status, xhr) {
+		      let jsonInfo = JSON.parse(data);
+
+		      let goodsSellObj = jsonInfo;
+		      let table =
+		        "<table><thead><tr><th>판매자명</th><th>상품명</th><th>판매시작가</th><th>판매시작일</th><th>판매종료일</th><th>구매목록 보기</th><th>남은 시간</th></tr></thead><tbody>";
+
+		      for (let i = 0; i < goodsSellObj.goodsSell.length; i++) {
+		        let goods = goodsSellObj.goodsSell[i];
+		        let startTimeFormatted = moment(goods.startTime).format("MM-DD HH:mm:ss");
+		        let endTimeFormatted = moment(goods.endTime).format("MM-DD HH:mm:ss");
+
+		        // 남은 시간 계산
+		        let now = moment().valueOf();
+		        let distance = moment(goods.endTime).valueOf() - now;
+
+		        // 일, 시, 분, 초 계산
+		        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+		        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+		        // 결과 출력
+		        let countdownText = days + "일 " + hours + "시간 " + minutes + "분 " + seconds + "초";
+
+		        table +=
+		        		"</td><td>" +
+		        	  goods.id +
+		        	  "</td><td>" +
+		        	  goods.goods +
+		        	  "</td><td>" +
+		        	  goods.desiredSellPrice +
+		        	  "</td><td>" +
+		        	  startTimeFormatted +
+		        	  "</td><td>" +
+		        	  endTimeFormatted +
+		        	  "</td><td> <button  id=find onclick='selectPurList("+goods.sellNo+")'>구매목록보기</button>" +
+		        	  "</td><td><span class='countdown' data-time='" +
+		        	  distance +
+		        	  "'>" +
+		        	  countdownText +
+		        	  "</span></td></tr>";
+		      }
+
+		      table += "</tbody></table>";
+		      document.getElementById("tableContainer").innerHTML = table;
+		      
+		   // 카운트 다운 실행
+		   		
+		      let countdowns = document.getElementsByClassName("countdown");
+		      for (let i = 0; i < countdowns.length; i++) {
+		        let countdown = countdowns[i];
+		        let distance = countdown.getAttribute("data-time");
+		        let timer = setInterval(function() {
+		          // 현재 시간
+		          let now = new Date().getTime();
+		          
+		          // 남은 시간 계산
+		          distance = distance - 1000;
+
+		          // 일, 시, 분, 초 계산
+		          let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+		          let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		          let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		          let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+		          // 결과 출력
+		          countdown.innerHTML = days + "일" + hours + "시"
+		          + minutes + "분" + seconds + "초  <button onclick=>구매하기</button>";
+
+		          // 시간이 지난 경우
+		          if (distance < 0) {
+		            clearInterval(timer);
+		            countdown.innerHTML = "경매시간 종료";
+		          }
+		        }, 1000); // 1초마다 업데이트
+		      }
+		    }
+		  });
+	}
+    
+    
     
     // 탭 메뉴 구현
    $(document).ready(function() {
@@ -147,39 +222,46 @@
 
 });
     
-    // -----------------------------------------------------
-	// 시작 시간 (2023년 3월 3일 12시 0분 0초)
-	var startTime = new Date('March 6, 2023 12:00:00').getTime();
+   function selectPurList(sellNo){
+	   $.ajax({
+		    type: "GET", // 요청방식.
+		    async: "true", // 기본값은 true.(true이면 비동기식방식)
+		    url: "${path}/sellNoSearch",
+		    data: {sellNo: sellNo}, // 서버로 전송할 데이터. 예){name:"홍GD"}
+		    success: function (data, status, xhr) {
+	    	  let jsonInfo = JSON.parse(data);
 
-	var x = setInterval(function() {
-		// 현재 시간
-		var now = new Date().getTime();
+		      let sellNoObj = jsonInfo;
+			      
+		      let table ="<table><thead><tr><th>구매자명</th><th>제품명</th><th>낙찰희망가</th><th>사이즈</th><th>희망수량</th></tr></thead><tbody>";
 
-		// 남은 시간 계산
-		var distance = startTime - now;
+			      for (let i = 0; i < sellNoObj.sellNoSearch.length; i++) {
+			        let goods = sellNoObj.sellNoSearch[i];
 
-		// 일, 시, 분, 초 계산
-		var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-		var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-		var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-		var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			        // 결과 출력
 
-		// 결과 출력
-		document.getElementById("timer").innerHTML = days + "d " + hours + "h "
-		+ minutes + "m " + seconds + "s ";
+			        table +=
+			        		"<td>" +
+			        	  goods.id +
+			        	  "</td><td>" +
+			        	  goods.goodsName +
+			        	  "</td><td>" +
+			        	  goods.desiredPurPrice +
+			        	  "</td><td>" +
+			        	  goods.goodsSize +
+			        	  "</td><td>" +
+			        	  goods.desireQuantity +
+			        	  "</td></tr>";
+			      }
 
-		// 시간이 지난 경우
-		if (distance < 0) {
-			clearInterval(x);
-			document.getElementById("timer").innerHTML = "EXPIRED";
-		}
-	}, 1000); // 1초마다 업데이트
-
-	
-	
-	function productAddForm(){
-		
-	}
+			      table += "</tbody></table>";
+			      document.getElementById("purchTableContainer").innerHTML = table;
+		    	
+		    }
+	    });
+   }
+   
+    
     </script>
   </head>
   <body>
@@ -202,10 +284,12 @@ ${goodsImageInfo}
  goodsContent=test, firstPrice=32, imageNo=0, releaseDate=Wed Mar 29 00:00:00 KST 2023, goodsSize=null, image=null], 
   -->
   
-   <div id="timer"></div>
+   <!-- <div id="timer"></div> -->
   
    <main>
-   
+   <form>
+   	<input type="text" disabled="disabled" id="goodsId" value="${goodsInfo.goods}">
+   </form>
    <div style="display: flex; justify-content: center; align-items: center;">
    	<div>
    		<img src="${path}/download?goods=${goodsInfo.goods}"  style="display: inline-block; vertical-align: top;">
@@ -216,7 +300,7 @@ ${goodsImageInfo}
 				<li>출시가격: ${goodsInfo.firstPrice}</li>
 				<li>
 					<label for="size-select">Size:</label>
-		  <select name="size-select"id="size-select">
+		  <select name="size-select" id="size-select" onchange="sizeSearch(this.value)">
 					<c:forEach var="item" items="${goodsSizeInfo}">
 					<option value="${item.goodsSize}">${item.goodsSize}</option>
 					</c:forEach>			
@@ -224,7 +308,8 @@ ${goodsImageInfo}
 				  <span id="price">re</span>
 				</li>
 				<li>
-				<button onclick="location.href='${path}/productAddForm?goodsSize=' + document.getElementById('size-select').value + '&goods=${goodsInfo.goods}'" value="판매하기"></button>
+				<button onclick="location.href='${path}/productAddForm?goodsSize=' + document.getElementById('size-select').value + '&goods=${goodsInfo.goods}'" >판매하기</button>
+				<button onclick="selectPurList()">구매목록보기</button>
 				</li>
 				<li>
 				  <a href="">구매하기 </a>
@@ -232,8 +317,6 @@ ${goodsImageInfo}
 			</ul>
 	   </div>		
    </div>
-   
-   
    
    
    
@@ -257,65 +340,23 @@ ${goodsImageInfo}
 				<%-- 상품이미지목록 반복출력끝 --%>
 			</div>
 			
-			<div class="tab_content" id="tab2">
-				<h4>판매내역</h4>
-				
+<div class="tab_content" id="tab2">
 	<div style="display: flex; justify-content: center; align-items: center;">
 		<section class="auction-history">
 			<div id="price22">	
-					<h2>Bidding History</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Bidder</th>
-								<th>Amount</th>
-								<th>Date/Time</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>John Doe</td>
-								<td>$150.00</td>
-								<td>2023-03-06 08:30:00</td>
-							</tr>
-							<tr>
-								<td>Jane Smith</td>
-								<td>$140.00</td>
-								<td>2023-03-04 11:15:00</td>
-							</tr>
-						</tbody>
-					</table>
+					<h2>경매 판매품 리스트</h2>
+					<div id="tableContainer"></div>
 			</div>
 		</section>
 	</div>	
-				 
-				 
-			</div>
-			
+</div>
 			
 <div class="tab_content" id="tab3">
-				<h4>구매내역</h4>
-				
 	<div style="display: flex; justify-content: center; align-items: center;">
 		<section class="auction-history">
 			<div id="price22">	
-					<h2>Bidding History</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Bidder</th>
-								<th>Amount</th>
-								<th>Date/Time</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>John Doe</td>
-								<td>$150.00</td>
-								<td>2023-03-06 08:30:00</td>
-							</tr>
-						</tbody>
-					</table>
+					<h2>낙찰 리스트</h2>
+					<div id="purchTableContainer"></div>
 			</div>
 		</section>
 	</div>	
@@ -353,20 +394,12 @@ ${goodsImageInfo}
 			</div>
 		</section>
 	</div>	
-				
-				
 			</div>
 		</div>
 	</div>
-
-   
    
    
 </main>
-
-
-
-
 
 
             </td>
@@ -377,5 +410,17 @@ ${goodsImageInfo}
         <jsp:include page="../module/bottom.jsp" flush="false"/>
       </div>
     </div>
+    
+    <script>
+		    document.addEventListener("load", function() { 
+		 	   const button = document.getElementById("find");
+		 	   const link = document.querySelector('a[href="#tab3"]');
+		 	   
+		 	   button.addEventListener("click", function() {
+		 	     link.click();
+		 	   });
+		 	 });
+    </script>
+    
   </body>
 </html>
