@@ -21,9 +21,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,6 +41,7 @@ import com.mycom.auction.goodsSell.domain.Criteria;
 import com.mycom.auction.goodsSell.domain.ImageFileVO;
 import com.mycom.auction.goodsSell.domain.PageDTO;
 import com.mycom.auction.goodsSell.domain.Product;
+import com.mycom.auction.goodsSell.domain.ProductPurchaseDTO;
 import com.mycom.auction.goodsSell.repository.ProductRepository;
 import com.mycom.auction.goodsSell.service.ProductService;
 
@@ -64,10 +67,15 @@ public class productSellController extends  BaseController implements WebMvcConf
 			model.addAttribute("goods", goods);
 			return "auctionGoodsSell/productAddForm";
 		}
-	 //판매동의 페이지
 	 
+	 //판매동의 페이지
 	 @GetMapping("/productSalesAgreement")
-	 public String productSalesAgreement() {
+	 public String productSalesAgreement(HttpServletRequest request, String goodsSize,String goods,Model model) {
+		 	HttpSession session = request.getSession();
+			session.setAttribute("AUTHUSER_ID", "hongid");//임시
+			model.addAttribute("goodsSize",goodsSize);
+			model.addAttribute("goods", goods);
+		 
 		 return "auctionGoodsSell/productSalesAgreement";
 	 }
 	 
@@ -153,23 +161,60 @@ public class productSellController extends  BaseController implements WebMvcConf
 								   @RequestParam("vailDate") int vailDate,
 								   @RequestParam("pageNum") int pageNum,
 									@RequestParam("amount") int amount,Model model,Criteria cri) throws Exception {
-		System.out.println(pageNum);
-		System.out.println(amount);
-		
 		Map<String, Integer> map = new HashMap<>();
 		map.put("sellNo", sellNo);
 		map.put("grade", grade);
 		map.put("vailDate", vailDate);
-		System.out.println(map);
 		
 		productService.goodsGradeChange(map);
 		
 		return "redirect:/productDetail?sellNo="+sellNo+"&pageNum="+pageNum+"&amount="+amount;
 	}
 	
+	//구매하기 페이지
+	@GetMapping("/productBuyForm")
+	public String productBuy(Model model,String goodsSize,String goods, HttpServletRequest request) throws Exception {
+		
+		//임시 아이디
+		HttpSession session = request.getSession();
+		session.setAttribute("AUTHUSER_ID", "hongid");//임시
+		
+		//임시 데이터
+		String itemSize = "270";
+		String goods1 = "모델명";	
+		
+		Map map = new HashMap();
+		map.put("itemSize",itemSize);
+		map.put("goods",goods1);
+		System.out.println(map);
+		
+		//물품 상제 정보 조회
+		Product product =productService.productBuyDetail(map);
+		
+		model.addAttribute("product",product);
+		
+		return "auctionGoodsSell/productBuyForm";
+	}
 	
 	
-	
+	//구매하기 상품 등록
+	@PostMapping("/productBuy")
+	public String productBuy(Model model,@ModelAttribute ProductPurchaseDTO productPurchaseDTO) throws Exception {
+		
+		
+		Map map = new HashMap();
+		map.put("desiredPurPrice", productPurchaseDTO.getDesiredPurPrice());
+		map.put("desireQuantity", productPurchaseDTO.getDesireQuantity());
+		map.put("goodsName", productPurchaseDTO.getGoodsName());
+		map.put("goodsSize", productPurchaseDTO.getGoodsSize());
+		map.put("id", productPurchaseDTO.getId());
+		map.put("sellNo", productPurchaseDTO.getSellNo());
+		
+		int cnt=productService.productBuy(map);
+		
+		
+		return "redirect:/productList";
+	}
 }
 
 

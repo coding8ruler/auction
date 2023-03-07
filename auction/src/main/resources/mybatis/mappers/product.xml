@@ -89,9 +89,26 @@
 	 	]]>
  	</select>
  
+ 	<!-- 상품 구매 정보 등록 -->
+ 		<insert id="productBuyInsert" parameterType="java.util.Map">
+	 		<![CDATA[
+		 		insert into productPurchase (sellNo,goodsSize,desiredPurPrice,purchaseNo,goodsName,id,desireQuantity)
+				values (#{sellNo},#{goodsSize},#{desiredPurPrice},seq_productPurchase.nextval,#{goodsName},#{id},#{desireQuantity})
+		 	]]>
+ 		</insert>
+ 
+ 
+ 
+ <!-- 구매 상품 정보 조회 -->
+ 	<select id="productBuyDetail" parameterType="java.util.Map" resultType="product">
+	 	<![CDATA[
+	 		SELECT *
+			FROM productsell
+			WHERE itemSize=#{itemSize} and goods=#{goods}
+	 	]]>
+ 	</select>
  
 	
-	<!--   -->
 	<!-- 물품등록:productSell테이블에 등록 -->
 	<insert id="insertProductAdd" parameterType="java.util.Map">
 		<selectKey resultType="java.lang.String" keyProperty="sellNo" order="BEFORE">
@@ -115,8 +132,6 @@
 				 values (#{sellImageNo},#{sellNo},#{sellImages})	
 				]]>
 	</insert>
-	
-	
 </mapper>    
 
       

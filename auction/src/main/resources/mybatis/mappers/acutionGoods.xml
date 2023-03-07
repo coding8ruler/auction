@@ -44,7 +44,7 @@
 	</insert>
 	
 	
-	<select id="selectGoodsAllInfo" parameterType="java.lang.String" resultMap="productResult">
+	<select id="selectGoodsAllInfo" parameterType="java.lang.String" resultType="com.mycom.auction.goods.domain.ProductDTO">
 	 <![CDATA[			
 		select goods,goodsName,firstPrice,releaseDate,color,goodsContent
 		from product
@@ -52,7 +52,7 @@
 	</select>
 	
 	
-	 <select id="selectImageInfo"  parameterType="java.lang.String" resultMap="productResult">
+	 <select id="selectImageInfo"  parameterType="java.lang.String" resultType="com.mycom.auction.goods.domain.ProductDTO">
 	  <![CDATA[		
 		SELECT goods, image, imageNo
 		FROM productimage
@@ -62,7 +62,7 @@
 	</select>
 	
 		
-	<select id="selectGoodsInfo" parameterType="java.lang.String" resultMap="productResult">
+	<select id="selectGoodsInfo" parameterType="java.lang.String" resultType="com.mycom.auction.goods.domain.ProductDTO">
 	 <![CDATA[			
 		select goods,goodsName,firstPrice,releaseDate,color,goodsContent
 		from product
@@ -71,7 +71,7 @@
 	</select>
 	
 	
-	<select id="selectImageAllInfo" parameterType="java.lang.String" resultMap="productResult">
+	<select id="selectImageAllInfo" parameterType="java.lang.String" resultType="com.mycom.auction.goods.domain.ProductDTO">
 	 <![CDATA[			
 		SELECT goods, image, imageNo
 		FROM productimage
@@ -79,7 +79,7 @@
 	 ]]>	
 	</select>
 	
-		<select id="selectSizeAllInfo" parameterType="java.lang.String" resultMap="productResult">
+		<select id="selectSizeAllInfo" parameterType="java.lang.String" resultType="com.mycom.auction.goods.domain.ProductDTO">
 	 <![CDATA[			
 		SELECT goods,goodssize
 		FROM productsize

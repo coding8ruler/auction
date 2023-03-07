@@ -224,10 +224,11 @@ ${goodsImageInfo}
 				  <span id="price">re</span>
 				</li>
 				<li>
-				<button onclick="location.href='${path}/productAddForm?goodsSize=' + document.getElementById('size-select').value + '&goods=${goodsInfo.goods}'" value="판매하기"></button>
+				<%-- <button onclick="location.href='${path}/productAddForm?goodsSize=' + document.getElementById('size-select').value + '&goods=${goodsInfo.goods}'" value="판매하기"></button> --%>
+				<button onclick="location.href='${path}/productSalesAgreement?goodsSize=' + document.getElementById('size-select').value + '&goods=${goodsInfo.goods}'" value="판매하기">판매하기</button>
 				</li>
 				<li>
-				  <a href="">구매하기 </a>
+					<a href="${path}/productBuyForm?goodsSize=270&goods=모델명'">구매하기</a>
 				</li>
 			</ul>
 	   </div>		

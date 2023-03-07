@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.mycom.auction.goodsSell.domain.Criteria;
 import com.mycom.auction.goodsSell.domain.ImageFileVO;
 import com.mycom.auction.goodsSell.domain.Product;
+import com.mycom.auction.goodsSell.domain.ProductPurchaseDTO;
 
 @Repository
 public class ProductRepositoryImpl implements ProductRepository{
@@ -84,5 +85,22 @@ public class ProductRepositoryImpl implements ProductRepository{
 			int cnt = sqlSession.update("mapper.product.productAutoDelete");
 		return cnt;
 	}
+	
+	//구매하기 상품 상세 정보
+	@Override
+	public Product productBuyDetail(Map map) throws DataAccessException {
+		Product product = sqlSession.selectOne("mapper.product.productBuyDetail",map);
+		return product;
+	}
+	
+	//구매 상품 등록
+	@Override
+	public int productBuyInsert(Map map) throws DataAccessException {
+		
+		int cnt=sqlSession.insert("mapper.product.productBuyInsert",map);
+		return cnt;
+	}
 
+	
+	
 }

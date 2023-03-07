@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="<%=request.getContextPath()%>"/>
 <!DOCTYPE html>
 <html lang="ko">
@@ -88,7 +87,7 @@
       		return;
       	}
       	
-      	let tr = $("#files"+count).closet("tr");
+      	let tr = $("#files"+count).closest("tr");
       	//id가 "i1"요소의 바로 앞에 위치한 형제(자매)를 삭제되는 것처럼 보인다
        //$(기준요소).remove();
        $(tr).remove();
@@ -127,11 +126,6 @@
         <table>
           <tr>
             <td>
-            
-            
-            
-            
-            
               <h3>product Page</h3>
 	<form id="uploadFrm" action="${contextPath}/productAdd" enctype="multipart/form-data" method="post">
 	 <table border="1">

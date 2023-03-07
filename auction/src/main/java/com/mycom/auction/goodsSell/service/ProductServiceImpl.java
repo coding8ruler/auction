@@ -17,7 +17,7 @@ public class ProductServiceImpl implements ProductService{
 	ProductRepository productRepository;
 	
 	
-	
+	//판매 상품 등록
 	@Override
 	public int productAdd(Map productAdd) throws Exception {
 		
@@ -33,47 +33,59 @@ public class ProductServiceImpl implements ProductService{
 		return sellNo;
 	}
 
-
+	//판매 상품 리스트 조회
 	@Override
 	public List<Product> productList() throws Exception {
-		
-		
 		return productRepository.productListSelect();
 	}
 
-
+	//판매 상품 사진 조회
 	@Override
 	public List<ImageFileVO> productImageList(int num) throws Exception {
 		return productRepository.productImageSelect(num);
 	}
 
-
+	//판매 상품 상세조회
 	@Override
 	public Product productDetail(int num) throws Exception {
 		return productRepository.productSelectOne(num);
 	}
 
-
+	//판매 상품 등급 변경
 	@Override
 	public int goodsGradeChange(Map gradeChangeMap) throws Exception {
 		return productRepository.goodsGradeUpdate(gradeChangeMap);
 	}
-
+	
+	
+	//판매하기 게시글 갯수 조회 (페이징 처리)
 	@Override
 	public int productListCount() throws Exception {
 		return productRepository.productListConut();
 	}
 
-
+	//페이징 처리
 	@Override
 	public List<Product> getListWithPaging(Criteria cri) throws Exception {
 		return productRepository.getListWithPaging(cri);
 	}
 
-
+	//판매글 자동 삭제 메서드 (스캐줄러)
 	@Override
 	public int productAutoDelete() throws Exception {
 		return productRepository.productAutoDelete();
+	}
+
+	//구매 상품상세 정보
+	@Override
+	public Product productBuyDetail(Map map) throws Exception {
+		return productRepository.productBuyDetail(map);
+	}
+	
+	//구매 상품 등록
+	@Override
+	public int productBuy(Map map) throws Exception{
+		return productRepository.productBuyInsert(map);
 	}
 
 }
