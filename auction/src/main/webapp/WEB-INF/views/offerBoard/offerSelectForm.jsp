@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="frm" uri="http://www.springframework.org/tags/form" %>  
+<c:set var="CPATH" value="<%=request.getContextPath()%>"/>  
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>셀렉해 보여주기 폼View</title>
+<title>구인입력폼View</title>
 <style>
 	
   .tablemain {
     display: table;
-    margin: auto;
+ margin: auto;
     width: 50%;
   }
   .table1 {
@@ -40,88 +43,69 @@
     text-align: center;
   }
 </style>
-<style>
-    .map_wrap {position:relative;width:100%;height:350px;}
+<!-- <style>
+ .map_wrap {position:relative;width:100%;height:350px;}
     .title {font-weight:bold;display:block;}
     .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
     #centerAddr {display:block;margin-top:2px;font-weight: normal;}
     .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-</style>
-
+</style> -->
 </head>
 <body>
 	
-		<h3 style="text-align: center;">구인 게시글 (저장된 게시글  셀렉해 보여주기 폼)</h3>
+		<h3 style="text-align: center;">구인 게시글 (입력 폼)</h3>
 		<hr>
-	<form>
+		<form name="offerBoard2" id="offerBoard2" method="post" action="${CPATH}/offerBoard/offerSelectForm">
 			<div class="tablemain">
 			<br>
 			<br>
 			  <div class="table1">
-			    	<div class="table-cell">사용자 ID 및 정보(글쓴이정보DB에서 셀렉해옴)</div>
+			    	<div class="table-cell">글쓴이<br/>${sessionScope.AUTHUSER_ID}</div>
+			    	<input type="hidden" name="id" id="id" value="${sessionScope.AUTHUSER_ID}" />
 			  </div><br>
 			  
 			  <div class="table2">
-			    	<div class="table-cell">구인게시글제목(DB에저장된값 셀렉 출력)<br/>
+			    	<div class="table-cell">구인 글제목<br/>
+			    	<input type="text" name="offertitle" id="offertitle" />
 			    	</div>
 			  </div>
 			
 			  <div class="table3">
-			   	 	<div class="table-cell">급여(DB에저장된값 셀렉 출력)<br/>원
+			   	 	<div class="table-cell">급여<br/>
+			   	 	<input type="text" name="pay" id="pay"/>원
 			   	 	</div>
 			  </div>
 			  
 			   <div class="table4">
-			   	 	<div class="table-cell">근무 일시(DB에저장된값 셀렉 출력)<br/>
+			   	 	<div class="table-cell">작성일<br/>
+			   	 	<input type="date" name="wttime" id="wttime"/>
 			   	 	</div>
 			  </div>
 			  
 			    <div class="table5">
-			   	 	<div class="table-cell">근무 시간(DB에저장된값 셀렉 출력)<br/>
-			   	 	<input type="time" value="13:10" min="13:00" max="15:00">
+			   	 	<div class="table-cell">대행 시작일시<br/>
+			   	 	<input type="date" name="starttime" id="starttime"/>
 			   	 	</div>
 			  </div>
 			  
 			   <div class="table6">
-			    	<div class="table-cell">본문 TEXT(DB에저장된값 셀렉 출력)<br/>
-			    	<input type="text" id="offermainText">
+			    	<div class="table-cell">내용<br/>
+			    	<textarea  name="offercontent" id="offercontent" cols="30" rows="5" ></textarea>
 			    	</div>
-			    	
+			   </div>
+			    
 			  </div><br>
 			  
 			   <div class="table7">
-			    	<div class="table-cell" id="">지도 포인터의 주소 위치(DB에저장된값 셀렉 출력)</div>
+			    	<div class="table-cell" >상세주소 텍스트(DB에 저장될 값or히든으로 좌표받아 저장할것)</div>
+			    	<br/>
+			    	<input type="text" name="offerpoint" id="offerpoint"/>
 			  </div>
-	 
-	 
-	 					 <!-- 지도 API -->
-	 <!-- 이미지 지도를 표시할 div 입니다 -->
-	<div id="map" style="width:100%;height:350px;"></div>
-
-	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=adb3e49fb0df763233b74e5e8c1f9298"></script>
-	<script>
-		var staticMapContainer  = document.getElementById('map'), // 이미지 지도를 표시할 div 
-		    staticMapOption = {
-		        center: new kakao.maps.LatLng(37.56797, 126.97800), // 이미지 지도의 중심 좌표
-		        level: 4, // 이미지 지도의 확대 레벨
-		        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
-		   };
-		    
-		// 이미지 지도를 생성한다
-		var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
-		
-		// 지도에 마커를 생성하고 표시한다
-		var marker = new kakao.maps.Marker({
-		    position: new kakao.maps.LatLng(37.56797, 126.97800), // 마커의 좌표
-		    map: map
-		// 마커를 표시할 지도 객체
-		});
-		    
-	</script>
+		 
 			<!-- 지도 API 끝 -->
+			<div class="table7"><input type="submit" value="작성 완료"/></div>
 			
-			<div class="table7"><button>지원하기 버튼</button></div>
-		</div>
-	</form>
+		 </form>
+	
 </body>
 </html>

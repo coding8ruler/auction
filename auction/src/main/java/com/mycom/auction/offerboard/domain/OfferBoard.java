@@ -28,39 +28,287 @@ public class OfferBoard {
 	private int startpage;
 	private int endpage;
 
+	@Override
+	public String toString() {
+		return "OfferBoard [offerno=" + offerno + ", id=" + id + ", offertitle=" + offertitle + ", offerpoint="
+				+ offerpoint + ", pay=" + pay + ", wttime=" + wttime + ", offercontent=" + offercontent + ", viewcnt="
+				+ viewcnt + ", offercnt=" + offercnt + ", starttime=" + starttime + ", totalcnt=" + totalcnt
+				+ ", currentpage=" + currentpage + ", contents=" + contents + ", totalpages=" + totalpages
+				+ ", startpage=" + startpage + ", endpage=" + endpage + "]";
+	}
+
+
+
+
+
+
 	//기본생성자
 	public OfferBoard() {}
+
 	
+	
+
+
+
+		public int getOfferno() {
+		return offerno;
+	}
+
+
+
+
+
+
+	public void setOfferno(int offerno) {
+		this.offerno = offerno;
+	}
+
+
+
+
+
+
+	public String getId() {
+		return id;
+	}
+
+
+
+
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+
+
+
+
+
+	public String getOffertitle() {
+		return offertitle;
+	}
+
+
+
+
+
+
+	public void setOffertitle(String offertitle) {
+		this.offertitle = offertitle;
+	}
+
+
+
+
+
+
+	public String getOfferpoint() {
+		return offerpoint;
+	}
+
+
+
+
+
+
+	public void setOfferpoint(String offerpoint) {
+		this.offerpoint = offerpoint;
+	}
+
+
+
+
+
+
+	public int getPay() {
+		return pay;
+	}
+
+
+
+
+
+
+	public void setPay(int pay) {
+		this.pay = pay;
+	}
+
+
+
+
+
+
+	public Date getWttime() {
+		return wttime;
+	}
+
+
+
+
+
+
+	public void setWttime(Date wttime) {
+		this.wttime = wttime;
+	}
+
+
+
+
+
+
+	public String getOffercontent() {
+		return offercontent;
+	}
+
+
+
+
+
+
+	public void setOffercontent(String offercontent) {
+		this.offercontent = offercontent;
+	}
+
+
+
+
+
+
+	public int getViewcnt() {
+		return viewcnt;
+	}
+
+
+
+
+
+
+	public void setViewcnt(int viewcnt) {
+		this.viewcnt = viewcnt;
+	}
+
+
+
+
+
+
+	public int getOffercnt() {
+		return offercnt;
+	}
+
+
+
+
+
+
+	public void setOffercnt(int offercnt) {
+		this.offercnt = offercnt;
+	}
+
+
+
+
+
+
 	public Date getStarttime() {
 		return starttime;
 	}
+
+
+
+
+
 
 	public void setStarttime(Date starttime) {
 		this.starttime = starttime;
 	}
 
+
+
+
+
+
 	public int getTotalcnt() {
 		return totalcnt;
 	}
+
+
+
+
+
 
 	public void setTotalcnt(int totalcnt) {
 		this.totalcnt = totalcnt;
 	}
 
-	//게시글정보 생성자
-	public OfferBoard(int offerno, String id, String offertitle, String offerpoint, int pay, Date wttime,
-			String offercontent, int viewcnt, int offercnt,Date starttime) {
-		this.offerno = offerno;
-		this.id = id;
-		this.offertitle = offertitle;
-		this.offerpoint = offerpoint;
-		this.pay = pay;
-		this.wttime = wttime;
-		this.offercontent = offercontent;
-		this.viewcnt = viewcnt;
-		this.offercnt = offercnt;
-		this.starttime = starttime;
+
+
+
+
+
+	public int getCurrentpage() {
+		return currentpage;
 	}
+
+
+
+
+
+
+	public void setCurrentpage(int currentpage) {
+		this.currentpage = currentpage;
+	}
+
+
+
+
+
+
+	public List<OfferBoard> getContents() {
+		return contents;
+	}
+
+
+
+
+
+
+	public void setContents(List<OfferBoard> contents) {
+		this.contents = contents;
+	}
+
+	public int getTotalpages() {
+		return totalpages;
+	}
+
+
+	public void setTotalpages(int totalpages) {
+		this.totalpages = totalpages;
+	}
+
+	public int getStartpage() {
+		return startpage;
+	}
+
+	public void setStartpage(int startpage) {
+		this.startpage = startpage;
+	}
+
+	public int getEndpage() {
+		return endpage;
+	}
+
+	public void setEndpage(int endpage) {
+		this.endpage = endpage;
+	}
+
+
+
+
+
+
 		//페이징 생성자
 		public OfferBoard(int totalcnt, int currentPage, 
 				   int size, List<OfferBoard> contents) {
@@ -86,115 +334,7 @@ public class OfferBoard {
 				if(endpage>totalpages)endpage=totalpages;
 			}
 		}
-	
-	
-	public void setOfferno(int offerno) {
-		this.offerno = offerno;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public void setOffertitle(String offertitle) {
-		this.offertitle = offertitle;
-	}
-	public void setOfferpoint(String offerpoint) {
-		this.offerpoint = offerpoint;
-	}
-	public void setPay(int pay) {
-		this.pay = pay;
-	}
-	public void setWttime(Date wttime) {
-		this.wttime = wttime;
-	}
-	public void setOffercontent(String offercontent) {
-		this.offercontent = offercontent;
-	}
-	public void setViewcnt(int viewcnt) {
-		this.viewcnt = viewcnt;
-	}
-	public void setOffercnt(int offercnt) {
-		this.offercnt = offercnt;
-	}
-	
-	
-	public void setTotalCnt(int totalcnt) {
-		this.totalcnt = totalcnt;
-	}
-	public void setCurrentpage(int currentpage) {
-		this.currentpage = currentpage;
-	}
-	public void setContents(List<OfferBoard> contents) {
-		this.contents = contents;
-	}
-	public void setTotalpages(int totalpages) {
-		this.totalpages = totalpages;
-	}
-	public void setStartpage(int startpage) {
-		this.startpage = startpage;
-	}
-	public void setEndpage(int endpage) {
-		this.endpage = endpage;
-	}
-	
-	public int getOfferno() {
-		return offerno;
-	}
-	public String getId() {
-		return id;
-	}
-	public String getOffertitle() {
-		return offertitle;
-	}
-	public String getOfferpoint() {
-		return offerpoint;
-	}
-	public int getPay() {
-		return pay;
-	}
-	public Date getWttime() {
-		return wttime;
-	}
-	public String getOffercontent() {
-		return offercontent;
-	}
-	public int getViewcnt() {
-		return viewcnt;
-	}
-	public int getOffercnt() {
-		return offercnt;
-	}
 
-	
-	@Override
-	public String toString() {
-		return "OfferBoard [offerno=" + offerno + ", id=" + id + ", offertitle=" + offertitle + ", offerpoint="
-				+ offerpoint + ", pay=" + pay + ", wttime=" + wttime + ", offercontent=" + offercontent + ", viewcnt="
-				+ viewcnt + ", offercnt=" + offercnt + ", starttime=" + starttime + ", totalcnt=" + totalcnt
-				+ ", currentpage=" + currentpage + ", contents=" + contents + ", totalpages=" + totalpages
-				+ ", startpage=" + startpage + ", endpage=" + endpage + "]";
-	}
-
-	public int getTotalCnt() {
-		return totalcnt;
-	}
-	public int getCurrentpage() {
-		return currentpage;
-	}
-	public List<OfferBoard> getContents() {
-		return contents;
-	}
-	public int getTotalpages() {
-		return totalpages;
-	}
-	public int getStartpage() {
-		return startpage;
-	}
-	public int getEndpage() {
-		return endpage;
-	}
-
-	
-	
 	
 	
 }
