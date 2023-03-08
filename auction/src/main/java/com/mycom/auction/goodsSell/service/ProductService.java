@@ -37,5 +37,8 @@ public interface ProductService {
 	
 	//구매 상품 등록
 	public int productBuy(Map map) throws Exception;
+	
+	//판매 완료 상태물품 목록 조회
+	public List<Product> productAutoList(int goodsGrade) throws Exception;
 		
  }

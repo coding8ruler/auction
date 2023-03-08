@@ -44,4 +44,7 @@ public interface ProductRepository {
 	
 	//구매 상품 등록
 	public int productBuyInsert(Map map) throws DataAccessException;
+	
+	//판매 완료 상태물품 목록 조회
+	public List<Product> productAutoSelectList(int goodsGrade) throws DataAccessException;
 }

@@ -87,5 +87,11 @@ public class ProductServiceImpl implements ProductService{
 	public int productBuy(Map map) throws Exception{
 		return productRepository.productBuyInsert(map);
 	}
+	
+	//판매 완료 상태물품 목록 조회
+	@Override
+	public List<Product> productAutoList(int goodsGrade) throws Exception {
+		return productRepository.productAutoSelectList(goodsGrade);
+	}
 
 }

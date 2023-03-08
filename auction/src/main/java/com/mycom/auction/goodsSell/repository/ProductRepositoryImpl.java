@@ -96,9 +96,16 @@ public class ProductRepositoryImpl implements ProductRepository{
 	//구매 상품 등록
 	@Override
 	public int productBuyInsert(Map map) throws DataAccessException {
-		
 		int cnt=sqlSession.insert("mapper.product.productBuyInsert",map);
 		return cnt;
+	}
+	
+	//판매 완료 상태물품 목록 조회
+	@Override
+	public List<Product> productAutoSelectList(int goodsGrade) throws DataAccessException {
+		
+		List<Product> productList=sqlSession.selectList("mapper.product.productAutoSelectList",goodsGrade);
+		return productList;
 	}
 
 	
