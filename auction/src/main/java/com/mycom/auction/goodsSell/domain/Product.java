@@ -11,11 +11,13 @@ public class Product {
 	private String endTime;
 	private String goods;
 	private String vailDate;
+	private int messageNo;
 	@Override
 	public String toString() {
 		return "Product [sellNo=" + sellNo + ", itemSize=" + itemSize + ", desiredSellPrice=" + desiredSellPrice
 				+ ", quantity=" + quantity + ", goodsGrade=" + goodsGrade + ", id=" + id + ", startTime=" + startTime
-				+ ", endTime=" + endTime + ", goods=" + goods + ", vailDate=" + vailDate + "]";
+				+ ", endTime=" + endTime + ", goods=" + goods + ", vailDate=" + vailDate + ", messageNo=" + messageNo
+				+ "]";
 	}
 	public int getSellNo() {
 		return sellNo;
@@ -77,5 +79,12 @@ public class Product {
 	public void setVailDate(String vailDate) {
 		this.vailDate = vailDate;
 	}
+	public int getMessageNo() {
+		return messageNo;
+	}
+	public void setMessageNo(int messageNo) {
+		this.messageNo = messageNo;
+	}
+	
 	
 }

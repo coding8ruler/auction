@@ -107,11 +107,12 @@ public class ProductRepositoryImpl implements ProductRepository{
 		
 		List<Product> productList=sqlSession.selectList("mapper.product.productAutoSelectList",goodsGrade);
 		
-		
 		for(int i=0; i<productList.size(); i++) {
 			Product product=(Product)productList.get(i);
 			System.out.println("productAutoEnd Rep 2번"+product);
+			
 			sqlSession.insert("mapper.product.insertEndMessage",product);
+			
 			System.out.println("productAutoEnd Rep 3번");
 		}
 			
