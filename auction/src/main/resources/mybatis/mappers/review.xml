@@ -61,7 +61,7 @@
 	</update>
    
     <!-- 리뷰 글등록 #{sellNo} -->
-    <insert id="insertReview" parameterType="reviewDTO">
+    <insert id="insertReview" parameterType="com.mycom.auction.review.domain.ReviewDTO">
         <![CDATA[
         insert into review(reviewno,id,reviewtitle,reviewcontent,reviewdate,starrating,viewcnt)
         values(seq_review.nextval,#{id},#{reviewTitle},#{reviewContent},sysdate,#{starRating},0)
@@ -81,7 +81,7 @@
 	
 	<!-- 첨부파일 등록  -->
 	<insert id="insertReviewImageFile" 
-	        parameterType="reviewFileVO">
+	        parameterType="com.mycom.auction.review.domain.ReviewFileVO">
 	   <selectKey resultType="int" keyProperty="fileNo" order="BEFORE"> 
  		select SEQ_REVIEWFILE.nextval from dual
 	   </selectKey>
@@ -92,7 +92,7 @@
 	</insert>   
 	
     <!-- 특정 리뷰 글수정 -->
-    <update id="updateReview" parameterType="reviewDTO">
+    <update id="updateReview" parameterType="com.mycom.auction.review.domain.ReviewDTO">
         <![CDATA[
         update review
         set reviewtitle=#{reviewTitle},reviewcontent=#{reviewContent},starrating=#{starRating}
