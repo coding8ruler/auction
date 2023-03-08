@@ -159,8 +159,8 @@
 					<td>${list.goodsGrade}</td>
 					<td>${list.id}</td>
 					<td>${list.vailDate}</td>
-					<td><fmt:formatDate value="${list.startTime}" pattern="yyyy.MM.dd"/></td>
-					<td><fmt:formatDate value="${list.endTime}" pattern="yyyy.MM.dd"/></td>
+					<td>${list.startTime}</td>
+					<td>${list.endTime}</td>
 				</tr>
 			</c:forEach>
     </tbody>

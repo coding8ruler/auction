@@ -62,12 +62,67 @@
  		]]>
  	</select>
  
+ 
+ 
+ <!-- 판매 완료 상태 물품 목록 조회 -->
+<!--  <select id="productAutoSelectList" parameterType="Integer" resultType="com.mycom.auction.goodsSell.domain.Product">
+		<![CDATA[
+		 	select *
+			from PRODUCTSELL
+			where GOODSGRADE = 3
+			]]>
+ </select> -->
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  <!-- 판매 완료 상태 물품 목록 조회 -->
+ <select id="productAutoSelectList" parameterType="Integer" resultType="com.mycom.auction.goodsSell.domain.Product">
+		<![CDATA[
+		 	select *
+			from PRODUCTSELL
+			where endTime < TRUNC(SYSDATE, 'HH') AND goodsGrade = 2
+			]]>
+ </select>
+ 
+ 
+<!-- 물품등록:productSell테이블에 등록 -->
+<insert id="insertEndMessage" parameterType="com.mycom.auction.goodsSell.domain.Product">
+		<selectKey resultType="java.lang.String" keyProperty="messageNo" order="BEFORE">
+    	SELECT seq_productFinally_messageNo.nextval FROM dual
+    </selectKey>
+			<![CDATA[
+			 insert into productFinally(messageNo,title,content,sendTime,sendId,receiveId)
+			 values (#{messageNo},'거래채결건','거래가 체결 되었으니 아래 버튼을 클릭하여 결재 하시거나 ~~~~~ 은행으로 입금해주세요.',TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),'user1',#{id});
+			]]>
+</insert>
+ 
+ 
  <!-- 판매 기간 만료된 게시글 자동 삭제 -->
  	<update id="productAutoDelete">
- 		UPDATE PRODUCTSELL 
-		SET GOODSGRADE =3
-		WHERE endTime=TRUNC(SYSDATE, 'HH') AND goodsGrade=2
+ 		<![CDATA[
+	 		UPDATE PRODUCTSELL 
+			SET GOODSGRADE = 3
+			WHERE endTime < TRUNC(SYSDATE, 'HH') AND goodsGrade = 2
+		]]>
  	</update>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  

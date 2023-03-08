@@ -36,12 +36,12 @@ public interface ProductRepository {
 	//페이징 처리
 	public List<Product> getListWithPaging(Criteria cri) throws DataAccessException;
 	
-	//판매 기간 완료 게시글 삭제
-	public int productAutoDelete() throws DataAccessException;
-	
 	//구매 상품 정보 조회
 	public Product productBuyDetail(Map map) throws DataAccessException;
 	
 	//구매 상품 등록
 	public int productBuyInsert(Map map) throws DataAccessException;
+	
+	//판매 완료 상태물품 목록 조회
+	public int productAutoEnd(int goodsGrade) throws DataAccessException;
 }

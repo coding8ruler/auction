@@ -1,27 +1,18 @@
 package com.mycom.auction.goodsSell.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.OutputStream;
-import java.net.URLEncoder;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.HttpRequest;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,10 +21,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.mycom.auction.goodsSell.base.BaseController;
@@ -43,9 +32,11 @@ import com.mycom.auction.goodsSell.domain.PageDTO;
 import com.mycom.auction.goodsSell.domain.Product;
 import com.mycom.auction.goodsSell.domain.ProductPurchaseDTO;
 import com.mycom.auction.goodsSell.repository.ProductRepository;
+import com.mycom.auction.goodsSell.schedule.Scheduler;
 import com.mycom.auction.goodsSell.service.ProductService;
 
 @Controller
+@Component
 public class productSellController extends  BaseController implements WebMvcConfigurer{
 	
 	//파일저장경로
@@ -55,6 +46,10 @@ public class productSellController extends  BaseController implements WebMvcConf
 	ProductService productService;
 	@Autowired
 	ProductRepository productRepository;
+	@Autowired
+	Scheduler scheduler;
+	
+	
 	
 	 //판매하기 글 등록 페이지
 	 @RequestMapping(value="/productAddForm", method= {RequestMethod.GET})
@@ -181,13 +176,18 @@ public class productSellController extends  BaseController implements WebMvcConf
 		HttpSession session = request.getSession();
 		session.setAttribute("AUTHUSER_ID", "hongid");//임시
 		
+		
+		/*
+		Map map = new HashMap();
+		map.put("itemSize",goodsSize);
+		map.put("goods",goods);
+		*/
+		
 		//임시 데이터
-		String itemSize = "270";
-		String goods1 = "모델명";	
 		
 		Map map = new HashMap();
-		map.put("itemSize",itemSize);
-		map.put("goods",goods1);
+		map.put("itemSize",goodsSize);
+		map.put("goods",goods);
 		System.out.println(map);
 		
 		//물품 상제 정보 조회
@@ -214,9 +214,30 @@ public class productSellController extends  BaseController implements WebMvcConf
 		
 		int cnt=productService.productBuy(map);
 		
-		
 		return "redirect:/productList";
 	}
+	
+	
+	   // 초 분 시 일 월 주 (연도)
+		@Scheduled(cron = "*/1 * * * * *")
+		public void autoUpdate() throws Exception {
+			System.out.println("실행중");
+		   LocalDate now = LocalDate.now();
+		   int cnt = 0;
+		   int goodsGrade = 3;
+		   cnt = productService.productAutoEnd(goodsGrade);
+		   System.out.println("autoUpdate()");
+		   if (cnt != 0) {
+		      System.out.println("삭제 완료" + now.toString());
+		   } else {
+		      System.out.println("삭제 데이터 없음");
+		   }
+		}
+		
+	
+	
+	
+	
 }
 
 

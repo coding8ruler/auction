@@ -297,8 +297,6 @@ public class GoodsController {
 		
 		List<ProductPurchaseDTO> sellNoSearch=goodsService.sellNoGoodsSearch(sellNo);
 		
-		
-		
 		//JSONObject객체생성
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("sellNoSearch",sellNoSearch);

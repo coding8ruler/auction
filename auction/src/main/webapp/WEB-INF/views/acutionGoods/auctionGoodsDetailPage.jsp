@@ -173,6 +173,8 @@
 		          countdown.innerHTML = days + "일" + hours + "시"
 		          + minutes + "분" + seconds + "초 ";
 
+		          + minutes + "분" + seconds + "초  <button onclick=>구매하기</button>";
+							
 		          // 시간이 지난 경우
 		          if (distance < 0) {
 		            clearInterval(timer);
