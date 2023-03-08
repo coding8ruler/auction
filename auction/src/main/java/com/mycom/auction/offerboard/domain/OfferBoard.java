@@ -1,8 +1,9 @@
 package com.mycom.auction.offerboard.domain;
 
 import java.util.Date;
-
 import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class OfferBoard {
 
@@ -12,10 +13,11 @@ public class OfferBoard {
 	private String offertitle; //제목
 	private String offerpoint; // 거래장소
 	private int pay; 			//급여
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date wttime;	//거래 일시
 	private String offercontent; //본문내용
 	private int viewcnt; //조회수
-	private int offercnt; //말머리
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date starttime; //대행 시작일시
 	
 	
@@ -32,7 +34,7 @@ public class OfferBoard {
 	public String toString() {
 		return "OfferBoard [offerno=" + offerno + ", id=" + id + ", offertitle=" + offertitle + ", offerpoint="
 				+ offerpoint + ", pay=" + pay + ", wttime=" + wttime + ", offercontent=" + offercontent + ", viewcnt="
-				+ viewcnt + ", offercnt=" + offercnt + ", starttime=" + starttime + ", totalcnt=" + totalcnt
+				+ viewcnt + ", starttime=" + starttime + ", totalcnt=" + totalcnt
 				+ ", currentpage=" + currentpage + ", contents=" + contents + ", totalpages=" + totalpages
 				+ ", startpage=" + startpage + ", endpage=" + endpage + "]";
 	}
@@ -162,73 +164,26 @@ public class OfferBoard {
 		return offercontent;
 	}
 
-
-
-
-
-
 	public void setOffercontent(String offercontent) {
 		this.offercontent = offercontent;
 	}
-
-
-
-
-
-
 	public int getViewcnt() {
 		return viewcnt;
 	}
-
-
-
-
-
 
 	public void setViewcnt(int viewcnt) {
 		this.viewcnt = viewcnt;
 	}
 
-
-
-
-
-
-	public int getOffercnt() {
-		return offercnt;
-	}
-
-
-
-
-
-
-	public void setOffercnt(int offercnt) {
-		this.offercnt = offercnt;
-	}
-
-
-
-
-
+	
 
 	public Date getStarttime() {
 		return starttime;
 	}
 
-
-
-
-
-
 	public void setStarttime(Date starttime) {
 		this.starttime = starttime;
 	}
-
-
-
-
-
 
 	public int getTotalcnt() {
 		return totalcnt;

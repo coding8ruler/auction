@@ -77,7 +77,7 @@
 			  
 			    <div class="table5">
 			   	 	<div class="table-cell">대행 시작일시<br/>
-			   	 	<input type="date" name="starttime" id="starttime"/>
+			   	 	<input type="datetime-local" name="starttime" id="starttime"/>
 			   	 	</div>
 			  </div>
 			  

@@ -81,6 +81,7 @@ public class OfferBoardController {
 	  		HttpSession session = request.getSession();
 	  		
 	  		//session.setAttribute("isLogOn",true);
+	  		//session.setAttribute("AUTHUSER_ID", "hongid");//임시 글번호
 	  		session.setAttribute("AUTHUSER_ID", "hongid");//임시
   		//4.view
     	return "/offerBoard/offerInsertForm";
@@ -91,21 +92,12 @@ public class OfferBoardController {
     //offerinsertForm 구인 등록 폼 보여주기 http://localhost:8081/auction/offerBoard/offerInsertForm
 	@GetMapping("/offerBoard/offerSelectForm")
     public String offerinsert(@ModelAttribute OfferBoard offerBoard, HttpServletRequest request )  throws Exception{
-		//1.파라미터받기 //2.비즈니스로직
-  		//3.model
-		//OfferBoard offerBoard ,
-		//System.out.println("offerBoard==="+offerBoard);
-		//System.out.println("offerBoard"+offerBoard);
-  		//원칙적으로는 (로그인한 user가) 글입력 권한을 가진 사용자가 글입력해야지만
-  		//여기에서는 임시로 세션에 정보를 저장하여 진행하겠다
-		//OfferBoard offerBoard =new OfferBoard();
-	
-		//offerListService.insertOffer(offerBoard);
-		System.out.println("ssssss");
-		System.out.println("id"+offerBoard);
 		
-  		//4.view
-    	//return "offerBoard/offerInsertForm";
+	
+		offerListService.insertOffer(offerBoard);
+		System.out.println("offerBoard"+offerBoard);
+		
+  	
 		return "home";
     }
   

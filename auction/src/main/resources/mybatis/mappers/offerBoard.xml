@@ -25,10 +25,11 @@
 	  ]]>
 	</select>
 	
+	<!-- 구인글 인서트문 -->
 	<insert id="insertoffer" parameterType="com.mycom.auction.offerboard.domain.OfferBoard">
 		 <![CDATA[		
-			insert into offerboard(offerno,id,offertitle,offerpoint,pay,wttime,offercontent,viewcnt,offercnt,starttime)
-			values(seq_offerboard.nextval,#{id},#{offertitle},#{offerpoint},#{pay},#{wttime},#{offercontent},0,0,#{starttime})
+			insert into offerboard(offerno,id,offertitle,offerpoint,pay,wttime,offercontent,viewcnt,starttime)
+			values(seq_offerboard.nextval,#{id},#{offertitle},#{offerpoint},#{pay},#{wttime},#{offercontent},0,#{starttime})
 		  ]]>
 	
 	</insert>
@@ -47,7 +48,7 @@
 		<select id="offerDetail" resultType="offerBoard" parameterType="int"> 
 	 	<![CDATA[
 		 	select offerno,id,offertitle,offerpoint,pay,offertime,viewcnt
-			from offerboard
+			from offerboard 
 			where offerno=#{no}
 		]]>
 	</select>
