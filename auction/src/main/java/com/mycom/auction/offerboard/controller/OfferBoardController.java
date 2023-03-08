@@ -2,6 +2,10 @@ package com.mycom.auction.offerboard.controller;
 
 
 
+import java.sql.Time;
+import java.time.LocalTime;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -83,36 +87,56 @@ public class OfferBoardController {
 	  		//session.setAttribute("isLogOn",true);
 	  		//session.setAttribute("AUTHUSER_ID", "hongid");//임시 글번호
 	  		session.setAttribute("AUTHUSER_ID", "hongid");//임시
+	  		
+	  		
   		//4.view
     	return "/offerBoard/offerInsertForm";
     }
-	
-  //입력폼보여주기
+  	
+  //입력폼에서 입력 처리 담당
   	//요청방식 get
     //offerinsertForm 구인 등록 폼 보여주기 http://localhost:8081/auction/offerBoard/offerInsertForm
-	@GetMapping("/offerBoard/offerSelectForm")
-    public String offerinsert(@ModelAttribute OfferBoard offerBoard, HttpServletRequest request )  throws Exception{
+	@GetMapping("/offerBoard/offerInsertForm2")
+    public String offerinsert(@ModelAttribute OfferBoard offerBoard, HttpServletRequest request,Model model) throws Exception{
 		
-	
+		//LocalTime starttime1 = offerBoard.getStarttime();
+		
 		offerListService.insertOffer(offerBoard);
 		System.out.println("offerBoard"+offerBoard);
 		
-  	
-		return "home";
+		model.addAttribute("offerBoard", offerBoard);
+		//model.addAttribute("starttime",starttime1);
+		
+		
+		return "/offerBoard/offerBoardForm";
     }
-  
+  /*
+    //입력폼 정상유무 확인 후 알트 팝업 후 리스트로 보내줌
+	@PostMapping("/offerBoard/offerSelectForm1")
+	public String offercheck(@ModelAttribute OfferBoard offerBoard, HttpServletRequest request) throws Exception {
+		
+		offerListService.insertOffer(offerBoard);
+		
+  	
+		return "offerBoard/offerBoardForm";
+	}
+	
+	
+	*/
     
     
-    
-    
-	/*
-	 * //offerSelect 입력된 구인게시글 내용폼 보여주기
-	 * 
-	 * @GetMapping("/offerBoard/offerSelectForm") public Object offerSelect() {
-	 * 
-	 * 
-	 * return "/offerBoard/offerSelectForm"; }
-	 */
+	  //offerSelect 입력된 구인게시글 내용폼 보여주기
+	 
+	  @GetMapping("/offerBoard/offerSelectForm") 
+	  public String offerSelect(Model model) throws Exception{
+	
+		  offerListService.getOfferDetail(no);
+		  model.addAttribute("no",no);
+		  
+		  
+		  return "/offerBoard/offerSelectForm"; 
+	 }
+	
 
     
 }

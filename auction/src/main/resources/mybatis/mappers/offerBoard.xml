@@ -29,7 +29,7 @@
 	<insert id="insertoffer" parameterType="com.mycom.auction.offerboard.domain.OfferBoard">
 		 <![CDATA[		
 			insert into offerboard(offerno,id,offertitle,offerpoint,pay,wttime,offercontent,viewcnt,starttime)
-			values(seq_offerboard.nextval,#{id},#{offertitle},#{offerpoint},#{pay},#{wttime},#{offercontent},0,#{starttime})
+			values(seq_offerboard.nextval,#{id},#{offertitle},#{offerpoint},#{pay},sysdate,#{offercontent},0,#{starttime})
 		  ]]>
 	
 	</insert>

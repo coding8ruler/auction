@@ -43,6 +43,31 @@
     text-align: center;
   }
 </style>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		
+
+	$("#offersave").click(function(){
+		
+		let hiddenID = $("#id").val();
+		
+		if( hiddenID != null){
+			
+			alert("작성 실패 , 재로그인이 필요합니다.");
+			return false;
+			
+		}else {
+			
+		alert("작성 완료");
+		
+		return true;
+	}
+		
+	});
+
+});
+</script>
 </head>
 <body>
 	
@@ -96,7 +121,7 @@
 			  </div>
 		 
 			<!-- 지도 API 끝 -->
-			<div class="table7"><input type="submit" value="작성 완료"/></div>
+			<div class="table7"><input type="submit" id="offersave" value="작성 완료" /></div>
 			
 		 </form>
 	

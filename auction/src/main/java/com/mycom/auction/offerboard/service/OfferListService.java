@@ -21,6 +21,6 @@ public interface OfferListService {
 	
 	public void insertOffer(OfferBoard offerBoard) throws Exception; 
 	
-	
+
 	
 }

@@ -31,19 +31,26 @@
 		  </tr>
 	  </thead>
 	  <tbody>
-
+ 
 	  <c:forEach var="data" items="${offerBoard.contents}"> 
+		
 		  <tr>
+		  
 		    <td>${data.offerno}</td>
-		    <td>${data.id}</td>
-		    <td>${data.offertitle}</td>
+		  
+		    <td>${data.id}</td> 
+		    <td><a href="${cp}/offerBoard/offerBoardForm?offerno=${data.offerno}">
+		    ${data.offertitle}</a>
+		    </td>
 		    <td>${data.offerpoint}</td>
+		   
 		    <td>${data.pay}</td>
 		    <td>${data.wttime}</td>
 		    <td>${data.viewcnt}</td>
-		    <td>${data.offercnt}</td>
 		     <td>${data.starttime}</td>
+		    
 		  </tr>
+		   
 		</c:forEach>  
 	
 		 <%-- paging출력 부분 --%>

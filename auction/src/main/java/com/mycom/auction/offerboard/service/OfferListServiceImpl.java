@@ -24,10 +24,10 @@ public class OfferListServiceImpl implements OfferListService {
 	//특정글 상세조회
 	 @Override 
 	 public OfferBoard getOfferDetail(int no) throws Exception {
-	 
-	 return offerRepository.getOfferDetail(no);
-	 
-	 }
+		 
+	 return	offerRepository.getOfferDetail(no);
+	 }	
+
 	 
 		
 	@Override
