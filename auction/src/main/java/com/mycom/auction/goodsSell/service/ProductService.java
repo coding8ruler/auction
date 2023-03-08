@@ -29,9 +29,6 @@ public interface ProductService {
 	public List<Product> getListWithPaging(Criteria cri) throws Exception;
 	 
 	
-	//판매글 자동 삭제 메서드 (스캐줄러)
-	public int productAutoDelete() throws Exception;
-	
 	//구매 상품상세 정보
 	public Product productBuyDetail(Map map) throws Exception;
 	
@@ -39,6 +36,6 @@ public interface ProductService {
 	public int productBuy(Map map) throws Exception;
 	
 	//판매 완료 상태물품 목록 조회
-	public List<Product> productAutoList(int goodsGrade) throws Exception;
+	public int productAutoEnd(int goodsGrade) throws Exception;
 		
  }

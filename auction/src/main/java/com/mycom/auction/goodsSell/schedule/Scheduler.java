@@ -18,10 +18,9 @@ public class Scheduler {
 	ProductService productService;
 	
 	
-	@Scheduled(cron = "*/60 * * * * *")
-	public List<Product> autoProductList() throws Exception{
+	@Scheduled(cron = "* * * * */60 *")
+	public void autoProductList() throws Exception{
+		System.out.println("1");
 		int goodsGrade = 3;
-		List<Product> productList =productService.productAutoList(goodsGrade);
-		return productList;
 	}
 }

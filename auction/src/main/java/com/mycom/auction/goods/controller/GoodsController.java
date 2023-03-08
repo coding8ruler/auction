@@ -74,16 +74,18 @@ public class GoodsController {
 			logger.info("컨트롤러 while문안 map.put(name,value)="+name+","+value);
 	  		map.put(name,value);
 		}
+		
 		List<ProductDTO> imageFileList = upload(multipartRequest);
 		if( imageFileList!=null && imageFileList.size()!=0) {
 			map.put("imageFileList",imageFileList);
-		}
+		}//if끝
+		
 		ResponseEntity resEntity = null;
 		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.add("Content-Type","text/html;charset=utf-8");
+		responseHeaders.add("Content-Type", "text/html;charset=utf-8");
 		String msg = null;
 		String imageFileName = null;
-
+		
 		try {
 			String goods=goodsService.insertImageGoods(map);//글관련정보+첨부파일정보
 			//입력성공이 되면 
@@ -100,7 +102,7 @@ public class GoodsController {
 			//2)글등록이 되었습니다. 라는 alert띄우기
 			msg   = "<script>;";
 			msg  += "alert('상품이 등록되었습니다.');";
-			msg  += "location.href='"+multipartRequest.getContextPath()+"/auctionGoodsListPage';";
+			msg  += "location.href='"+multipartRequest.getContextPath()+"/goodsRegisterForm';";
 			msg  += "</script>";
 			//3)입력폼 페이지로 이동
 		}catch(Exception e) {
@@ -117,7 +119,7 @@ public class GoodsController {
 			//2)오류발생 되었습니다. 라는 alert띄우기
 			msg   = "<script>;";
 			msg  += "alert('오류가 발생 되었습니다.');";
-			msg  += "location.href='"+multipartRequest.getContextPath()+"/auctionGoodsListPage';";
+			msg  += "location.href='"+multipartRequest.getContextPath()+"/goodsRegisterForm';";
 			msg  += "</script>";
 			//3)입력폼 페이지로 이동
 			e.printStackTrace();
@@ -126,32 +128,31 @@ public class GoodsController {
 		return resEntity;
 	}
 		
-	
-		
-		
-		
-		
   	public List<ProductDTO> upload(MultipartHttpServletRequest multipartRequest) throws Exception{
   		List<ProductDTO> fileList= new ArrayList<ProductDTO>();
   		Iterator<String> fileNames = multipartRequest.getFileNames();
   		while(fileNames.hasNext()){
   			ProductDTO productDTO =new ProductDTO();
   			String fileName = fileNames.next();
+  			System.out.println("실제 파일 가져왓니?"+fileName);
   			MultipartFile mFile = multipartRequest.getFile(fileName);
   			String originalFileName=mFile.getOriginalFilename();
   			System.out.println("originalFilename="+originalFileName);
   			productDTO.setImage(originalFileName);
-  			
   			fileList.add(productDTO);
+  			
   			File file = new File(REPO_PATH+"\\"+fileName);
   			if(mFile.getSize()!=0) {  
-  			 System.out.println("첨부된 파일이 존재한다면");
+  			 System.out.println("관리자가 등록한 파일을 첨부했으면");
   			 if( !file.exists() ) { 
-  			 	if( file.getParentFile().mkdirs()  ) { 
+  				 System.out.println("폴더가 없당.");
+  			 	if( file.getParentFile().mkdirs()) { 
   			 		file.createNewFile();
+  			 		System.out.println("폴더를 만들어랏.");
   			 	}
   			  }
-  			mFile.transferTo(new File(REPO_PATH+"\\"+originalFileName));
+  			 System.out.println("originalFileName 이름은 정확하니?"+originalFileName);
+  			mFile.transferTo(new File(REPO_PATH+"\\temp\\"+originalFileName));
   			}
   		}
   		return fileList;
@@ -295,8 +296,6 @@ public class GoodsController {
 	public @ResponseBody String sellNoGoodsSearch(@RequestParam("sellNo") int sellNo) throws Exception  {
 		
 		List<ProductPurchaseDTO> sellNoSearch=goodsService.sellNoGoodsSearch(sellNo);
-		
-		
 		
 		//JSONObject객체생성
 		JSONObject jsonObject = new JSONObject();

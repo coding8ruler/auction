@@ -51,24 +51,6 @@ public class productSellController extends  BaseController implements WebMvcConf
 	
 	
 	
-	
-	
-	// 초 분 시 일 월 주 (연도)
-		@Scheduled(cron = "* */30 * * * *")
-		public void autoUpdate() throws Exception {
-			
-			LocalDate now = LocalDate.now();
-			int cnt=0;
-			cnt=productService.productAutoDelete();
-			if(cnt!=0) {
-				System.out.println("삭제 완료"+now.toString());
-			} else {
-				System.out.println("삭제 데이터 없음");
-			}
-		}
-		
-	
-	
 	 //판매하기 글 등록 페이지
 	 @RequestMapping(value="/productAddForm", method= {RequestMethod.GET})
 		public String productSell(HttpServletRequest request, String goodsSize,String goods,Model model) {
@@ -202,12 +184,10 @@ public class productSellController extends  BaseController implements WebMvcConf
 		*/
 		
 		//임시 데이터
-		String itemSize = "270";
-		String goods1 = "모델명";	
 		
 		Map map = new HashMap();
-		map.put("itemSize",itemSize);
-		map.put("goods",goods1);
+		map.put("itemSize",goodsSize);
+		map.put("goods",goods);
 		System.out.println(map);
 		
 		//물품 상제 정보 조회
@@ -236,6 +216,25 @@ public class productSellController extends  BaseController implements WebMvcConf
 		
 		return "redirect:/productList";
 	}
+	
+	
+	   // 초 분 시 일 월 주 (연도)
+		@Scheduled(cron = "*/1 * * * * *")
+		public void autoUpdate() throws Exception {
+			System.out.println("실행중");
+		   LocalDate now = LocalDate.now();
+		   int cnt = 0;
+		   int goodsGrade = 3;
+		   cnt = productService.productAutoEnd(goodsGrade);
+		   System.out.println("autoUpdate()");
+		   if (cnt != 0) {
+		      System.out.println("삭제 완료" + now.toString());
+		   } else {
+		      System.out.println("삭제 데이터 없음");
+		   }
+		}
+		
+	
 	
 	
 	

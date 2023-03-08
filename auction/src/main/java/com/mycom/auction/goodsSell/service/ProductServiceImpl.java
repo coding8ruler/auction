@@ -70,12 +70,6 @@ public class ProductServiceImpl implements ProductService{
 		return productRepository.getListWithPaging(cri);
 	}
 
-	//판매글 자동 삭제 메서드 (스캐줄러)
-	@Override
-	public int productAutoDelete() throws Exception {
-		return productRepository.productAutoDelete();
-	}
-
 	//구매 상품상세 정보
 	@Override
 	public Product productBuyDetail(Map map) throws Exception {
@@ -90,8 +84,9 @@ public class ProductServiceImpl implements ProductService{
 	
 	//판매 완료 상태물품 목록 조회
 	@Override
-	public List<Product> productAutoList(int goodsGrade) throws Exception {
-		return productRepository.productAutoSelectList(goodsGrade);
+	public int productAutoEnd(int goodsGrade) throws Exception {
+		System.out.println("productAutoEnd Ser()");
+		return productRepository.productAutoEnd(goodsGrade);
 	}
 
 }

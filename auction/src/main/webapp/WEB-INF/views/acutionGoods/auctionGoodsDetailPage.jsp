@@ -12,18 +12,16 @@
     <title>W3.CSS Template</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
+<style>
   body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
   }
-  
   #container {
     position: relative;
     min-height: 100vh;
   }
-  
   #mainHeader {
     height: 130px;
     position: fixed;
@@ -33,7 +31,6 @@
     background-color: #fff;
     z-index: 1;
   }
-  
   #subHeader {
     height: 70px;
     position: fixed;
@@ -43,12 +40,10 @@
     background-color: #fff;
     z-index: 1;
   }
-  
   #content {
     margin-top: 200px;
     margin-bottom: 100px;
   }
-  
   #mainFooter {
     height: 70px;
     position: fixed;
@@ -58,22 +53,17 @@
     background-color: #fff;
     z-index: 1;
   }
-  
-  
-  
     /* 탭 메뉴 스타일 */
   .tabs {
     list-style: none;
     margin: 0;
     padding: 0;
   }
-
   .tabs li {
     display: inline-block;
     margin: 0;
     padding: 0;
   }
-
   .tabs a {
     display: block;
     background-color: #ccc;
@@ -81,27 +71,22 @@
     padding: 10px 20px;
     text-decoration: none;
   }
-
   .tabs a:hover {
     background-color: #aaa;
     color: #fff;
   }
-
   .tabs .active a {
     background-color: #fff;
     color: #333;
   }
-
   /* 탭 내용 스타일 */
   .tab_container {
     border: 1px solid #ccc;
     padding: 20px;
   }
-
   .tab_content {
     display: none;
   }
-
   .tab_content.active {
     display: block;
   }
@@ -122,7 +107,8 @@
 
 		      let goodsSellObj = jsonInfo;
 		      let table =
-		        "<table><thead><tr><th>판매자명</th><th>상품명</th><th>판매시작가</th><th>판매시작일</th><th>판매종료일</th><th>구매목록 보기</th><th>남은 시간</th></tr></thead><tbody>";
+		        "<table><thead><tr><th>판매자명</th><th>상품명</th><th>판매시작가</th><th>판매시작일</th><th>판매종료일</th><th>구매목록 보기</th><th>구매하기</th><th>남은 시간</th></tr></thead><tbody>";
+		        var tab2Link = document.querySelector('a[href="#tab2"]');
 
 		      for (let i = 0; i < goodsSellObj.goodsSell.length; i++) {
 		        let goods = goodsSellObj.goodsSell[i];
@@ -141,7 +127,6 @@
 
 		        // 결과 출력
 		        let countdownText = days + "일 " + hours + "시간 " + minutes + "분 " + seconds + "초";
-
 		        table +=
 		        		"</td><td>" +
 		        	  goods.id +
@@ -153,12 +138,13 @@
 		        	  startTimeFormatted +
 		        	  "</td><td>" +
 		        	  endTimeFormatted +
-		        	  "</td><td> <button  id=find onclick='selectPurList("+goods.sellNo+")'>구매목록보기</button>" +
-		        	  "</td><td><span class='countdown' data-time='" +
-		        	  distance +
-		        	  "'>" +
-		        	  countdownText +
-		        	  "</span></td></tr>";
+		              "</td><td> <button  id=find onclick='selectPurList(" + goods.sellNo + ")'>구매목록보기</button>" +
+		              "</td><td> <button  onclick='purInsert(" + '"' + goods.goods + '"' + "," + '"' + goods.itemSize + '"' + ")'>구매하기</button>" +
+		              "</td><td><span class='countdown' data-time='" +
+		              distance +
+		              "'>" +
+		              countdownText +
+		              "</span></td></tr>";
 		      }
 
 		      table += "</tbody></table>";
@@ -185,6 +171,8 @@
 
 		          // 결과 출력
 		          countdown.innerHTML = days + "일" + hours + "시"
+		          + minutes + "분" + seconds + "초 ";
+
 		          + minutes + "분" + seconds + "초  <button onclick=>구매하기</button>";
 							
 		          // 시간이 지난 경우
@@ -194,6 +182,8 @@
 		          }
 		        }, 1000); // 1초마다 업데이트
 		      }
+		    
+		      tab2Link.click();
 		    }
 		  });
 	}
@@ -222,7 +212,13 @@
 
 });
     
+   function purInsert(goods,itemSize){
+	   alert(goods+" / "+itemSize);
+	   window.location.href = "${path}/productBuyForm?goods=" + goods + "&goodsSize=" + itemSize;
+	 }
+    
    function selectPurList(sellNo){
+	   var tab3Link = document.querySelector('a[href="#tab3"]');
 	   $.ajax({
 		    type: "GET", // 요청방식.
 		    async: "true", // 기본값은 true.(true이면 비동기식방식)
@@ -237,9 +233,7 @@
 
 			      for (let i = 0; i < sellNoObj.sellNoSearch.length; i++) {
 			        let goods = sellNoObj.sellNoSearch[i];
-
 			        // 결과 출력
-
 			        table +=
 			        		"<td>" +
 			        	  goods.id +
@@ -253,10 +247,9 @@
 			        	  goods.desireQuantity +
 			        	  "</td></tr>";
 			      }
-
 			      table += "</tbody></table>";
 			      document.getElementById("purchTableContainer").innerHTML = table;
-		    	
+			      tab3Link.click();
 		    }
 	    });
    }
@@ -301,18 +294,15 @@ ${goodsImageInfo}
 				<li>
 					<label for="size-select">Size:</label>
 		  <select name="size-select" id="size-select" onchange="sizeSearch(this.value)">
+		  			<option value="">사이즈 선택</option>
 					<c:forEach var="item" items="${goodsSizeInfo}">
-					<option value="${item.goodsSize}">${item.goodsSize}</option>
+						<option value="${item.goodsSize}">${item.goodsSize}</option>
 					</c:forEach>			
 			</select>
-				  <span id="price">re</span>
 				</li>
 				<li>
 				<button onclick="location.href='${path}/productAddForm?goodsSize=' + document.getElementById('size-select').value + '&goods=${goodsInfo.goods}'" >판매하기</button>
 				<button onclick="selectPurList()">구매목록보기</button>
-				</li>
-				<li>
-					<a href="${path}/productBuyForm?goodsSize=270&goods=모델명'">구매하기</a>
 				</li>
 			</ul>
 	   </div>		

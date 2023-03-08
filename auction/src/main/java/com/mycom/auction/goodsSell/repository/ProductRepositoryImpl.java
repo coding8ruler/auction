@@ -79,12 +79,12 @@ public class ProductRepositoryImpl implements ProductRepository{
 		return list;
 	}
 	
-	//판매하기 상품 자동 삭제
-	@Override
-	public int productAutoDelete() {
-			int cnt = sqlSession.update("mapper.product.productAutoDelete");
-		return cnt;
-	}
+	/*
+	 * //판매하기 상품 자동 삭제
+	 * 
+	 * @Override public int productAutoDelete() { int cnt =
+	 * sqlSession.update("mapper.product.productAutoDelete"); return cnt; }
+	 */
 	
 	//구매하기 상품 상세 정보
 	@Override
@@ -102,11 +102,25 @@ public class ProductRepositoryImpl implements ProductRepository{
 	
 	//판매 완료 상태물품 목록 조회
 	@Override
-	public List<Product> productAutoSelectList(int goodsGrade) throws DataAccessException {
+	public int productAutoEnd(int goodsGrade) throws DataAccessException {
+		System.out.println("productAutoEnd Rep 1번");
 		
 		List<Product> productList=sqlSession.selectList("mapper.product.productAutoSelectList",goodsGrade);
-		return productList;
+		
+		
+		for(int i=0; i<productList.size(); i++) {
+			Product product=(Product)productList.get(i);
+			System.out.println("productAutoEnd Rep 2번"+product);
+			sqlSession.insert("mapper.product.insertEndMessage",product);
+			System.out.println("productAutoEnd Rep 3번");
+		}
+			
+			System.out.println("productAutoEnd Rep 4번");
+		int cnt = sqlSession.update("mapper.product.productAutoDelete");
+		
+		return cnt;
 	}
+
 
 	
 	
