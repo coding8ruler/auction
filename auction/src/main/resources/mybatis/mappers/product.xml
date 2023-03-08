@@ -94,13 +94,13 @@
  
 <!-- 물품등록:productSell테이블에 등록 -->
 <insert id="insertEndMessage" parameterType="com.mycom.auction.goodsSell.domain.Product">
-		<selectKey resultType="java.lang.String" keyProperty="messageNo" order="BEFORE">
-    	SELECT seq_productFinally_messageNo.nextval FROM dual
+    <selectKey resultType="java.lang.Integer" keyProperty="messageNo" order="BEFORE">
+        SELECT seq_productFinally_messageNo.nextval FROM dual
     </selectKey>
-			<![CDATA[
-			 insert into productFinally(messageNo,title,content,sendTime,sendId,receiveId)
-			 values (#{messageNo},'거래채결건','거래가 체결 되었으니 아래 버튼을 클릭하여 결재 하시거나 ~~~~~ 은행으로 입금해주세요.',TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS'),'user1',#{id});
-			]]>
+    <![CDATA[
+        insert into productFinally(messageNo,title,content,sendTime,sendId,receiveId)
+        values (#{messageNo},'거래채결건','거래가 체결 되었으니 아래 버튼을 클릭하여 결재 하시거나 ~~~~~ 은행으로 입금해주세요.',SYSDATE,'user1',#{id})
+    ]]>
 </insert>
  
  
@@ -112,11 +112,6 @@
 			WHERE endTime < TRUNC(SYSDATE, 'HH') AND goodsGrade = 2
 		]]>
  	</update>
- 
- 
- 
- 
- 
  
  
  
