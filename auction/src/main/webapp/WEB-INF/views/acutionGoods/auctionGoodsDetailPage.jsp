@@ -108,6 +108,7 @@
 		      let goodsSellObj = jsonInfo;
 		      let table =
 		        "<table><thead><tr><th>판매자명</th><th>상품명</th><th>판매시작가</th><th>판매시작일</th><th>판매종료일</th><th>구매목록 보기</th><th>구매하기</th><th>남은 시간</th></tr></thead><tbody>";
+		        var tab2Link = document.querySelector('a[href="#tab2"]');
 
 		      for (let i = 0; i < goodsSellObj.goodsSell.length; i++) {
 		        let goods = goodsSellObj.goodsSell[i];
@@ -179,6 +180,8 @@
 		          }
 		        }, 1000); // 1초마다 업데이트
 		      }
+		    
+		      tab2Link.click();
 		    }
 		  });
 	}
@@ -213,6 +216,7 @@
 	 }
     
    function selectPurList(sellNo){
+	   var tab3Link = document.querySelector('a[href="#tab3"]');
 	   $.ajax({
 		    type: "GET", // 요청방식.
 		    async: "true", // 기본값은 true.(true이면 비동기식방식)
@@ -243,6 +247,7 @@
 			      }
 			      table += "</tbody></table>";
 			      document.getElementById("purchTableContainer").innerHTML = table;
+			      tab3Link.click();
 		    }
 	    });
    }
@@ -287,11 +292,11 @@ ${goodsImageInfo}
 				<li>
 					<label for="size-select">Size:</label>
 		  <select name="size-select" id="size-select" onchange="sizeSearch(this.value)">
+		  			<option value="">사이즈 선택</option>
 					<c:forEach var="item" items="${goodsSizeInfo}">
-					<option value="${item.goodsSize}">${item.goodsSize}</option>
+						<option value="${item.goodsSize}">${item.goodsSize}</option>
 					</c:forEach>			
 			</select>
-				  <span id="price">re</span>
 				</li>
 				<li>
 				<button onclick="location.href='${path}/productAddForm?goodsSize=' + document.getElementById('size-select').value + '&goods=${goodsInfo.goods}'" >판매하기</button>
