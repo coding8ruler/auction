@@ -8,13 +8,7 @@ public class ProductPurchaseDTO {
 	private String goodsName;
 	private String id;
 	private int desireQuantity;
-	
-	@Override
-	public String toString() {
-		return "ProductPurchaseDTO [sellNo=" + sellNo + ", goodsSize=" + goodsSize + ", desiredPurPrice="
-				+ desiredPurPrice + ", purchaseNo=" + purchaseNo + ", goodsName=" + goodsName + ", id=" + id
-				+ ", desireQuantity=" + desireQuantity + "]";
-	}
+	private int messageNo;
 	public int getSellNo() {
 		return sellNo;
 	}
@@ -57,6 +51,19 @@ public class ProductPurchaseDTO {
 	public void setDesireQuantity(int desireQuantity) {
 		this.desireQuantity = desireQuantity;
 	}
+	public int getMessageNo() {
+		return messageNo;
+	}
+	public void setMessageNo(int messageNo) {
+		this.messageNo = messageNo;
+	}
+	@Override
+	public String toString() {
+		return "ProductPurchaseDTO [sellNo=" + sellNo + ", goodsSize=" + goodsSize + ", desiredPurPrice="
+				+ desiredPurPrice + ", purchaseNo=" + purchaseNo + ", goodsName=" + goodsName + ", id=" + id
+				+ ", desireQuantity=" + desireQuantity + ", messageNo=" + messageNo + "]";
+	}
+	
 	
 	
 }

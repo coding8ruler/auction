@@ -1,5 +1,6 @@
 package com.mycom.auction.goodsSell.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -8,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.mycom.auction.goods.domain.ProductPurchaseDTO;
 import com.mycom.auction.goodsSell.domain.Criteria;
 import com.mycom.auction.goodsSell.domain.ImageFileVO;
 import com.mycom.auction.goodsSell.domain.Product;
-import com.mycom.auction.goodsSell.domain.ProductPurchaseDTO;
 
 @Repository
 public class ProductRepositoryImpl implements ProductRepository{
@@ -105,20 +106,23 @@ public class ProductRepositoryImpl implements ProductRepository{
 	public int productAutoEnd(int goodsGrade) throws DataAccessException {
 		System.out.println("productAutoEnd Rep 1번");
 		
-		List<Product> productList=sqlSession.selectList("mapper.product.productAutoSelectList",goodsGrade);
+		List<Product> productList = sqlSession.selectList("mapper.product.productAutoSelectList", goodsGrade);
+		System.out.println("productAutoEnd Rep 2번"+productList);
 		
-		for(int i=0; i<productList.size(); i++) {
-			Product product=(Product)productList.get(i);
-			System.out.println("productAutoEnd Rep 2번"+product);
-			
-			sqlSession.insert("mapper.product.insertEndMessage",product);
-			
-			System.out.println("productAutoEnd Rep 3번");
+		if (productList.size() > 0) {
+			for(int i=0; i<productList.size(); i++) {
+				Product product=(Product)productList.get(i);
+				List<ProductPurchaseDTO> productPurchaseDTOList = sqlSession.selectList("mapper.product.selectMaxDesiredPurPricePurchaseNo", product);
+				System.out.println("ProductPurchaseDTO 1=" + productPurchaseDTOList);
+				for(ProductPurchaseDTO productPurchaseDTO : productPurchaseDTOList) {
+					sqlSession.insert("mapper.product.insertEndMessage",productPurchaseDTO);
+					System.out.println("ProductPurchaseDTO 2=" + productPurchaseDTOList);
+				}
+				System.out.println("ProductPurchaseDTO 3=" + productPurchaseDTOList);
+			}
 		}
-			
-			System.out.println("productAutoEnd Rep 4번");
-		int cnt = sqlSession.update("mapper.product.productAutoDelete");
-		
+			 int cnt = sqlSession.update("mapper.product.productAutoDelete"); 
+			 System.out.println("cnt"+cnt);
 		return cnt;
 	}
 

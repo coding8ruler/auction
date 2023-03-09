@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <c:set var="path" value="${pageContext.request.contextPath}"/>
-  <title>ss</title>
+  <title>제품등록</title>
     <script>
 let sizeCount =1;
 let fileCount =1;
@@ -62,6 +62,43 @@ $(document).ready(function(){
 		$("#insertFile").before(tr);
 	});
 });		
+
+
+
+$("form#uploadForm").submit(function(){  
+	let frmObj = $(this);
+
+	if($("#goodsName").val()==""){ 
+		alert("제품명을 입력하세요.");
+		$("#goodsName").focus();
+		return false; 
+	}
+	
+	if($("#goods").val()==""){ 
+		alert("모델명을 입력하세요.");
+		$("#goods").focus();
+		return false; 
+	}
+	
+	if($("#color").val()==""){ 
+		alert("색상을 입력하세요.");
+		$("#color").focus();
+		return false; 
+	}
+	
+	if($("#goodsSize1").val()==""){ 
+		alert("최소 기본 사이즈를 입력해 주세요.");
+		$("#goodsSize1").focus();
+		return false; 
+	}
+	
+	if($("#image1").val()==""){ 
+		alert("쏌네일용 이미지 입력하세요.");
+		$("#image1").focus();
+		return false; 
+	}
+});
+
 </script>
 <style>
       body {
@@ -135,14 +172,14 @@ $(document).ready(function(){
             
             
             
-<form id="uploadForm" method="post" enctype="multipart/form-data" action="${path}/goodsRegisterForm">
+<form id="uploadForm" name="uploadForm" method="post" enctype="multipart/form-data" action="${path}/goodsRegisterForm">
 	<table>
 		<tr>
 			<th>
 				제품명
 			</th>
 			<td>
-				<input type="text" name="goodsName" id="goodsName">
+				<input type="text" name="goodsName" id="goodsName" placeholder="제품명 입력하세요" required="required">
 			</td>
 		</tr>
 		
@@ -151,7 +188,7 @@ $(document).ready(function(){
 				모델명
 			</th>
 			<td>
-				<input type="text" name="goods" id="goods">
+				<input type="text" name="goods" id="goods" placeholder="모델명 입력하세요" required="required">
 			</td>
 		</tr>
 		
@@ -160,7 +197,7 @@ $(document).ready(function(){
 				제품 상세 설명
 			</th>
 			<td>
-				<textarea name="goodsContent" id="goodsContent" cols="30px" rows="5px" ></textarea>
+				<textarea name="goodsContent" id="goodsContent" cols="50px" rows="8px"  ></textarea>
 			</td>
 		</tr>
 		
@@ -169,7 +206,7 @@ $(document).ready(function(){
 				발매가
 			</th>
 			<td>
-				<input type="number" name="firstPrice" id="firstPrice">
+				<input type="number" name="firstPrice" id="firstPrice" oninput="regexPhoneNumber(this)" placeholder="출시 금액을 입력하세요" required="required">
 			</td>
 		</tr>
 		
@@ -178,7 +215,7 @@ $(document).ready(function(){
 				출시일
 			</th>
 			<td>
-				<input type="date" name="releaseDate" id="releaseDate">
+				<input type="date" name="releaseDate" id="releaseDate" required="required">
 			</td>
 		</tr>
 		
@@ -187,7 +224,7 @@ $(document).ready(function(){
 				색상
 			</th>
 			<td>
-				<input type="text" name="color" id="color">
+				<input type="text" name="color" id="color" placeholder="색상을 입력하세요" required="required">
 			</td>
 		</tr>
 		
@@ -204,7 +241,7 @@ $(document).ready(function(){
 				사이즈1
 			</th>
 			<td>
-					<input type="text" name="goodsSize1" id="goodsSizes1"/>
+					<input type="text" name="goodsSize1" id="goodsSizes1" required="required"/>
 			</td>
 		</tr>
 		
@@ -218,7 +255,7 @@ $(document).ready(function(){
 		<tr>
 			<th>이미지1(이미지1 썸네일용)</th>
 			<td>
-					<input type="file" name="image1" id="images1"/>
+					<input type="file" name="image1" id="images1" required="required"/>
 			</td>
 		</tr>
 		

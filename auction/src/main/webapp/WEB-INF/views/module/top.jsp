@@ -66,6 +66,7 @@ background-color: white;
     <a href="<%=request.getContextPath()%>/goodsRegisterForm">상품등록</a>
     <a href="<%=request.getContextPath()%>/goodsListForm">상품리스트</a>
     <a href="<%=request.getContextPath()%>/productList">상품 결재 리스트</a>
+    <a href="<%=request.getContextPath()%>/productMessage">결재 쪽지함</a>
   </div>
 </div>
 

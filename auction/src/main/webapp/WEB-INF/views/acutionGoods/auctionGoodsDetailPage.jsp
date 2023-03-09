@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
@@ -302,7 +301,6 @@ ${goodsImageInfo}
 				</li>
 				<li>
 				<button onclick="location.href='${path}/productAddForm?goodsSize=' + document.getElementById('size-select').value + '&goods=${goodsInfo.goods}'" >판매하기</button>
-				<button onclick="selectPurList()">구매목록보기</button>
 				</li>
 			</ul>
 	   </div>		
@@ -315,7 +313,6 @@ ${goodsImageInfo}
 			<li><a href="#tab1">제품상세내용</a></li>
 			<li><a href="#tab2">판매내역</a></li>
 			<li><a href="#tab3">구매내역</a></li>
-			<li><a href="#tab4">최근 거래가</a></li>
 		</ul>
 		<div class="tab_container">
 			<div class="tab_content" id="tab1">
@@ -352,41 +349,8 @@ ${goodsImageInfo}
 	</div>	
 </div>
 			
-			
-<div class="tab_content" id="tab4">
-	<h4>최근 거래가</h4>
-			
-	<div style="display: flex; justify-content: center; align-items: center;">
-		<section class="auction-history">
-			<div id="price22">	
-					<h2>Bidding History</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Bidder</th>
-								<th>Amount</th>
-								<th>Date/Time</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>John Doe</td>
-								<td>$150.00</td>
-								<td>2023-03-06 08:30:00</td>
-							</tr>
-							<tr>
-								<td>Jane Smith</td>
-								<td>$140.00</td>
-								<td>2023-03-04 11:15:00</td>
-							</tr>
-						</tbody>
-					</table>
 			</div>
-		</section>
 	</div>	
-			</div>
-		</div>
-	</div>
    
    
 </main>
