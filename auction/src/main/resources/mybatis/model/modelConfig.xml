@@ -20,7 +20,8 @@
   
   		<typeAlias type="com.mycom.auction.offerboard.domain.OfferBoard" alias="offerBoard"/>	
   
-      <typeAlias type="com.mycom.auction.calendar.domain.Calendar" alias="calendar" />
+  		 <typeAlias type="com.mycom.auction.calendar.domain.Calendar" alias="calendar" />
+
 	  <typeAlias type="com.mycom.auction.goods.domain.ProductDTO" alias="productDTO"/>	
 	  <typeAlias type="com.mycom.auction.goods.domain.ProductPurchaseDTO" alias="productPurchaseDTO"/>	
 	  <typeAlias type="com.mycom.auction.goodsSell.domain.Product" alias="product"/>

@@ -48,7 +48,7 @@ reviewMap.키명=reviewMap.imageList=<br/><br/>
                 <td>이미지</td>
                 <td colspan="3">
                 <c:forEach var="file" items="${mimageList}">
-					  <img src="${contextPath}/download?reviewNo=${ReviewNo}&fileName=${file.fileName}" class="imgSize"/><br/>
+					  <img src="${contextPath}/filedownload?reviewNo=${ReviewNo}&fileName=${file.fileName}" class="imgSize"/><br/>
 				  </c:forEach>
   			</td>
             </tr>
