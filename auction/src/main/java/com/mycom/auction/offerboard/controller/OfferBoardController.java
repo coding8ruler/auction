@@ -80,7 +80,7 @@ public class OfferBoardController {
     //offerinsertForm 구인 등록 폼 보여주기
   	
   	@GetMapping("/offerBoard/offerInsertForm")
-    public String offerform(@ModelAttribute OfferBoard offerBoard,HttpServletRequest request)  throws Exception{
+    public String offerform(@ModelAttribute OfferBoard offerBoard, HttpServletRequest request)  throws Exception{
 		//1.파라미터받기 //2.비즈니스로직
   		//3.model
   		//원칙적으로는 (로그인한 user가) 글입력 권한을 가진 사용자가 글입력해야지만
@@ -93,7 +93,7 @@ public class OfferBoardController {
 	  		
 	  		
   		//4.view
-    	return "redirect:/offerBoard/offerInsertForm";
+    	return "/offerBoard/offerInsertForm";
     }
   	
   	
@@ -112,7 +112,7 @@ public class OfferBoardController {
 		//model.addAttribute("starttime",starttime1);
 		
 		
-		return "/offerBoard/offerBoardForm";
+		return "redirect:/offerBoard/offerBoardForm";
     }
   /*
     //입력폼 정상유무 확인 후 알트 팝업 후 리스트로 보내줌
@@ -127,7 +127,7 @@ public class OfferBoardController {
 	
 	*/
 	  //offerSelect 입력된 구인게시글 내용폼 보여주기
-	/* 
+	
 	  @GetMapping("/offerBoard/offerSelectForm") 
 	  public String offerSelect(@RequestParam("offerno")int no,Model model) throws Exception{
 	
@@ -138,9 +138,9 @@ public class OfferBoardController {
 
 	    	System.out.println("offerBoard==offerSelect=="+offerBoard);
 		  
-		  return "redirect:/offerBoard/offerBoardForm"; 
+		  return "offerBoard/offerSelectForm"; 
 	 }
 	
-*/
+
     
 }

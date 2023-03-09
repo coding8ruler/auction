@@ -30,6 +30,7 @@
    .table5 {
     display: table-row;
   }
+
   .table-cell {
     display: table-cell;
     padding: 10px;
@@ -117,13 +118,13 @@ ${offerBoard.offerno}
 			  </div><br>
 			  
 			   <div class="table7">
-			    	<div class="table-cell" >상세주소 텍스트(DB에 저장될 값or히든으로 좌표받아 저장할것)
+			    	<div class="table-cell" >상세주소
 			    	<br/>
 			    	<input type="text" name="offerpoint" id="offerpoint"/></div>
 			  </div>
 		 
 			<!-- 지도 API 끝 -->
-			<div class="table7"><input type="submit" id="offersave" value="작성 완료" /></div>
+			<div class="table8"><input type="submit" id="offersave" value="작성 완료" /></div>
 			
 		 </form>
 	
