@@ -122,14 +122,15 @@
         <table>
           <tr>
             <td>
-              <article class="join-c">
+            
+<article class="join-c">
 	<div>
  	<br>
  	<br>
-	<h2>회원목록</h2>
+<!--  <h2 style="font-family: 'Oswald', sans-serif;font-size: 2.4rem; line-height: 2.4rem; text-transform: uppercase;">회원목록</h2> -->
 	</div>
 </article>     
-	<div class="search_wrap">
+	<div class="search_wrap" style="width: 40%;">
     	<div class="search_area">
             <select name="type">
                 <option value="I" <c:out value="${page.cri.type eq 'I'?'selected':'' }"/>>아이디</option>
@@ -148,12 +149,12 @@
 					<th>아이디</th><th>이름</th><th>번호</th><th>이메일</th><th>성별</th><th>우편번호</th><th>도로명주소</th><th>지번주소</th><th>상세주소</th><th>가입일</th><th>회원등급</th><th>수정</th>
 				</tr>
 					<c:forEach items="${memberlist}" var="member">
-					<tr>
-						<td><a href="<%=request.getContextPath()%>/member/info?pageNum=${page.cri.pageNum}&amount=${page.cri.amount}&type=${page.cri.type}&keyword=${page.cri.keyword}&id=${member.id}">${member.id}</a></td>
+					<tr style="border-bottom: 1px solid #ccc;">
+						<td  style="border-bottom: 1px solid #ccc;"><a href="<%=request.getContextPath()%>/member/info?pageNum=${page.cri.pageNum}&amount=${page.cri.amount}&type=${page.cri.type}&keyword=${page.cri.keyword}&id=${member.id}">${member.id}</a></td>
 						<td>${member.name}</td>
 						<td>${member.phone1}-${member.phone2}-${member.phone3}</td>
 						<td>${member.email1}@${member.email2}</td>
-						<td>${member.gender}</td>
+						<td style="width:60px;">${member.gender}</td>
 						<td>${member.zipcode}</td>
 						<td>${member.roadaddress}</td>
 						<td>${member.jibunaddress}</td>
@@ -186,13 +187,15 @@
 					<br><br><br>
 			    </div>
 			    </div>
-			    </div>  
-			    <form id="moveForm" method=get >
+			    </div>
+			      
+			    <form id="moveForm" method="get" >
 				 <input type="hidden" name="pageNum" value="${page.cri.pageNum}">
 			     <input type="hidden" name="amount" value="${page.cri.amount}">
 				 <input type="hidden" name="type" value="${page.cri.type}">
 				 <input type="hidden" name="keyword" value="${page.cri.keyword}">
 			    </form>
+			    
 			</article>	
 			    <c:if test="${page.total == 0}">	
 					<script>
@@ -200,6 +203,9 @@
 					 location.href ="<%=request.getContextPath()%>/member/list";
 					</script>
 				</c:if>
+				
+				
+				
             </td>
           </tr>
         </table>

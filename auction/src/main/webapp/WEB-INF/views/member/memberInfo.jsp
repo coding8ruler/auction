@@ -104,52 +104,52 @@
 			</colgroup>
 			<tbody>
 			<tr>
-		     <td>이름</td>
-				<td>${member.name}</td>
+		     <td>&nbsp;&nbsp;이름</td>
+				<td>&nbsp;&nbsp;${member.name}</td>
 		  	</tr>
 		  	<tr>
-		     <td>아이디</td>
-				<td>${member.id}</td>
+		     <td>&nbsp;&nbsp;아이디</td>
+				<td>&nbsp;&nbsp;${member.id}</td>
 		  	</tr>
 		  	<tr>
-		     <td>비밀번호</td>
-				<td>${member.password}</td>
+		     <td>&nbsp;&nbsp;비밀번호</td>
+				<td>&nbsp;&nbsp;${member.password}</td>
 		  	</tr>
 		  	<tr>
-		     <td>핸드폰 번호</td>
-				<td>${member.phone1}-${member.phone2}-${member.phone3}</td>
+		     <td>&nbsp;&nbsp;핸드폰 번호</td>
+				<td>&nbsp;&nbsp;${member.phone1}-${member.phone2}-${member.phone3}</td>
 		  	</tr>
 		  	<tr>
-		     <td>이메일</td>
-				<td>${member.email1}@${member.email2}</td>
+		     <td>&nbsp;&nbsp;이메일</td>
+				<td>&nbsp;&nbsp;${member.email1}@${member.email2}</td>
 		  	</tr>
 		  	<tr>
-		     <td>성별</td>
-				<td>${member.gender}</td>
+		     <td>&nbsp;&nbsp;성별</td>
+				<td>&nbsp;&nbsp;${member.gender}</td>
 		  	</tr>
 		  	<tr>
-		     <td>생년월일</td>
-				<td>${member.birthyear}년 ${member.birthmonth}월 ${member.birthday}일</td>
+		     <td>&nbsp;&nbsp;생년월일</td>
+				<td>&nbsp;&nbsp;${member.birthyear}년 ${member.birthmonth}월 ${member.birthday}일</td>
 		  	</tr>
 		  	<tr>
-		     <td>우편번호</td>
-				<td>${member.zipcode}</td>
+		     <td>&nbsp;&nbsp;우편번호</td>
+				<td>&nbsp;&nbsp;${member.zipcode}</td>
 		  	</tr>
 		  	<tr>
-		     <td>도로명주소</td>
-				<td>${member.roadaddress}</td>
+		     <td>&nbsp;&nbsp;도로명주소</td>
+				<td>&nbsp;&nbsp;${member.roadaddress}</td>
 		  	</tr>
 		  	<tr>
-		     <td>지번주소</td>
-				<td>${member.jibunaddress}</td>
+		     <td>&nbsp;&nbsp;지번주소</td>
+				<td>&nbsp;&nbsp;${member.jibunaddress}</td>
 		  	</tr>
 		  	<tr>
-		     <td>상세주소</td>
-				<td>${member.detailaddress}</td>
+		     <td>&nbsp;&nbsp;상세주소</td>
+				<td>&nbsp;&nbsp;${member.detailaddress}</td>
 		  	</tr>
 		  	<tr>
-		     <td>가입일</td>
-				<td><fmt:formatDate value="${member.register}" type="both" pattern="yy/MM/dd"/></td>
+		     <td>&nbsp;&nbsp;가입일</td>
+				<td>&nbsp;&nbsp;<fmt:formatDate value="${member.register}" type="both" pattern="yy/MM/dd"/></td>
 		  	</tr>
 			</tbody>
 			</table>
@@ -181,52 +181,52 @@
 			</colgroup>
 			<tbody>
 			<tr>
-		     <td>이름</td>
-				<td>${member.name}</td>
+		     <td>&nbsp;&nbsp;이름</td>
+				<td>&nbsp;&nbsp;${member.name}</td>
 		  	</tr>
 		  	<tr>
-		     <td>아이디</td>
-				<td>${member.id}</td>
+		     <td>&nbsp;&nbsp;아이디</td>
+				<td>&nbsp;&nbsp;${member.id}</td>
 		  	</tr>
 		  	<tr>
-		     <td>핸드폰 번호</td>
-				<td>${member.phone1}-${member.phone2}-${member.phone3}</td>
+		     <td>&nbsp;&nbsp;핸드폰 번호</td>
+				<td>&nbsp;&nbsp;${member.phone1}-${member.phone2}-${member.phone3}</td>
 		  	</tr>
 		  	<tr>
-		     <td>이메일</td>
-				<td>${member.email1}@${member.email2}</td>
+		     <td>&nbsp;&nbsp;이메일</td>
+				<td>&nbsp;&nbsp;${member.email1}@${member.email2}</td>
 		  	</tr>
 		  	<tr>
-		     <td>성별</td>
-				<td>${member.gender}</td>
+		     <td>&nbsp;&nbsp;성별</td>
+				<td>&nbsp;&nbsp;${member.gender}</td>
 		  	</tr>
 		  	<tr>
-		     <td>생년월일</td>
-				<td>${member.birthyear}년 ${member.birthmonth}월 ${member.birthday}일</td>
+		     <td>&nbsp;&nbsp;생년월일</td>
+				<td>&nbsp;&nbsp;${member.birthyear}년 ${member.birthmonth}월 ${member.birthday}일</td>
 		  	</tr>
 		  	<tr>
-		     <td>우편번호</td>
-				<td>${member.zipcode}</td>
+		     <td>&nbsp;&nbsp;우편번호</td>
+				<td>&nbsp;&nbsp;${member.zipcode}</td>
 		  	</tr>
 		  	<tr>
-		     <td>도로명주소</td>
-				<td>${member.roadaddress}</td>
+		     <td>&nbsp;&nbsp;도로명주소</td>
+				<td>&nbsp;&nbsp;${member.roadaddress}</td>
 		  	</tr>
 		  	<tr>
-		     <td>지번주소</td>
-				<td>${member.jibunaddress}</td>
+		     <td>&nbsp;&nbsp;지번주소</td>
+				<td>&nbsp;&nbsp;${member.jibunaddress}</td>
 		  	</tr>
 		  	<tr>
-		     <td>상세주소</td>
-				<td>${member.detailaddress}</td>
+		     <td>&nbsp;&nbsp;상세주소</td>
+				<td>&nbsp;&nbsp;${member.detailaddress}</td>
 		  	</tr>
 		  	<tr>
-		     <td>가입일</td>
-				<td><fmt:formatDate value="${member.register}" type="both" pattern="yy/MM/dd"/></td>
+		     <td>&nbsp;&nbsp;가입일</td>
+				<td>&nbsp;&nbsp;<fmt:formatDate value="${member.register}" type="both" pattern="yy/MM/dd"/></td>
 		  	</tr>
 		  	<tr>
-		     <td>회원등급</td>
-				<td>${member.grade}</td>
+		     <td>&nbsp;&nbsp;회원등급</td>
+				<td>&nbsp;&nbsp;${member.grade}</td>
 		  	</tr>
 			</tbody>
 			</table>
