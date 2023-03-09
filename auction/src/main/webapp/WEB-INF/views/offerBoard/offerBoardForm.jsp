@@ -11,12 +11,7 @@
 <title>구인게시판</title>
 <style type="text/css"><
  <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-      }
-      
+          
       #container {
         position: relative;
         min-height: 100vh;
@@ -75,7 +70,15 @@
       #GOoffer{
       
       }
-      
+         body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        font-size: 0.9rem;
+        line-height: 1.2rem;
+        color: #333;
+        letter-spacing: 0.1px;
+    }
     </style>
 
 </head>
