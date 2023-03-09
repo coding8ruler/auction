@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-  "https://mybatis.org/dtd/mybatis-3-config.dtd">
-  
-  
-  
-  <configuration>
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">  
+
+<configuration>
 	<typeAliases>
-  <!--<typeAlias type="패키지명.클래스명"    alias="클래스별칭"/>
-  	  <typeAlias type="java.lang.String" alias="string"/>	
-	  <typeAlias type="java.util.List"   alias="list"/> -->
-	  <typeAlias type="com.mycom.auction.offerboard.domain.OfferBoard"    
-	                                     alias="offerBoard"/>
-	  <!-- GoodsVO클래스는 상품이미지테이블(goods_detail_image) 관련 데이터바인딩용 객체인데
-	            별칭(alias)으로 goodVO이라고 칭하겠다-->
-	<!--   <typeAlias type="com.ourcom.goods.domain.GoodsVO" alias="goodVO"/> -->
-	  
-	  <!-- ImageFileVO클래스는 상품이미지테이블(goods_detail_image) 관련 데이터바인딩용 객체로
-	  	     별칭(alias)으로 imageFileVO이라고 칭하겠다	-->	                                     
-	<!--   <typeAlias type="com.ourcom.goods.domain.ImageFileVO" alias="imageFileVO"/>	   -->                                   
+  
+  	<typeAlias type="com.mycom.auction.member.domain.Member" alias="member"/>
+		<typeAlias type="com.mycom.auction.member.domain.User" alias="user"/>
+		<typeAlias type="com.mycom.auction.member.domain.Criteria" alias="criteria"/>
+  
+	  <typeAlias type="com.mycom.auction.goods.domain.ProductDTO" alias="productDTO"/>	
+	  <typeAlias type="com.mycom.auction.goods.domain.ProductPurchaseDTO" alias="productPurchaseDTO"/>	
+	  <typeAlias type="com.mycom.auction.goodsSell.domain.Product" alias="product"/>
+	  <typeAlias type="com.mycom.auction.goodsSell.domain.ImageFileVO" alias="imageFileVO"/>                                   
+	  <typeAlias type="com.mycom.auction.goodsSell.domain.ProductPurchaseDTO" alias="productPurchaseDTO"/>                                   
 	</typeAliases>
 </configuration>
-  
