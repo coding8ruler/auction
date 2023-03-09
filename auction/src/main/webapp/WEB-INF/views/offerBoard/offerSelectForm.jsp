@@ -106,7 +106,7 @@
 			  <br>
 			  
 			   <div class="table7">
-			    	<div class="table-cell" >상세주소 텍스트(DB에 저장될 값or히든으로 좌표받아 저장할것)
+			    	<div class="table-cell" >상세주소
 			    	<br/>
 			    	<input type="text" name="offerpoint" id="offerpoint" readonly="readonly"/>
 			  		</div>

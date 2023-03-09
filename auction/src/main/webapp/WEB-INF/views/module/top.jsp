@@ -89,11 +89,9 @@ background-color: white;
 </div>
 
 <div class="dropdown">
-  <button class="dropbtn">Button 2</button>
+  <button class="dropbtn">오픈런 구인</button>
   <div class="dropdown-content">
-    <a href="#">Option 2-1</a>
-    <a href="#">Option 2-2</a>
-    <a href="#">Option 2-3</a>
+    <a href="<%=request.getContextPath()%>/offerBoard/offerBoardForm">구인 게시판</a>
   </div>
 </div>
 
