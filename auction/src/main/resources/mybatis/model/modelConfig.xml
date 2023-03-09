@@ -1,51 +1,30 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE configuration 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-config.dtd">
-
-	<!-- MyBatis에 내장된(built-in) typeAlias는 아래와 같이 다수개가 존재한다
-		Alias	Mapped Type
-		string	String
-		byte	Byte
-		long	Long
-		short	Short
-		int	Integer
-		integer	Integer
-		double	Double
-		float	Float
-		boolean	Boolean
-		date	Date
-		map	Map
-		hashmap	HashMap
-		list	List
-		arraylist	ArrayList
-		collection	Collection -->
-
-<!-- 우리는 action-mybatis.xml문서에서 modelConfig.xml문서를 아래와 같이 설정하였다
-<bean id="sqlSessionFactory"   class="org.mybatis.spring.SqlSessionFactoryBean">
-      <property name="dataSource" ref="dataSource" />
-   	  <property name="configLocation"
-         value="classpath:mybatis/model/modelConfig.xml" />
-      <property name="mapperLocations" value="classpath:mybatis/mappers/*.xml" />
-</bean>
--->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">  
 
 <configuration>
 	<typeAliases>
-	<typeAlias type="com.mycom.auction.review.domain.ReviewDTO"    
-	                                   alias="reviewDTO"/>
-	<!-- GoodsVO클래스는 상품이미지테이블(goods_detail_image) 관련 데이터바인딩용 객체인데
-	            별칭(alias)으로 goodVO이라고 칭하겠다-->
+	
+	
+	<typeAlias type="com.mycom.auction.review.domain.ReviewDTO" alias="reviewDTO"/>
 	  <typeAlias type="com.mycom.auction.review.domain.ReviewFileVO" alias="reviewFileVO"/>
-	  
-	  <!-- ReviewFileVO클래스는 상품이미지테이블(goods_detail_image) 관련 데이터바인딩용 객체로
-	  	     별칭(alias)으로 reviewFileVO이라고 칭하겠다	-->	                                     
-	  <typeAlias type="com.mycom.auction.review.domain.ReviewFileVO" alias="reviewFileVO"/>	                                     
+	
+	
+  
+  	<typeAlias type="com.mycom.auction.offerboard.domain.OfferBoard" alias="offerBoard"/>
+  
+  	<typeAlias type="com.mycom.auction.member.domain.Member" alias="member"/>
+		<typeAlias type="com.mycom.auction.member.domain.User" alias="user"/>
+		<typeAlias type="com.mycom.auction.member.domain.Criteria" alias="criteria"/>
+  
+  		<typeAlias type="com.mycom.auction.offerboard.domain.OfferBoard" alias="offerBoard"/>	
+  
+  
+	  <typeAlias type="com.mycom.auction.goods.domain.ProductDTO" alias="productDTO"/>	
+	  <typeAlias type="com.mycom.auction.goods.domain.ProductPurchaseDTO" alias="productPurchaseDTO"/>	
+	  <typeAlias type="com.mycom.auction.goodsSell.domain.Product" alias="product"/>
+	  <typeAlias type="com.mycom.auction.goodsSell.domain.ImageFileVO" alias="imageFileVO"/>                                   
+	  <typeAlias type="com.mycom.auction.goodsSell.domain.ProductPurchaseDTO" alias="productPurchaseDTO"/>                                   
 	</typeAliases>
 </configuration>
-
-
-
-
-
-
-
