@@ -63,17 +63,6 @@
  	</select>
  
  
- 
- <!-- 판매 완료 상태 물품 목록 조회 -->
-<!--  <select id="productAutoSelectList" parameterType="Integer" resultType="com.mycom.auction.goodsSell.domain.Product">
-		<![CDATA[
-		 	select *
-			from PRODUCTSELL
-			where GOODSGRADE = 3
-			]]>
- </select> -->
- 
- 
  <!-- 판매 내역 최고가 조회 -->
  <select id="selectBuyPrice" parameterType="Integer" resultType="Integer">
  	<![CDATA[

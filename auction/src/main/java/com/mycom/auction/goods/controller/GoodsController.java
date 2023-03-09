@@ -175,7 +175,7 @@ public class GoodsController {
 	
 	
 	
-  	@RequestMapping("/download")
+  	@RequestMapping("/downloadfile")
 	public void goodsGetImageForm(@RequestParam("goods") String goods,
             HttpServletResponse response) throws Exception {
 		

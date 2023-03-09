@@ -94,16 +94,27 @@ public class ProductRepositoryImpl implements ProductRepository{
 		int result =0;
 		int sellPrice=sqlSession.selectOne("mapper.product.selectSellNoPrice",map);
 		int purPrice =(int) map.get("desiredPurPrice");
-		int buyPrice=0;
+		String buyPrice=null;
+		
+		
 		buyPrice = sqlSession.selectOne("mapper.product.selectBuyPrice",map.get("sellNo"));
-		if(buyPrice > purPrice && purPrice < sellPrice ) {
+		if(buyPrice ==null || buyPrice.equals("")) {
+			buyPrice ="0";
+		}
+		int buyPrice1 = Integer.parseInt(buyPrice);
+		System.out.println("sellPrice========="+sellPrice);
+		System.out.println("purPrice====="+purPrice);
+		if(buyPrice1 > purPrice && purPrice < sellPrice ) {
 			result=3;
+			System.out.println(result);
 			return result;
-		}else if(buyPrice > purPrice && purPrice >sellPrice){
+		}else if(buyPrice1 > purPrice && purPrice >sellPrice){
 			result=2;
+			System.out.println(result);
 			return result;
-		} else if(sellPrice < purPrice && purPrice > buyPrice) {
+		} else if(sellPrice < purPrice && purPrice > buyPrice1) {
 			result=sqlSession.insert("mapper.product.productBuyInsert",map);
+			System.out.println("result====="+result);
 			return result;
 		} else {
 			return result;
@@ -124,7 +135,6 @@ public class ProductRepositoryImpl implements ProductRepository{
 			}
 		}
 			 int cnt = sqlSession.update("mapper.product.productAutoDelete"); 
-			 System.out.println("cnt"+cnt);
 		return cnt;
 	}
 }

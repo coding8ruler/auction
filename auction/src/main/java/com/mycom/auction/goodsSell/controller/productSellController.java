@@ -198,9 +198,11 @@ public class productSellController extends  BaseController implements WebMvcConf
 		int comment = 0;
 		if(result==3) {
 		    comment = 3;
+		    return "redirect:/alertForm";
 		} else if(result==2) {
 		    comment = 2;
-		} else {
+		    return "redirect:/alertForm";
+		} else if(result==1){
 		    comment = 1;
 		    return "redirect:/goodsListForm";
 		}
