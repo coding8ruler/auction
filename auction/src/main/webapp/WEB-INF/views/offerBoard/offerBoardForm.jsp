@@ -13,7 +13,7 @@
 <body>
 
 
-<h3>구인 게시판</h3>
+<h3 style="text-align: center;">구인 게시판</h3>
 <hr/>
 
 	<form >
