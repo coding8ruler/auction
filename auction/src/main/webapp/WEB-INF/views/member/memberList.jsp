@@ -44,6 +44,9 @@ $(".search_area button").on("click", function(e){
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/memberlist.css" />
 <style>
+.search_wrap button:hover {
+  background: #000000;
+}  
 </style>
 </head>
 <body>

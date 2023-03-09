@@ -39,7 +39,7 @@ button {
   transition: 0.3s;
 }
 button:hover {
-  color: white;
+  color: #000000;
   cursor: pointer;
 }
 
@@ -51,6 +51,10 @@ table th ,table th, table td {
   float:right;
 }
   
+.search_wrap button:hover {
+  background: #000000;
+}  
+
  /* page
  
  
