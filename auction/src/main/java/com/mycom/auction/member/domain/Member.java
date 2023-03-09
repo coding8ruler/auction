@@ -2,8 +2,6 @@ package com.mycom.auction.member.domain;
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 public class Member {
 	
 	private String id;
