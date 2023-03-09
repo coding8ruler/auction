@@ -2,16 +2,92 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
-<c:set var="cp" value="<%=request.getContextPath() %>" />
+<c:set var="cp" value="<%=request.getContextPath()%>" />
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>구인게시판</title>
+<style type="text/css"><
+ <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+      
+      #container {
+        position: relative;
+        min-height: 100vh;
+      }
+      
+      #header1 {
+        height: 130px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        z-index: 1;
+      }
+      
+      #header2 {
+        height: 70px;
+        position: fixed;
+        top: 130px;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        z-index: 1;
+      }
+      
+      #content {
+        margin-top: 200px;
+        margin-bottom: 100px;
+      }
+      
+      #footer {
+        height: 70px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        z-index: 1;
+      }
+      
+      table {
+        width: 95%;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+      }
+      
+      tr {
+        border: 1px solid #ccc;
+      }
+      
+      td {
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+      #GOoffer{
+      
+      }
+      
+    </style>
+
 </head>
 <body>
-
+   <div id="container">
+      <div id="header1">
+        <jsp:include page="../module/banner.jsp" flush="false"/>
+      </div>
+      <div id="header2">
+        <jsp:include page="../module/top.jsp" flush="false"/>
+      </div>
+      <div id="content">
 
 <h3 style="text-align: center;">구인 게시판</h3>
 <hr/>
@@ -72,11 +148,11 @@
      </c:if> 
    </td>
    </tr>
-		
-		
 	  </tbody>
 </table>
-
+	<a href="${cp}/offerBoard/offerInsertForm" ><input type="button" name="GOoffer" id="GOoffer" value="오픈런 구인 글쓰기"/></a>
 	 </form>
+	 </div>
+    </div>    
 </body>
 </html>

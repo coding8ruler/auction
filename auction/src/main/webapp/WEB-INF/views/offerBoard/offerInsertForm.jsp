@@ -12,9 +12,10 @@
 	
   .tablemain {
     display: table;
- margin: auto;
-    width: 50%;
-  }
+	 margin: auto;
+    width: 30%;
+    text-align: center;
+   }
   .table1 {
     display: table-row;
   }
@@ -42,7 +43,13 @@
     .table7 {
     display: table-row;
     text-align: center;
+  }   
+  .table8 {
+    display: table-row;
+    text-align: center;
   }
+  
+  
 </style>
 <!-- <script type="text/javascript">
 $(document).ready(function(){
@@ -79,10 +86,11 @@ ${offerBoard.offerno}
 			<br>
 			<br>
 			  <div class="table1">
-			    	<div class="table-cell">글쓴이<br/>${sessionScope.AUTHUSER_ID}</div>
+			    	<div class="table-cell">글쓴이<br/>${sessionScope.AUTHUSER_ID}
 			    <!-- 	<input type="hidden" name="offerno" id="offerno" /> -->
 			    	<input type="hidden" name="id" id="id" value="${sessionScope.AUTHUSER_ID}" />
-			  </div><br>
+			  <br></div>
+			  </div>
 			  
 			  <div class="table2">
 			    	<div class="table-cell">구인 글제목<br/>
@@ -99,9 +107,9 @@ ${offerBoard.offerno}
 			   <div class="table4">
 			   	 	<div class="table-cell">작성일<br/>
 			   	 	<input type="date" name="wttime" id="wttime"/>
-			   	 	
 			   	 	</div>
-			  </div>
+			   	 </div>
+			 
 			  
 			    <div class="table5">
 			   	 	<div class="table-cell">대행 시작일시<br/>
@@ -115,17 +123,17 @@ ${offerBoard.offerno}
 			    	</div>
 			   </div>
 			    
-			  </div><br>
-			  
+			  <br>
 			   <div class="table7">
 			    	<div class="table-cell" >상세주소
 			    	<br/>
-			    	<input type="text" name="offerpoint" id="offerpoint"/></div>
+			    	<input type="text" name="offerpoint" id="offerpoint"/>
+			    	</div>
 			  </div>
-		 
-			<!-- 지도 API 끝 -->
-			<div class="table8"><input type="submit" id="offersave" value="작성 완료" /></div>
 			
+			<!-- 지도 API 끝 -->
+			<div class="table8"><input type="submit" name="offersave" id="offersave" value="작성 완료" /></div>
+			 </div>
 		 </form>
 	
 </body>
