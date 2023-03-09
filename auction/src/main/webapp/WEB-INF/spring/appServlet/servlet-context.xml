@@ -37,7 +37,7 @@
 	</interceptors>
 	
 	<!-- 스캐줄러 등록 -->
-	<context:component-scan base-package="com.ourcom.app3.scheduler"/>
+	<context:component-scan base-package="com.mycom.auction.scheduler"/>
 		<task:scheduler id="jobScheduler" pool-size="10"/>
 		<task:annotation-driven scheduler="jobScheduler"/>
 	
