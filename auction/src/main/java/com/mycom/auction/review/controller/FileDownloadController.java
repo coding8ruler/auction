@@ -18,7 +18,7 @@ public class FileDownloadController {
 	//파일저장경로
 	private static final String REPO_PATH = "C:\\auction\\image_repo";
 	
-  	@RequestMapping("/download")
+  	@RequestMapping("/filedownload")
   	public void download(@RequestParam("fileName") String fileName,
   			             @RequestParam("reviewNo") String reviewNo,
   			                 HttpServletResponse response) throws Exception {
