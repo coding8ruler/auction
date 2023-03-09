@@ -139,7 +139,7 @@
 		        	  "</td><td>" +
 		        	  endTimeFormatted +
 		              "</td><td> <button  id=find onclick='selectPurList(" + goods.sellNo + ")'>구매목록보기</button>" +
-		              "</td><td> <button  onclick='purInsert(" + '"' + goods.goods + '"' + "," + '"' + goods.itemSize + '"' + ")'>구매하기</button>" +
+		              "</td><td> <button  onclick='purInsert(" + '"' + goods.goods + '"' + ","+ goods.itemSize +"," + '"' + goods.sellNo + '"' + ")'>구매하기</button>" +
 		              "</td><td><span class='countdown' data-time='" +
 		              distance +
 		              "'>" +
@@ -212,9 +212,9 @@
 
 });
     
-   function purInsert(goods,itemSize){
+   function purInsert(goods,itemSize,sellNo){
 	   alert(goods+" / "+itemSize);
-	   window.location.href = "${path}/productBuyForm?goods=" + goods + "&goodsSize=" + itemSize;
+	   window.location.href = "${path}/productBuyForm?goods=" + goods + "&goodsSize=" + itemSize +"&sellNo="+sellNo;
 	 }
     
    function selectPurList(sellNo){
@@ -301,7 +301,7 @@ ${goodsImageInfo}
 			</select>
 				</li>
 				<li>
-				<button onclick="location.href='${path}/productAddForm?goodsSize=' + document.getElementById('size-select').value + '&goods=${goodsInfo.goods}'" >판매하기</button>
+				<button onclick="location.href='${path}/productSalesAgreement?goodsSize=' + document.getElementById('size-select').value + '&goods=${goodsInfo.goods}'" >판매하기</button>
 				<button onclick="selectPurList()">구매목록보기</button>
 				</li>
 			</ul>

@@ -23,7 +23,7 @@ public class BaseController {
 	
 
   	//파일저장경로
-	private static final String REPO_PATH = "C:\\spring\\repo";
+	private static final String REPO_PATH = "C:\\uploads";
 
   	
   	//업로드하기 : 첨부파일에 대한 정보+upload

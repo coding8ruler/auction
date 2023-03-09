@@ -29,17 +29,6 @@
 		
 	});
 </script>   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <style>
       body {
         margin: 0;
@@ -86,129 +75,107 @@
         background-color: #fff;
         z-index: 1;
       }
-      
       table {
-        width: 95%;
-        margin: 0 auto;
-        border: 1px solid #ccc;
-        border-collapse: collapse;
-      }
-      
-      tr {
-        border: 1px solid #ccc;
-      }
-      
-      td {
-        border: 1px solid #ccc;
-        padding: 10px;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="container">
-      <div id="header1">
-        <jsp:include page="../module/banner.jsp" flush="false"/>
-      </div>
-      <div id="header2">
-        <jsp:include page="../module/top.jsp" flush="false"/>
-      </div>
-      <div id="content">
-        <table>
-          <tr>
-            <td>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
- <form id="actionForm" action="${contextPath}/productList" method="get">
-	<div class="container">
-  <h2>Bordered Table</h2>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-				<td>판매등록번호</td>
-				<td>모델명</td>
-				<td>판매희망가</td>
-				<td>사이즈</td>
-				<td>수량</td>
-				<td>제품상태</td>
-				<td>회원ID</td>
-				<td>경매유효기간</td>
-				<td>경매시작날짜</td>
-				<td>경매종료날짜</td>
-			</tr>
-    </thead>
-    <tbody>
-      <c:forEach var="list" items="${list}">
-				<tr>
-					<td><a href="${contextPath}/productDetail?sellNo=${list.sellNo}
-															&pageNum=${pageMaker.cri.pageNum}
-															&amount=${pageMaker.cri.amount}">${list.sellNo}</a></td>
-					<td>${list.goods}</td>
-					<td><fmt:formatNumber value="${list.desiredSellPrice}" pattern="#,##0원" /></td>
-					<td>${list.itemSize}</td>
-					<td>${list.quantity}</td>
-					<td>${list.goodsGrade}</td>
-					<td>${list.id}</td>
-					<td>${list.vailDate}</td>
-					<td>${list.startTime}</td>
-					<td>${list.endTime}</td>
-				</tr>
-			</c:forEach>
-    </tbody>
-  </table>
-</div>
-	<div class='pull-right'>
-		<ul class="pagination">
-			
-			<c:if test="${pageMaker.prev}">
-				<li class="paginate_button a"><a href="${pageMaker.startPage -1}">Previous</a>
-				</li>
-			</c:if>
-				
-			<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-				<li class="paginate_button ${pageMaker.cri.pageNum == num ? 'active':''} ">
-					<a href="${num}">${num}</a>
-				</li>
-			</c:forEach>
-		
-				
-			<c:if test="${pageMaker.next}">
-				<li class="paginate_button a">
-					<a href="${pageMaker.endPage +1}">Next</a>
-				</li>
-			</c:if>
-		</ul>
-	</div>
-	<!-- end Pagination -->
-		<input type="text" name="pageNum" value="${pageMaker.cri.pageNum}">
-		<input type="text" name="amount" value="${pageMaker.cri.amount}">
-	</form>
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div id="footer">
+				  margin: 0 auto;
+				}
+				td, th {
+				  text-align: center;
+				}
+	    </style>
+	    <script>
+				function validateForm() {
+				    var goodsGrade = document.forms[0]["goodsGrade"].value;
+				    if (goodsGrade === "") {
+				        alert("판매 상태를 선택해주세요.");
+				        return false;
+				    }
+				    return true;
+				}
+</script>
+	  </head>
+	  <body>
+		    <div id="container">
+		      <div id="header1">
+		        <jsp:include page="../module/banner.jsp" flush="false"/>
+		      </div>
+		      <div id="header2">
+		        <jsp:include page="../module/top.jsp" flush="false"/>
+		      </div>
+		      <div id="content">
+									 <form id="actionForm" action="${contextPath}/productList" method="get">
+										<div class="container">
+									  <h3>판매 상품
+									  		<select name="goodsGrade">
+						                <option value="" selected>-- 선택 --</option>
+						                <option value="1">판매 전</option>
+						                <option value="2">판매 중</option>
+						                <option value="3">판매 완료</option>
+						              </select>
+						               <input type="submit" value="검색" onclick="return validateForm();">
+									  </h3>
+									  <table class="table">
+  										<thead class="thead-dark">
+									      <tr>
+													<th>판매등록번호</th>
+													<th>모델명</th>
+													<th>판매희망가</th>
+													<th>사이즈</th>
+													<th>수량</th>
+													<th>제품상태</th>
+													<th>회원ID</th>
+													<th>경매유효기간</th>
+													<th>경매시작날짜</th>
+													<th>경매종료날짜</th>
+												</tr>
+									    </thead>
+									    <tbody>
+									      <c:forEach var="list" items="${list}">
+													<tr>
+														<th scope="row"><a href="${contextPath}/productDetail?sellNo=${list.sellNo}
+																								&pageNum=${pageMaker.cri.pageNum}
+																								&amount=${pageMaker.cri.amount}">${list.sellNo}</a></th>
+														<td>${list.goods}</td>
+														<td><fmt:formatNumber value="${list.desiredSellPrice}" pattern="#,##0원" /></td>
+														<td>${list.itemSize}</td>
+														<td>${list.quantity}</td>
+														<td>${list.goodsGrade}</td>
+														<td>${list.id}</td>
+														<td>${list.vailDate}</td>
+														<td>${list.startTime}</td>
+														<td>${list.endTime}</td>
+													</tr>
+												</c:forEach>
+									    </tbody>
+									  </table>
+									</div>
+										<div class='pull-right'>
+											<ul class="pagination">
+												
+												<c:if test="${pageMaker.prev}">
+													<li class="paginate_button a"><a href="${pageMaker.startPage -1}">Previous</a>
+													</li>
+												</c:if>
+													
+												<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+													<li class="paginate_button ${pageMaker.cri.pageNum == num ? 'active':''} ">
+														<a href="${num}">${num}</a>
+													</li>
+												</c:forEach>
+											
+													
+												<c:if test="${pageMaker.next}">
+													<li class="paginate_button a">
+														<a href="${pageMaker.endPage +1}">Next</a>
+													</li>
+												</c:if>
+											</ul>
+										</div>
+										<!-- end Pagination -->
+											<input type="text" name="pageNum" value="${pageMaker.cri.pageNum}" hidden>
+											<input type="text" name="amount" value="${pageMaker.cri.amount}" hidden>
+										</form>
+		      </div>
+		      <div id="footer">
         <jsp:include page="../module/bottom.jsp" flush="false"/>
       </div>
     </div>

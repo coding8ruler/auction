@@ -280,7 +280,6 @@ public class GoodsController {
 		List<Product> goodsSell=goodsService.selectSellGoodsList(goodsSize,goods);
 		
 		
-		
 		//JSONObject객체생성
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("goodsSell",goodsSell);
