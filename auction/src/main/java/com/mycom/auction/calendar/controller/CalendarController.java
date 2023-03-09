@@ -30,7 +30,7 @@ import com.mycom.auction.calendar.service.CalendarService;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-
+//
 //캘린더의 컨트롤러 역할을 하는 클래스입니다.
 @Controller
 public class CalendarController {
