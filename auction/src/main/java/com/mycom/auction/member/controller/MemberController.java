@@ -106,7 +106,7 @@ public class MemberController {
 			session.invalidate();
 			memberService.memberDelete(id);
 		}
-		return "redirect:/main";
+		return "/acutionGoods/auctionGoodsListPage";
 	}
 	//로그인폼
 	@GetMapping("/member/login")
@@ -134,7 +134,7 @@ public class MemberController {
 		if(session!=null) {
 			session.invalidate();
 		}
-		return "main";
+		return "/acutionGoods/auctionGoodsListPage";
 	}
 	//아이디찾기 폼
 	@GetMapping("/member/findId")
