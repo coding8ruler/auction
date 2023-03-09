@@ -24,25 +24,23 @@ $(document).ready(function(){
 			$("#name").focus();
 			return false; 
 		}
-		//이메일필수입력
-		if($("#email1").val()==""){ 
-			alert("이메일을 입력하세요.");
-			$("#email1").focus();
+		//번호필수입력
+		if($("#phone1").val()==""){
+			alert("번호를 입력하세요.");
+			$("#phone1").focus();
 			return false; 
 		}
-		if($("#email2").val()==""){ 
-			alert("이메일을 입력하세요.");
-			$("#email2").focus();
+		if($("#phone2").val()==""){
+			alert("번호를 입력하세요.");
+			$("#phone2").focus();
+			return false; 
+		}
+		if($("#phone3").val()==""){
+			alert("번호를 입력하세요.");
+			$("#phone3").focus();
 			return false; 
 		}
 	});	
-});
-//이메일
-$(function(){
-	$("#email_op").change(function(){
-		let val = $("select#email_op option:selected").val();
-		$("#email2").val(val);
-	});
 });
 </script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/find.css" />
@@ -70,7 +68,7 @@ $(function(){
 	<div>
        <p><a href="<%=request.getContextPath()%>/member/findId">아이디 찾기</a></p>&verbar;
        <p><a href="<%=request.getContextPath()%>/member/login">로그인</a></p>&verbar;
-       <p><a href="<%=request.getContextPath()%>/main">메인</a></p>
+       <p><a href="<%=request.getContextPath()%>/member/join">회원가입</a></p>
      </div> 
 	</div>
 	</article>

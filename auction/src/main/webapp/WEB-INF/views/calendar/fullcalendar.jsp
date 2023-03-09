@@ -96,7 +96,25 @@
 </style>
 </head>
 <body>
-
+ <div id="container">
+      <div id="header1">
+        <jsp:include page="../module/banner.jsp" flush="false"/>
+      </div>
+      <div id="header2">
+        <jsp:include page="../module/top.jsp" flush="false"/>
+      </div>
+      <div id="content">
+        <table>
+          <tr>
+            <td>
 <div id='calendar'></div>
+  </td>
+          </tr>
+        </table>
+      </div>
+      <div id="footer">
+        <jsp:include page="../module/bottom.jsp" flush="false"/>
+      </div>
+    </div>
 </body>
 </html>
