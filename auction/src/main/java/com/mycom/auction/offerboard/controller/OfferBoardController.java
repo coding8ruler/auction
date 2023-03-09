@@ -93,15 +93,15 @@ public class OfferBoardController {
 	  		
 	  		
   		//4.view
-    	return "/offerBoard/offerInsertForm";
+    	return "redirect:/offerBoard/offerInsertForm";
     }
   	
   	
   //입력폼에서 입력 처리 담당
   	//요청방식 get
     //offerinsertForm 구인 등록 폼 보여주기 http://localhost:8081/auction/offerBoard/offerInsertForm
-	@PostMapping("/offerBoard/offerInsertForm")
-    public String offerinsert( @ModelAttribute OfferBoard offerBoard, HttpServletRequest request,Model model) throws Exception{
+	@GetMapping("/offerBoard/offerInsertForm1")
+    public String offerinsert(@ModelAttribute OfferBoard offerBoard, HttpServletRequest request,Model model) throws Exception{
 		
 		//LocalTime starttime1 = offerBoard.getStarttime();
 		
@@ -127,9 +127,9 @@ public class OfferBoardController {
 	
 	*/
 	  //offerSelect 입력된 구인게시글 내용폼 보여주기
-	 
+	/* 
 	  @GetMapping("/offerBoard/offerSelectForm") 
-	  public String offerSelect(Model model ,@RequestParam("offerno")int no) throws Exception{
+	  public String offerSelect(@RequestParam("offerno")int no,Model model) throws Exception{
 	
 		  
 		  OfferBoard offerBoard =offerListService.getOfferDetail(no);
@@ -138,9 +138,9 @@ public class OfferBoardController {
 
 	    	System.out.println("offerBoard==offerSelect=="+offerBoard);
 		  
-		  return "/offerBoard/offerSelectForm"; 
+		  return "redirect:/offerBoard/offerBoardForm"; 
 	 }
 	
-
+*/
     
 }
