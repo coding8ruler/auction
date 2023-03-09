@@ -9,7 +9,7 @@
 <title>main</title>
 </head>
 <body>
-	<h3>main</h3>
+	<h3>maind</h3>
 	<hr>
 	<%-- 비로그인시 보여지는 메뉴 --%>
 	<c:if test="${empty AUTHUSER}">
