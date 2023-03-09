@@ -80,13 +80,6 @@ public class ProductRepositoryImpl implements ProductRepository{
 		return list;
 	}
 	
-	/*
-	 * //판매하기 상품 자동 삭제
-	 * 
-	 * @Override public int productAutoDelete() { int cnt =
-	 * sqlSession.update("mapper.product.productAutoDelete"); return cnt; }
-	 */
-	
 	//구매하기 상품 상세 정보
 	@Override
 	public Product productBuyDetail(Map map) throws DataAccessException {
@@ -97,8 +90,24 @@ public class ProductRepositoryImpl implements ProductRepository{
 	//구매 상품 등록
 	@Override
 	public int productBuyInsert(Map map) throws DataAccessException {
-		int cnt=sqlSession.insert("mapper.product.productBuyInsert",map);
-		return cnt;
+			System.out.println("map========"+map);
+		int result =0;
+		int sellPrice=sqlSession.selectOne("mapper.product.selectSellNoPrice",map);
+		int purPrice =(int) map.get("desiredPurPrice");
+		int buyPrice=0;
+		buyPrice = sqlSession.selectOne("mapper.product.selectBuyPrice",map.get("sellNo"));
+		if(buyPrice > purPrice && purPrice < sellPrice ) {
+			result=3;
+			return result;
+		}else if(buyPrice > purPrice && purPrice >sellPrice){
+			result=2;
+			return result;
+		} else if(sellPrice < purPrice && purPrice > buyPrice) {
+			result=sqlSession.insert("mapper.product.productBuyInsert",map);
+			return result;
+		} else {
+			return result;
+		}
 	}
 	
 	//판매 완료 상태물품 조회 후 메세지 발송하여 삭제하기
@@ -118,8 +127,4 @@ public class ProductRepositoryImpl implements ProductRepository{
 			 System.out.println("cnt"+cnt);
 		return cnt;
 	}
-
-
-	
-	
 }

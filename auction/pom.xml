@@ -229,16 +229,6 @@
           <version>2.4</version>
           <classifier>jdk15</classifier>    
     </dependency>
-	
-	
-		<dependency>
-		  <groupId>com.twilio.sdk</groupId>
-		  <artifactId>twilio</artifactId>
-		  <version>9.2.4</version>
-		</dependency>
-	
-	
-	
 	</dependencies>
 	
 	<!-- build요소 : 빌드정보 -->

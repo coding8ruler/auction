@@ -2,7 +2,7 @@ package com.mycom.auction.goodsSell.domain;
 
 public class ProductPurchaseDTO {
 	
-	private String sellNo;
+	private int sellNo;
 	private String goodsSize;
 	private int desiredPurPrice;
 	private String goodsName;
@@ -10,8 +10,9 @@ public class ProductPurchaseDTO {
 	private int desireQuantity;
 	
 	
-	public ProductPurchaseDTO(String sellNo, String goodsSize, int desiredPurPrice, String goodsName,
-			String id, int desireQuantity) {
+	
+	public ProductPurchaseDTO(int sellNo, String goodsSize, int desiredPurPrice, String goodsName, String id,
+			int desireQuantity) {
 		this.sellNo = sellNo;
 		this.goodsSize = goodsSize;
 		this.desiredPurPrice = desiredPurPrice;
@@ -19,12 +20,11 @@ public class ProductPurchaseDTO {
 		this.id = id;
 		this.desireQuantity = desireQuantity;
 	}
-
-
-	public String getSellNo() {
+	
+	public int getSellNo() {
 		return sellNo;
 	}
-	public void setSellNo(String sellNo) {
+	public void setSellNo(int sellNo) {
 		this.sellNo = sellNo;
 	}
 	public String getGoodsSize() {
@@ -58,13 +58,13 @@ public class ProductPurchaseDTO {
 		this.desireQuantity = desireQuantity;
 	}
 
-
 	@Override
 	public String toString() {
 		return "ProductPurchaseDTO [sellNo=" + sellNo + ", goodsSize=" + goodsSize + ", desiredPurPrice="
-				+ desiredPurPrice + ", goodsName=" + goodsName + ", id=" + id
-				+ ", desireQuantity=" + desireQuantity + "]";
+				+ desiredPurPrice + ", goodsName=" + goodsName + ", id=" + id + ", desireQuantity=" + desireQuantity
+				+ "]";
 	}
+	
 	
 	
 	

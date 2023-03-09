@@ -62,20 +62,54 @@
       }
       
       table {
-        width: 95%;
-        margin: 0 auto;
-        border: 1px solid #ccc;
-        border-collapse: collapse;
-      }
-      
-      tr {
-        border: 1px solid #ccc;
-      }
-      
-      td {
-        border: 1px solid #ccc;
-        padding: 10px;
-      }
+				  border-collapse: collapse;
+				  width: 50%;
+				  border: 1px solid #ccc;
+				  margin: 0 auto;
+				}
+				
+				th, td {
+				  padding: 8px;
+				  border-bottom: 1px solid #ddd;
+				  text-align: center;
+				}
+				
+				th {
+				  background-color: #f2f2f2;
+				  border-top: 1px solid #ddd;
+				  border-right: 1px solid #ddd;
+				}
+				
+				td {
+				  border-right: 1px solid #ddd;
+				}
+				input[type=button], input[type=button] {
+				  width: 20%;
+				}
+				
+				input[type="button"],input[type=button] {
+					  background-color: ECECEC;
+					  color: black;
+					  font-size: 13px;
+					  font-weight: bold;
+					  border: none;
+					  padding: 10px 10px;
+					  border-radius: 10px;
+					}
+					
+					input[type=button] {
+					  background-color: ECECEC;
+					  color: black;
+					  font-size: 13px;
+					  font-weight: bold;
+					  border: none;
+					  padding: 10px 10px;
+					  border-radius: 10px;
+					}
+				 input[type="button"]:hover, input[type="button"]:hover {
+			      border: 1.5px solid #333;
+			      outline: none;
+			    }
     </style>
 	  <script>
 	  $(document).ready(function() {
@@ -119,7 +153,6 @@
 	      // '/productList'로 이동
 	      window.location.href = '${contextPath}/productList?pageNum=${pageNum}&amount=${amount}';
 	    });
-	    
 	  });
 	</script>
   </head>
@@ -132,89 +165,82 @@
         <jsp:include page="../module/top.jsp" flush="false"/>
       </div>
       <div id="content">
-        <table>
-          <tr>
-            <td>
               <form action="${contextPath}/GoodsGradeChange" method="post">
-<%-- 		<input type="text" value="${pageNum}" name="pageNum" id="pageNum">
-		<input type="text" value="${amount}" name="amount" id="amount"> --%>
-		<input type="text" value="${product.sellNo}" name="sellNo" id="sellNo">
-		<input type="text" value="${product.vailDate}" name="vailDate" id="vailDate">
-		<table border="1">
-			<tr>
-				<td>판매등록번호</td>
-				<td>${product.sellNo}</td>
-			</tr>
-			<tr>
-				<td>모델명</td>
-				<td>${product.goods}</td>
-			</tr>
-			<tr>
-				<td>판매희망가</td>
-				<td>${product.desiredSellPrice}</td>
-			</tr>
-			<tr>
-				<td>사이즈</td>
-				<td>${product.itemSize}</td>
-			</tr>
-			<tr>
-				<td>수량</td>
-				<td>${product.quantity}</td>
-			</tr>
-			<tr>
-				<td>제품상태</td>
-				<td>${product.goodsGrade}</td>
-			</tr>
-			<tr>
-				<td>회원ID</td>
-				<td>${product.id}</td>
-			</tr>
-			<tr>
-				<td>경매유효기간</td>
-				<td>${product.vailDate}</td>
-			</tr>
-			<tr>
-				<td>경매시작날짜</td>
-				<td><fmt:formatDate value="${product.startTime}" pattern="yyyy.MM.dd"/></td>
-			</tr>
-			<tr>
-				<td>경매종료날짜</td>
-				<td><fmt:formatDate value="${product.endTime}" pattern="yyyy.MM.dd"/></td>
-		</tr>
-		<c:forEach var="fileList" items="${productFileList}">
-			<tr>
-				<td>이미지 번호</td>
-				<td>이미지 파일</td>
-			</tr>
-			<tr>
-				<td>${fileList.sellImageNo}</td>
-				<td>
-				<%-- <a href="<c:url value='/image/${fileList.sellImages}'/>" data-fancybox data-caption="캡션"><img src="<c:url value='/image/${fileList.sellImages}'/>"></a> --%>
-				<c:if test="${!empty fileList.sellImages}">
-					<img src="/uploadimg/${fileList.sellImages}" style="display:block; width:100%;" class="mx-auto" onclick="window.open(this.src)">
-				</c:if>
-				<c:if test="${empty fileList.sellImages}">
-					등록된 사진이 없습니다.
-				</c:if>
-				</td>
-			</tr>
-		</c:forEach>
-			<tr>
-				<td colspan="2" align="center">
-					<input type="button" class="btnSell" name="btnSell" value="판매 허가"/>
-					<input type="button" class="btnRejection" name="btnRejection" value="판매 거절"/>
-					<input type="button" class="btnList" name="btnList" value="리스트"/>
-				</td>
-			</tr>
-		</table>
-	</form>
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div id="footer">
-        <jsp:include page="../module/bottom.jsp" flush="false"/>
-      </div>
-    </div>
-  </body>
-</html>
+								<input type="text" value="${product.sellNo}" name="sellNo" id="sellNo" hidden>
+								<input type="text" value="${product.vailDate}" name="vailDate" id="vailDate" hidden>
+								<table class="table" style="border: 1px solid #ccc;">
+						  		<thead class="thead-dark">
+									<tr>
+										<td>판매등록번호</td>
+										<td>${product.sellNo}</td>
+									</tr>
+									<tr>
+										<td>모델명</td>
+										<td>${product.goods}</td>
+									</tr>
+									<tr>
+										<td>판매희망가</td>
+										<td>${product.desiredSellPrice}</td>
+									</tr>
+									<tr>
+										<td>사이즈</td>
+										<td>${product.itemSize}</td>
+									</tr>
+									<tr>
+										<td>수량</td>
+										<td>${product.quantity}</td>
+									</tr>
+									<tr>
+										<td>제품상태</td>
+										<td>${product.goodsGrade}</td>
+									</tr>
+									<tr>
+										<td>회원ID</td>
+										<td>${product.id}</td>
+									</tr>
+									<tr>
+										<td>경매유효기간</td>
+										<td>${product.vailDate}</td>
+									</tr>
+									<tr>
+										<td>경매시작날짜</td>
+										<td>${product.startTime}</td>
+									</tr>
+									<tr>
+										<td>경매종료날짜</td>
+										<td>${product.endTime}</td>
+								</tr>
+								<c:forEach var="fileList" items="${productFileList}">
+									<tr>
+										<td>이미지 번호</td>
+										<td>이미지 파일</td>
+									</tr>
+									<tr>
+										<td>${fileList.sellImageNo}</td>
+										<td>
+										<c:if test="${!empty fileList.sellImages}">
+											<img src="/uploadimg/${fileList.sellImages}" style="display:block; width:100%;" class="mx-auto" onclick="window.open(this.src)">
+										</c:if>
+										<c:if test="${empty fileList.sellImages}">
+											등록된 사진이 없습니다.
+										</c:if>
+										</td>
+									</tr>
+								</c:forEach>
+									<tr>
+										<td colspan="2" align="center">
+											<input type="button" class="btnSell" name="btnSell" value="판매 허가"/>
+											<input type="button" class="btnRejection" name="btnRejection" value="판매 거절"/>
+											<input type="button" class="btnList" name="btnList" value="리스트"/>
+										</td>
+									</tr>
+									</thead>
+								</table>
+							</form>
+			      </div>
+			      <div id="footer">
+			        <jsp:include page="../module/bottom.jsp" flush="false"/>
+			      </div>
+			    </div>
+			  </body>
+			</html>

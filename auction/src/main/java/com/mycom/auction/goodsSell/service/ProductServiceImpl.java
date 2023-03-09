@@ -88,5 +88,12 @@ public class ProductServiceImpl implements ProductService{
 		System.out.println("productAutoEnd Ser()");
 		return productRepository.productAutoEnd(goodsGrade);
 	}
+	
+	
+	//판매 상품 최고가 조회
+	/*
+	 * @Override public int checkDesiredSellPrice(Map map2) throws Exception {
+	 * return productRepository.selectDesiredSellPrice(map2); }
+	 */
 
 }
