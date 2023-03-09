@@ -126,7 +126,7 @@ public class MemberController {
 		}else{
 			session.setAttribute("AUTHUSER", loginmember);
 		}
-		return "main";
+		return "/acutionGoods/auctionGoodsListPage";
 	}
 	//로그아웃
 	@GetMapping("/member/logout")

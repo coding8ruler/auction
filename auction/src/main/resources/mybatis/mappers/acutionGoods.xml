@@ -72,6 +72,7 @@
 		FROM productimage
 		WHERE goods = #{goods} AND imageNo = (
 		  SELECT MIN(imageNo) FROM productimage WHERE goods = #{goods})
+		order by imageNo asc
 	  ]]>
 	</select>
 	
@@ -90,6 +91,7 @@
 		SELECT goods, image, imageNo
 		FROM productimage
 		where goods=#{goods}
+		order by imageNo asc
 	 ]]>	
 	</select>
 	
@@ -117,4 +119,35 @@
 	 ]]>	
 	</select>
 	
+	<select id="selectMessageList" parameterType="String" resultType="com.mycom.auction.goods.domain.ProductFinally">
+	 <![CDATA[			
+		select messageNo,title,content,sendTime,sendId,receiveId,purchaseNo,sellNo
+		from productFinally
+		where receiveId=#{id}
+	 ]]>	
+	</select>
+	
+	<select id="selectPurList" parameterType="com.mycom.auction.goods.domain.ProductFinally" resultType="com.mycom.auction.goods.domain.ProductPurchaseDTO">
+	 <![CDATA[			
+		select sellNo,goodsSize,desiredPurPrice,purchaseNo,goodsName,id,desireQuantity
+		from productPurchase
+		where sellNo =#{sellNo} and purchaseNo=#{purchaseNo}
+	 ]]>	
+	</select>
+	
 </mapper>    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

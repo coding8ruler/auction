@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mycom.auction.goods.domain.ProductDTO;
+import com.mycom.auction.goods.domain.ProductFinally;
 import com.mycom.auction.goods.domain.ProductPurchaseDTO;
 import com.mycom.auction.goods.repository.GoodsRepository;
 import com.mycom.auction.goodsSell.domain.Product;
@@ -76,6 +77,12 @@ public class GoodsService{
 	public List<ProductPurchaseDTO> sellNoGoodsSearch(int sellNo) {
 		List<ProductPurchaseDTO> sellNoList=goodsRepository.sellNoGoodsSearch(sellNo);
 		return sellNoList;
+	}
+
+
+	public Map<String,List> selectMessageList(String id) {
+		Map<String,List> selectMessagePurList=goodsRepository.selectMessageList(id);
+		return selectMessagePurList;
 	}
 
 	

@@ -47,8 +47,6 @@ public class productSellController extends  BaseController implements WebMvcConf
 	@Autowired
 	ProductRepository productRepository;
 	
-	
-	
 	 //판매하기 글 등록 페이지
 	 @RequestMapping(value="/productAddForm", method= {RequestMethod.GET})
 		public String productSell(HttpServletRequest request, String goodsSize,String goods,Model model) {
@@ -208,7 +206,7 @@ public class productSellController extends  BaseController implements WebMvcConf
 		}
 		model.addAttribute("comment", comment);
 		return "redirect:/alertForm";
-	}
+		}
 	
 		@RequestMapping("/alertForm")
 		public String alert() {
@@ -216,7 +214,6 @@ public class productSellController extends  BaseController implements WebMvcConf
 			return "auctionGoodsSell/alertForm";
 		}
 	
-	   // 초 분 시 일 월 주 (연도)
 		@Scheduled(cron = "* */20 * * * *")
 		public void autoUpdate() throws Exception {
 			System.out.println("실행중");
