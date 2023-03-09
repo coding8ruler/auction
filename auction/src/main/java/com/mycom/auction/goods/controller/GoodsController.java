@@ -309,8 +309,8 @@ public class GoodsController {
 	}
 	
 	
-	@GetMapping("/productMessage")
-	public String productGetMessage(Model model,HttpServletRequest httpServletRequest) {
+	@GetMapping("/productPurMessage")
+	public String productGetPurMessage(Model model,HttpServletRequest httpServletRequest) {
 	   HttpSession session = httpServletRequest.getSession();
 	   //Member authUser = (Member) session.getAttribute("AUTHUSER");
 	   // String id = authUser.getId();
@@ -329,16 +329,29 @@ public class GoodsController {
 	   model.addAttribute("messageList", messageList);
 	   model.addAttribute("PurList", PurList);
 		
-		return "/acutionGoods/auctionGoodsMessage";
+		return "/acutionGoods/auctionGoodsPurMessage";
 	}
 	
 	
-	
-	
-	
-	
-	
-	
+	@GetMapping("/productSellMessage")
+	public String productGetSellMessage(Model model,HttpServletRequest httpServletRequest) {
+	   HttpSession session = httpServletRequest.getSession();
+	   Member authUser = (Member) session.getAttribute("AUTHUSER");
+	   String id = authUser.getId();
+	   
+	   Map<String,List> selectMessagePur=goodsService.selectMessageList(id);
+	   
+	   List<ProductFinally> messageList = selectMessagePur.get("selectMessageList");
+	   List<ProductPurchaseDTO> PurList = selectMessagePur.get("selectPurList");
+	   
+	   System.out.println("messageList222"+messageList);
+	   System.out.println("PurList222"+PurList);
+	   
+	   model.addAttribute("messageList", messageList);
+	   model.addAttribute("PurList", PurList);
+		
+		return "/acutionGoods/auctionGoodsSellMessage";
+	}
 	
 	
 }

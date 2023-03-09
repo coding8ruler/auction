@@ -216,7 +216,7 @@ public class productSellController extends  BaseController implements WebMvcConf
 			return "auctionGoodsSell/alertForm";
 		}
 	
-		@Scheduled(cron = "* */20 * * * *")
+		@Scheduled(cron = "*/6 * * * * *")
 		public void autoUpdate() throws Exception {
 			System.out.println("실행중");
 		   LocalDate now = LocalDate.now();
