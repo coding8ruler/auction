@@ -1,5 +1,6 @@
 package com.mycom.auction.goodsSell.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -8,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.mycom.auction.goods.domain.ProductPurchaseDTO;
 import com.mycom.auction.goodsSell.domain.Criteria;
 import com.mycom.auction.goodsSell.domain.ImageFileVO;
 import com.mycom.auction.goodsSell.domain.Product;
-import com.mycom.auction.goodsSell.domain.ProductPurchaseDTO;
 
 @Repository
 public class ProductRepositoryImpl implements ProductRepository{
@@ -108,16 +109,22 @@ public class ProductRepositoryImpl implements ProductRepository{
 			return result;
 		}
 	}
-	//판매 완료 상태물품 상태 변경
+	
+	//판매 완료 상태물품 조회 후 메세지 발송하여 삭제하기
 	@Override
 	public int productAutoEnd(int goodsGrade) throws DataAccessException {
-		List<Product> productList=sqlSession.selectList("mapper.product.productAutoSelectList",goodsGrade);
-		for(int i=0; i<productList.size(); i++) {
-			Product product=(Product)productList.get(i);
-			sqlSession.insert("mapper.product.insertEndMessage",product);
+		List<Product> productList = sqlSession.selectList("mapper.product.productAutoSelectList", goodsGrade);
+		if (productList.size() > 0) {
+			for(int i=0; i<productList.size(); i++) {
+				Product product=(Product)productList.get(i);
+				List<ProductPurchaseDTO> productPurchaseDTOList = sqlSession.selectList("mapper.product.selectMaxDesiredPurPricePurchaseNo", product);
+				for(ProductPurchaseDTO productPurchaseDTO : productPurchaseDTOList) {
+					sqlSession.insert("mapper.product.insertEndMessage",productPurchaseDTO);
+				}
+			}
 		}
-		int cnt = sqlSession.update("mapper.product.productAutoDelete");
-		
+			 int cnt = sqlSession.update("mapper.product.productAutoDelete"); 
+			 System.out.println("cnt"+cnt);
 		return cnt;
 	}
 }

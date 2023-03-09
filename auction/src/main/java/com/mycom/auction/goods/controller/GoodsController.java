@@ -12,6 +12,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -34,9 +35,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mycom.auction.goods.domain.ProductDTO;
+import com.mycom.auction.goods.domain.ProductFinally;
 import com.mycom.auction.goods.domain.ProductPurchaseDTO;
 import com.mycom.auction.goods.service.GoodsService;
 import com.mycom.auction.goodsSell.domain.Product;
+import com.mycom.auction.member.domain.Member;
 
 import net.coobird.thumbnailator.Thumbnails;
 import net.sf.json.JSONObject;
@@ -94,7 +97,7 @@ public class GoodsController {
 			if( imageFileList!=null && imageFileList.size()!=0){
 				for(ProductDTO productDTO  : imageFileList) {
 					imageFileName=productDTO.getImage();
-					File srcFile = new File(REPO_PATH+"\\temp\\"+imageFileName); 
+					File srcFile = new File(REPO_PATH+"\\"+imageFileName); 
 					File destDir = new File(REPO_PATH+"\\"+goods);
 					FileUtils.moveFileToDirectory(srcFile, destDir, true);
 				}
@@ -118,7 +121,7 @@ public class GoodsController {
 			}
 			//2)오류발생 되었습니다. 라는 alert띄우기
 			msg   = "<script>;";
-			msg  += "alert('오류가 발생 되었습니다.');";
+			msg  += "alert('중복된 모델을 입력하셨습니다.');";
 			msg  += "location.href='"+multipartRequest.getContextPath()+"/goodsRegisterForm';";
 			msg  += "</script>";
 			//3)입력폼 페이지로 이동
@@ -152,7 +155,7 @@ public class GoodsController {
   			 	}
   			  }
   			 System.out.println("originalFileName 이름은 정확하니?"+originalFileName);
-  			mFile.transferTo(new File(REPO_PATH+"\\temp\\"+originalFileName));
+  			mFile.transferTo(new File(REPO_PATH+"\\"+originalFileName));
   			}
   		}
   		return fileList;
@@ -286,7 +289,6 @@ public class GoodsController {
 		
 		//JSONObject객체를 문자열로 변환
 		String jsonInfo = jsonObject.toString(); 
-		
 		return jsonInfo; //클라이언트에게 응답
 	}
 	
@@ -307,10 +309,28 @@ public class GoodsController {
 	}
 	
 	
-	
-	
-	
-	
+	@GetMapping("/productMessage")
+	public String productGetMessage(Model model,HttpServletRequest httpServletRequest) {
+	   HttpSession session = httpServletRequest.getSession();
+	   //Member authUser = (Member) session.getAttribute("AUTHUSER");
+	   // String id = authUser.getId();
+	   
+	   session.setAttribute("id","hongid");
+	   String id = (String)session.getAttribute("id");
+	   
+	   Map<String,List> selectMessagePur=goodsService.selectMessageList(id);
+	   
+	   List<ProductFinally> messageList = selectMessagePur.get("selectMessageList");
+	   List<ProductPurchaseDTO> PurList = selectMessagePur.get("selectPurList");
+	   
+	   System.out.println("messageList222"+messageList);
+	   System.out.println("PurList222"+PurList);
+	   
+	   model.addAttribute("messageList", messageList);
+	   model.addAttribute("PurList", PurList);
+		
+		return "/acutionGoods/auctionGoodsMessage";
+	}
 	
 	
 	
@@ -323,31 +343,3 @@ public class GoodsController {
 	
 }
 
-
-
-
-
-
-/*
- * @Scheduled(fixedRate = 60000) // 1분 후에 한 번만 실행
- * 
- * @RequestMapping(value = "/hello", method = RequestMethod.GET) public void
- * hello() {
- * 
- * @Component public class ReservationScheduler {
- * 
- * @Autowired private ReservationRepository reservationRepository;
- * 
- * @Scheduled(fixedRate = 60000) // 60초마다 실행 public void executeReservation() {
- * // 현재 시간을 가져옵니다. LocalDateTime now = LocalDateTime.now();
- * 
- * // DB에서 현재 시간 이전의 예약 목록을 가져옵니다. List<Reservation> reservations =
- * reservationRepository.findByReservationTimeBefore(now);
- * 
- * // 가져온 예약 목록을 실행합니다. for (Reservation reservation : reservations) {
- * execute(reservation); } }
- * 
- * private void execute(Reservation reservation) { // TODO: 예약된 작업을 실행하는 로직을
- * 작성합니다. // reservation.getId() 등을 사용하여 해당 예약 작업을 실행합니다. } }
- * System.out.println("Hello, world!"); }
- */

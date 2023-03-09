@@ -66,6 +66,7 @@ background-color: white;
     <a href="<%=request.getContextPath()%>/goodsRegisterForm">상품등록</a>
     <a href="<%=request.getContextPath()%>/goodsListForm">상품리스트</a>
     <a href="<%=request.getContextPath()%>/productList">상품 결재 리스트</a>
+    <a href="<%=request.getContextPath()%>/productMessage">결재 쪽지함</a>
   </div>
 </div>
 
@@ -95,24 +96,60 @@ background-color: white;
     <a href="#">Option 2-3</a>
   </div>
 </div>
+<c:if test="${empty AUTHUSER}">
+	<div class="dropdown">
+	  <button class="dropbtn">Button 2</button>
+	  <div class="dropdown-content">
+	    <a href="<%=request.getContextPath()%>/member/join">회원가입</a>
+	    <a href="<%=request.getContextPath()%>/member/login">로그인</a>
+	    <a href="<%=request.getContextPath()%>/member/findId">아이디 찾기</a>
+		  <a href="<%=request.getContextPath()%>/member/findPwd">비밀번호 찾기</a>
+	  </div>
+	</div>
+</c:if>
 
-<div class="dropdown">
-  <button class="dropbtn">Button 2</button>
-  <div class="dropdown-content">
-    <a href="#">Option 2-1</a>
-    <a href="#">Option 2-2</a>
-    <a href="#">Option 2-3</a>
-  </div>
-</div>
+	<%-- 일반user가 로그인했을 때 보여지는 메뉴 --%>
+	<c:if test="${! empty AUTHUSER && (AUTHUSER.grade eq 1)}">  
+	<div class="dropdown">
+	  <button class="dropbtn">Button 2</button>
+	  <div class="dropdown-content">
+			 <a href="<%=request.getContextPath()%>/member/info?id=${AUTHUSER.id}">내정보</a>
+			 <a href="<%=request.getContextPath()%>/member/logout">로그아웃</a>
+	  </div>
+	</div>
+</c:if>
 
-<div class="dropdown">
-  <button class="dropbtn">Button 2</button>
-  <div class="dropdown-content">
-    <a href="#">Option 2-1</a>
-    <a href="#">Option 2-2</a>
-    <a href="#">Option 2-3</a>
-  </div>
-</div>
+	<%-- 관리자가 로그인했을 때 보여지는 메뉴 --%>
+	<c:if test="${not empty AUTHUSER && (AUTHUSER.grade==999)}">     
+	<div class="dropdown">
+	  <button class="dropbtn">Button 2</button>
+	  <div class="dropdown-content">
+			 <a href="<%=request.getContextPath()%>/member/logout">로그아웃</a>
+			 <a href="<%=request.getContextPath()%>/member/list">회원관리</a>
+	  </div>
+	</div>
+</c:if>
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="dropdown" style="float: right;">
   <button class="dropbtn" onclick="location.href=''">로그아웃</button>
 </div>

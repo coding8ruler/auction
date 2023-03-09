@@ -1,6 +1,7 @@
 package com.mycom.auction.goods.repository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.mycom.auction.goods.domain.ProductDTO;
+import com.mycom.auction.goods.domain.ProductFinally;
 import com.mycom.auction.goods.domain.ProductPurchaseDTO;
 import com.mycom.auction.goodsSell.domain.Product;
 
@@ -88,5 +90,18 @@ public class GoodsRepository{
 			System.out.println(productPurchaseDTO);
 		}
 		return sellNoList;
+	}
+
+	public Map<String,List> selectMessageList(String id) {
+		Map<String,List> ProductMessPurMap = new HashMap();
+		List<ProductFinally> selectMessageList= sqlSession.selectList("mapper.auctionGoods.selectMessageList", id);
+		List<ProductPurchaseDTO> selectPurList = new ArrayList<ProductPurchaseDTO>();
+			ProductMessPurMap.put("selectMessageList",selectMessageList);
+		for(int i=0; selectMessageList.size()>i ; i++) {
+			ProductPurchaseDTO selectPur = sqlSession.selectOne("mapper.auctionGoods.selectPurList", selectMessageList.get(i));
+			selectPurList.add(selectPur);
+		}
+			ProductMessPurMap.put("selectPurList",selectPurList);
+		return ProductMessPurMap;
 	}
 }

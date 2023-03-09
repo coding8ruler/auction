@@ -47,8 +47,6 @@ public class productSellController extends  BaseController implements WebMvcConf
 	@Autowired
 	ProductRepository productRepository;
 	
-	
-	
 	 //판매하기 글 등록 페이지
 	 @RequestMapping(value="/productAddForm", method= {RequestMethod.GET})
 		public String productSell(HttpServletRequest request, String goodsSize,String goods,Model model) {
