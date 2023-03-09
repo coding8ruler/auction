@@ -269,15 +269,6 @@
           <tr>
             <td>
               
-${goodsInfo}
-${goodsImageInfo}
-<!-- mv.addObject("goodsInfo",goodsInfo);
- goodsInfo[ProductDTO [goods=test, goodsName=test, color=tes, 
- goodsContent=test, firstPrice=32, imageNo=0, releaseDate=Wed Mar 29 00:00:00 KST 2023, goodsSize=null, image=null], 
-  -->
-  
-   <!-- <div id="timer"></div> -->
-  
    <main>
    <form>
    	<input type="text" disabled="disabled" id="goodsId" value="${goodsInfo.goods}">
@@ -364,17 +355,5 @@ ${goodsImageInfo}
         <jsp:include page="../module/bottom.jsp" flush="false"/>
       </div>
     </div>
-    
-    <script>
-		    document.addEventListener("load", function() { 
-		 	   const button = document.getElementById("find");
-		 	   const link = document.querySelector('a[href="#tab3"]');
-		 	   
-		 	   button.addEventListener("click", function() {
-		 	     link.click();
-		 	   });
-		 	 });
-    </script>
-    
   </body>
 </html>

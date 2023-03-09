@@ -290,7 +290,6 @@ public class GoodsController {
 		
 		//JSONObject객체를 문자열로 변환
 		String jsonInfo = jsonObject.toString(); 
-		
 		return jsonInfo; //클라이언트에게 응답
 	}
 	

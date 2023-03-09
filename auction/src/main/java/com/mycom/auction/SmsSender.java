@@ -1,20 +1,31 @@
 package com.mycom.auction;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
+                /*  new com.twilio.type.PhoneNumber("+821041034815"),
+                  new com.twilio.type.PhoneNumber("+15005550006"),*/
+@Controller
 public class SmsSender {
-  // Find your Account Sid and Token at twilio.com/user/account
-  public static final String ACCOUNT_SID = "ACdfecbab60a195d402d4eac512503290f";
-  public static final String AUTH_TOKEN = "52570ac2af865f386f430a34fa47d2ac";
 
-  public static void main(String[] args) {
-    Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+	    // Twilio 계정 SID와 인증 토큰
+    public static final String ACCOUNT_SID = System.getenv("ACe840315512fc1acef77f62a3a118c3cb");
+    public static final String AUTH_TOKEN = System.getenv("6f809560165ec851f98f5607b3e3f9ad");
 
-    Message message = Message.creator(new PhoneNumber("+821041034815"),
-    								  new PhoneNumber("+15005550006"), 
-        "This is the ship that made the Kessel Run in fourteen parsecs?").create();
-
-    System.out.println(message.getSid());
-  }
+    // Twilio trial 번호
+    @GetMapping("/aa")
+    public static void sendSms() {
+    	 Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+         Message message = Message.creator(
+                 new com.twilio.type.PhoneNumber("+821041034815"),
+                 new com.twilio.type.PhoneNumber("+15005550006"),
+                 "All in the game, yo")
+             .create();
+    }
 }
+  
+  
+  

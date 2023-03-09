@@ -93,23 +93,15 @@ public class GoodsRepository{
 	}
 
 	public Map<String,List> selectMessageList(String id) {
-		
 		Map<String,List> ProductMessPurMap = new HashMap();
-		
 		List<ProductFinally> selectMessageList= sqlSession.selectList("mapper.auctionGoods.selectMessageList", id);
 		List<ProductPurchaseDTO> selectPurList = new ArrayList<ProductPurchaseDTO>();
-		
 			ProductMessPurMap.put("selectMessageList",selectMessageList);
-			System.out.println("selectMessageList"+selectMessageList);
-			
 		for(int i=0; selectMessageList.size()>i ; i++) {
 			ProductPurchaseDTO selectPur = sqlSession.selectOne("mapper.auctionGoods.selectPurList", selectMessageList.get(i));
 			selectPurList.add(selectPur);
-			System.out.println("selectPurList"+selectPur);
 		}
 			ProductMessPurMap.put("selectPurList",selectPurList);
-		
-		System.out.println("selectMessageList"+selectMessageList);
 		return ProductMessPurMap;
 	}
 }

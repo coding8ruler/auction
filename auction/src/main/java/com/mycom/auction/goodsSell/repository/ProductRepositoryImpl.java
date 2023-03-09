@@ -101,24 +101,17 @@ public class ProductRepositoryImpl implements ProductRepository{
 		return cnt;
 	}
 	
-	//판매 완료 상태물품 목록 조회
+	//판매 완료 상태물품 조회 후 메세지 발송하여 삭제하기
 	@Override
 	public int productAutoEnd(int goodsGrade) throws DataAccessException {
-		System.out.println("productAutoEnd Rep 1번");
-		
 		List<Product> productList = sqlSession.selectList("mapper.product.productAutoSelectList", goodsGrade);
-		System.out.println("productAutoEnd Rep 2번"+productList);
-		
 		if (productList.size() > 0) {
 			for(int i=0; i<productList.size(); i++) {
 				Product product=(Product)productList.get(i);
 				List<ProductPurchaseDTO> productPurchaseDTOList = sqlSession.selectList("mapper.product.selectMaxDesiredPurPricePurchaseNo", product);
-				System.out.println("ProductPurchaseDTO 1=" + productPurchaseDTOList);
 				for(ProductPurchaseDTO productPurchaseDTO : productPurchaseDTOList) {
 					sqlSession.insert("mapper.product.insertEndMessage",productPurchaseDTO);
-					System.out.println("ProductPurchaseDTO 2=" + productPurchaseDTOList);
 				}
-				System.out.println("ProductPurchaseDTO 3=" + productPurchaseDTOList);
 			}
 		}
 			 int cnt = sqlSession.update("mapper.product.productAutoDelete"); 
