@@ -76,8 +76,14 @@
     </style>
 <body>
 <h2>전체 조회, 입력, 수정, 삭제를 수행할 테이블</h2>
- <h3>resultView.jsp</h3>
-  
+   <div id="container">
+      <div id="header1">
+        <jsp:include page="../module/banner.jsp" flush="false"/>
+      </div>
+      <div id="header2">
+        <jsp:include page="../module/top.jsp" flush="false"/>
+      </div>
+      <div id="content">
    
     <button type="button" onclick="location.href='${conPath}/calendar/addForm'">일정 등록</button>
 	<table border="1">
@@ -111,5 +117,11 @@
  <!--    반복문이용하여 출력끝-->
    </tbody> 
    </table> 
+   
+      </div>
+      <div id="footer">
+        <jsp:include page="../module/bottom.jsp" flush="false"/>
+      </div>
+    </div>
 </body>
 </html>
