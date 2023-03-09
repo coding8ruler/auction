@@ -109,15 +109,10 @@ public class ProductRepositoryImpl implements ProductRepository{
 			return result;
 		}
 	}
-<<<<<<< HEAD
 	
 	//판매 완료 상태물품 조회 후 메세지 발송하여 삭제하기
-=======
-	//판매 완료 상태물품 상태 변경
->>>>>>> refs/remotes/origin/main
 	@Override
 	public int productAutoEnd(int goodsGrade) throws DataAccessException {
-<<<<<<< HEAD
 		List<Product> productList = sqlSession.selectList("mapper.product.productAutoSelectList", goodsGrade);
 		if (productList.size() > 0) {
 			for(int i=0; i<productList.size(); i++) {
@@ -127,20 +122,9 @@ public class ProductRepositoryImpl implements ProductRepository{
 					sqlSession.insert("mapper.product.insertEndMessage",productPurchaseDTO);
 				}
 			}
-=======
-		List<Product> productList=sqlSession.selectList("mapper.product.productAutoSelectList",goodsGrade);
-		for(int i=0; i<productList.size(); i++) {
-			Product product=(Product)productList.get(i);
-			sqlSession.insert("mapper.product.insertEndMessage",product);
->>>>>>> refs/remotes/origin/main
 		}
-<<<<<<< HEAD
 			 int cnt = sqlSession.update("mapper.product.productAutoDelete"); 
 			 System.out.println("cnt"+cnt);
-=======
-		int cnt = sqlSession.update("mapper.product.productAutoDelete");
-		
->>>>>>> refs/remotes/origin/main
 		return cnt;
 	}
 }

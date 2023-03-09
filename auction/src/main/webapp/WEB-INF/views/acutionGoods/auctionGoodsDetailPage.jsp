@@ -291,12 +291,7 @@
 			</select>
 				</li>
 				<li>
-<<<<<<< HEAD
 				<button onclick="location.href='${path}/productAddForm?goodsSize=' + document.getElementById('size-select').value + '&goods=${goodsInfo.goods}'" >판매하기</button>
-=======
-				<button onclick="location.href='${path}/productSalesAgreement?goodsSize=' + document.getElementById('size-select').value + '&goods=${goodsInfo.goods}'" >판매하기</button>
-				<button onclick="selectPurList()">구매목록보기</button>
->>>>>>> refs/remotes/origin/main
 				</li>
 			</ul>
 	   </div>		
