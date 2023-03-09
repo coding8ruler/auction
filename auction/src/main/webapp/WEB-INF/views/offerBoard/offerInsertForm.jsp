@@ -73,7 +73,7 @@ ${offerBoard.offerno}
 	
 		<h3 style="text-align: center;">구인 게시글 (입력 폼)</h3>
 		<hr>
-		<form name="offerBoardfrm" id="offerBoardfrm" method="get" action="${CPATH}/offerBoard/offerSelectForm">
+		<form name="offerBoardfrm" id="offerBoardfrm" method="post" action="${CPATH}/offerBoard/offerSelectForm">
 			<div class="tablemain">
 			<br>
 			<br>

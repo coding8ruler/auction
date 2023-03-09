@@ -100,7 +100,7 @@ public class OfferBoardController {
   //입력폼에서 입력 처리 담당
   	//요청방식 get
     //offerinsertForm 구인 등록 폼 보여주기 http://localhost:8081/auction/offerBoard/offerInsertForm
-	@GetMapping("/offerBoard/offerInsertForm1")
+	@PostMapping("/offerBoard/offerInsertForm")
     public String offerinsert( @ModelAttribute OfferBoard offerBoard, HttpServletRequest request,Model model) throws Exception{
 		
 		//LocalTime starttime1 = offerBoard.getStarttime();
