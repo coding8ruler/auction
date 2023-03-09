@@ -104,13 +104,9 @@
         <jsp:include page="../module/top.jsp" flush="false"/>
       </div>
       <div id="content">
-        <table>
-          <tr>
-            <td>
+       
 <div id='calendar'></div>
-  </td>
-          </tr>
-        </table>
+
       </div>
       <div id="footer">
         <jsp:include page="../module/bottom.jsp" flush="false"/>
