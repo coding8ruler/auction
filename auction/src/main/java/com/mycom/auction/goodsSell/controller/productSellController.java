@@ -206,7 +206,7 @@ public class productSellController extends  BaseController implements WebMvcConf
 		}
 		model.addAttribute("comment", comment);
 		return "redirect:/alertForm";
-	}
+		}
 	
 		@RequestMapping("/alertForm")
 		public String alert() {
@@ -214,7 +214,6 @@ public class productSellController extends  BaseController implements WebMvcConf
 			return "auctionGoodsSell/alertForm";
 		}
 	
-	   // 초 분 시 일 월 주 (연도)
 		@Scheduled(cron = "* */20 * * * *")
 		public void autoUpdate() throws Exception {
 			System.out.println("실행중");
