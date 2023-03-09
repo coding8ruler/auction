@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mycom.auction.member.domain.Criteria;
 import com.mycom.auction.member.domain.Member;
 import com.mycom.auction.member.domain.Page;
-import com.mycom.auction.member.domain.User;
 import com.mycom.auction.member.service.MemberService;
 
 @Controller
@@ -39,7 +38,7 @@ public class MemberController {
 	@PostMapping("/member/join")
 	public String MemberJoin(@ModelAttribute("NewMember") Member member) throws Exception {
 		memberService.memberJoin(member);
-		return "member/login";
+		return "member/loginFrm";
 	}
 	//회원상세조회
 /*	@GetMapping("/member/info")
@@ -84,13 +83,14 @@ public class MemberController {
 	public ModelAndView memberUpdateFrm(ModelAndView mv,@RequestParam("id") String id,@ModelAttribute("NewMember") Member member,@ModelAttribute("cri") Criteria cri) throws Exception {
 		member = memberService.getMember(id);
 		mv.addObject("member", member);
-		mv.addObject("id", id);
+		mv.addObject("id", id); 
 		mv.setViewName("member/updateFrm");
 		return mv;
 	}
 	//회원수정
 	@PostMapping("/member/update")
 	public ModelAndView memberUpdate(@ModelAttribute("NewMember") Member member,ModelAndView mv) throws Exception {
+			
 			int cnt = memberService.memberUpdate(member);
 			if(cnt==1) {
 				mv.setViewName("redirect:/member/info?id="+member.getId());
@@ -101,9 +101,12 @@ public class MemberController {
 		}
 	//회원탈퇴
 	@GetMapping("/member/delete")
-	public String memberDelete(@RequestParam("id") String id) throws Exception {
-		memberService.memberDelete(id);
-		return "redirect:/main";
+	public String memberDelete(@RequestParam("id") String id,HttpSession session) throws Exception {
+		if(session!=null) {
+			session.invalidate();
+			memberService.memberDelete(id);
+		}
+		return "/acutionGoods/auctionGoodsListPage";
 	}
 	//로그인폼
 	@GetMapping("/member/login")
@@ -131,9 +134,9 @@ public class MemberController {
 		if(session!=null) {
 			session.invalidate();
 		}
-		return "main";
+		return "/acutionGoods/auctionGoodsListPage";
 	}
-	//아이디찾기폼
+	//아이디찾기 폼
 	@GetMapping("/member/findId")
 	public String memberFindIdFrm(@ModelAttribute("NewMember") Member member) {
 		return "member/findIdFrm";
@@ -151,7 +154,7 @@ public class MemberController {
 		}
 		return "member/findId";
 	}
-	//비밀번호찾기폼
+	//비밀번호찾기 폼
 	@GetMapping("/member/findPwd")
 	public String memberFindPwdFrm(@ModelAttribute("NewMember") Member member) {
 		return "member/findPwdFrm";

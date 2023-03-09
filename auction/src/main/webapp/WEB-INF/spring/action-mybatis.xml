@@ -7,9 +7,6 @@
  xmlns="http://www.springframework.org/schema/beans" 
  xmlns:beans="http://www.springframework.org/schema/beans">
 
-
-
-
 	<bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 	   <property name="locations">
 	   <value>/WEB-INF/config/jdbc/jdbc.properties</value>
