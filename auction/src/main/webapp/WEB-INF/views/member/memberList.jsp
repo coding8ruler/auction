@@ -41,37 +41,37 @@ $(".search_area button").on("click", function(e){
     });		
 });	
 </script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/memberlist.css" />
 <style>
-.pageInfo{
-      list-style : none;
-      display: inline-block;
-    margin: 50px 0 0 100px;      
-  }
-  .pageInfo li{
-      float: left;
-    font-size: 20px;
-    margin-left: 18px;
-    padding: 7px;
-    font-weight: 500;
-  }
- a:link {color:black; text-decoration: none;}
- a:visited {color:black; text-decoration: none;}
- a:hover {color:black; text-decoration: underline;}
-.active{
-    background-color: #cdd5ec;
-  }
 </style>
 </head>
 <body>
-	<h3>회원목록</h3>
-	<hr>
-	<table border="1">
-	<thead>
-		<tr>
-			<th>아이디</th><th>이름</th><th>번호</th><th>이메일</th><th>성별</th><th>우편번호</th><th>도로명주소</th><th>지번주소</th><th>상세주소</th><th>가입일</th><th>회원등급</th><th>수정</th>
-		</tr>
-	</thead>
+<article class="join-c">
+	<div>
+ 	<br>
+ 	<br>
+	<h2>회원목록</h2>
+	</div>
+</article>     
+	<div class="search_wrap">
+    	<div class="search_area">
+            <select name="type">
+                <option value="I" <c:out value="${page.cri.type eq 'I'?'selected':'' }"/>>아이디</option>
+                <option value="N" <c:out value="${page.cri.type eq 'N'?'selected':'' }"/>>이름</option>
+                <option value="IN" <c:out value="${page.cri.type eq 'IN'?'selected':'' }"/>>아이디 +이름 </option>
+            </select>    
+            <input type="text" name="keyword" value="${page.cri.keyword}" placeholder="검색어를 입력하세요">
+            <button>Search</button>
+        </div>
+    </div>
+   <br><br><br>
+<article class="join-c">
+	<table class="join-t">
 	<tbody>
+	<tr>
+		<th>아이디</th><th>이름</th><th>번호</th><th>이메일</th><th>성별</th><th>우편번호</th><th>도로명주소</th><th>지번주소</th><th>상세주소</th><th>가입일</th><th>회원등급</th><th>수정</th>
+	</tr>
 		<c:forEach items="${memberlist}" var="member">
 		<tr>
 			<td><a href="<%=request.getContextPath()%>/member/info?pageNum=${page.cri.pageNum}&amount=${page.cri.amount}&type=${page.cri.type}&keyword=${page.cri.keyword}&id=${member.id}">${member.id}</a></td>
@@ -83,27 +83,17 @@ $(".search_area button").on("click", function(e){
 			<td>${member.roadaddress}</td>
 			<td>${member.jibunaddress}</td>
 			<td>${member.detailaddress}</td>
-			<td><fmt:formatDate value="${member.register}" type="both" pattern="yy년MM월dd일"/></td>
+			<td><fmt:formatDate value="${member.register}" type="both" pattern="yy/MM/dd"/></td>
 			<td>${member.grade}</td>
 			<td><button type="button" onclick="location.href='./update?id=${member.id}'">수정</button></td>
 		</tr>	
 		</c:forEach>
 	</tbody>
 	</table>
-	<div class="search_wrap">
-    	<div class="search_area">
-            <select name="type">
-                <option value="I" <c:out value="${page.cri.type eq 'I'?'selected':'' }"/>>아이디</option>
-                <option value="N" <c:out value="${page.cri.type eq 'N'?'selected':'' }"/>>이름</option>
-                <option value="IN" <c:out value="${page.cri.type eq 'IN'?'selected':'' }"/>>아이디 +이름 </option>
-            </select>    
-            <input type="text" name="keyword" value="${page.cri.keyword}" placeholder="검색어를 입력하세요">
-            <button>Search</button>
-        </div>
-    </div> 
-       
+	<br><br>
+   <div class="text-center"> 
 	<div class="pageInfo_wrap" >
-        <div class="pageInfo_area">
+       <div class="pageInfo_area">
         <ul class="pageInfo" id="pageInfo">
          <!-- 이전페이지 버튼 -->
          <c:if test="${page.prev}">
@@ -118,19 +108,22 @@ $(".search_area button").on("click", function(e){
              <li class="pageInfo_btn next"><a href="${page.endPage + 1 }">Next</a></li>
          </c:if>    
         </ul>
-        </div>
+		<br><br><br>
     </div>
+    </div>
+    </div>  
     <form id="moveForm" method=get >
 	 <input type="hidden" name="pageNum" value="${page.cri.pageNum}">
      <input type="hidden" name="amount" value="${page.cri.amount}">
 	 <input type="hidden" name="type" value="${page.cri.type}">
 	 <input type="hidden" name="keyword" value="${page.cri.keyword}">
     </form>
+</article>	
     <c:if test="${page.total == 0}">	
 		<script>
 		 alert("검색결과가 없습니다.");
 		 location.href ="<%=request.getContextPath()%>/member/list";
 		</script>
-	</c:if>   
+	</c:if>
 </body>
 </html>
