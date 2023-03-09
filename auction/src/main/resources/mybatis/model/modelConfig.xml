@@ -5,6 +5,12 @@
 
 <configuration>
 	<typeAliases>
+	
+	
+	<typeAlias type="com.mycom.auction.review.domain.ReviewDTO" alias="reviewDTO"/>
+	  <typeAlias type="com.mycom.auction.review.domain.ReviewFileVO" alias="reviewFileVO"/>
+	
+	
   
   	<typeAlias type="com.mycom.auction.offerboard.domain.OfferBoard" alias="offerBoard"/>
   
