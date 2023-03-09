@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="<%=request.getContextPath()%>"/>
+<c:set var="mreviewdto"  value="${reviewMap.reviewdto}" />
+<c:set var="mimageList"  value="${reviewMap.imageList}" />
 <%@ page session="false" %>
 <!DOCTYPE html>
 <head>
@@ -9,6 +11,20 @@
 	<title>리뷰게시판 글 상세보기</title>
 </head>
  <body>
+<%--  
+reviewMap.put("reviewdto", reviewdto);
+		
+		  //List : 상품이미지목록조회 
+List<ReviewFileVO> imageList = reviewRepository.selectReviewDetailImage(no);
+  reviewMap.put("imageList",imageList);
+
+model.addAttribute("reviewMap", reviewMap); --%>
+컨트롤러가 넘겨준 모델속성명 : reviewMap=${reviewMap}<br/><br/>
+reviewMap.키명=reviewMap.reviewdto=${reviewMap.reviewdto.reviewNo}<br/><br/>
+reviewMap.키명=reviewMap.imageList=<br/><br/>
+
+ mreviewdto=${mreviewdto}<br/>
+ mimageList=${mimageList}
 <h2>리뷰 상세</h2>
     <c:if test="${not empty review}">
        <table border="1">
@@ -31,8 +47,8 @@
               <tr>
                 <td>이미지</td>
                 <td colspan="3">
-                <c:forEach var="reviewFileName" items="${map.fileList}">
-					  <img src="${contextPath}/download?reviewFileName=${reviewFileName}" class="imgSize"/><br/>
+                <c:forEach var="file" items="${mimageList}">
+					  <img src="${contextPath}/download?reviewNo=${ReviewNo}&fileName=${file.fileName}" class="imgSize"/><br/>
 				  </c:forEach>
   			</td>
             </tr>

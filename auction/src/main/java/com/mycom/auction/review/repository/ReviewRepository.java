@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
-import com.mycom.auction.review.domain.ReviewFileVO;
 import com.mycom.auction.review.domain.ReviewDTO;
+import com.mycom.auction.review.domain.ReviewFileVO;
 
 public interface ReviewRepository {
 	
@@ -22,6 +22,19 @@ public interface ReviewRepository {
 	
 	//특정 리뷰의 상세 조회
 	public ReviewDTO getReviewDetail(int no) throws DataAccessException;
+	
+	
+	
+	
+	//파일 포함 상세조회
+	public ReviewDTO selectReviewDetail(int no) throws DataAccessException;
+	
+	
+	  //파일이미지목록조회? 
+	public List selectReviewDetailImage(int no) throws DataAccessException;
+	 
+	
+	
 	
 	//전체 리뷰 목록 조회
 	public List<ReviewDTO> getReviewAllList() throws DataAccessException;

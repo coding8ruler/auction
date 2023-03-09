@@ -13,9 +13,23 @@ import java.sql.Date;
         private String starRating; //별점
         //private int recommendCnt; //추천수
         private int viewCnt; //조회수
+        private String review_fileName;	//이미지파일명
 		
 
-        //생성자
+      
+
+
+		public String getReview_fileName() {
+			return review_fileName;
+		}
+
+
+		public void setReview_fileName(String review_fileName) {
+			this.review_fileName = review_fileName;
+		}
+
+
+		//생성자
         public ReviewDTO() {
 		}
 
@@ -119,8 +133,10 @@ import java.sql.Date;
 		public String toString() {
 			return "ReviewDTO [reviewNo=" + reviewNo + ", id=" + id + ", reviewTitle=" + reviewTitle
 					+ ", reviewContent=" + reviewContent + ", reviewDate=" + reviewDate + ", starRating=" + starRating
-					+ ", viewCnt=" + viewCnt + "]";
+					+ ", viewCnt=" + viewCnt + ", review_fileName=" + review_fileName + "]";
 		}
+
+
 
 
 		//toString 메서드 

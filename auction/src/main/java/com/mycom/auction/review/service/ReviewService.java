@@ -21,6 +21,15 @@ public interface ReviewService {
 	//특정 리뷰의 상세 조회
 	public ReviewDTO getReviewDetail(int no) throws Exception;
 	
+	
+	
+	
+	//파일 포함 상세 조회
+	public Map reviewDetail(int no) throws Exception;
+	
+	
+	
+	
 	//전체 리뷰 목록 조회
 	public List<ReviewDTO> getReviewAllList() throws Exception;
 	

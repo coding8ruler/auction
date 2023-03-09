@@ -7,7 +7,9 @@ public class ReviewFileVO {
 	private int fileNo;			//이미지번호
 	private int reviewNo;		//글번호
 	private String fileName;	//이미지파일명
-	private String id;		//글등록자id
+	//private String fileType; //파일타입
+	//private String id;		//글등록자id
+	private String id;		//작성자
 	private Date creDate;		//등록일
 	
 	public ReviewFileVO() {
@@ -37,6 +39,8 @@ public class ReviewFileVO {
 		this.fileName = fileName;
 	}
 
+	
+
 	public String getid() {
 		return id;
 	}
@@ -55,9 +59,12 @@ public class ReviewFileVO {
 
 	@Override
 	public String toString() {
-		return "ReviewFileVO [fileNo=" + fileNo + ", reviewNo=" + reviewNo + ", fileName=" + fileName + ", id="
-				+ id + ", creDate=" + creDate + "]";
+		return "ReviewFileVO [fileNo=" + fileNo + ", reviewNo=" + reviewNo + ", fileName=" + fileName + ", id=" + id
+				+ ", creDate=" + creDate + "]";
 	}
+
+
+
 	
 	
 	

@@ -1,14 +1,15 @@
 package com.mycom.auction.review.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mycom.auction.review.domain.ReviewFileVO;
 import com.mycom.auction.review.domain.ReviewDTO;
+import com.mycom.auction.review.domain.ReviewFileVO;
 import com.mycom.auction.review.repository.ReviewRepository;
 
 @Service
@@ -41,6 +42,26 @@ public class ReviewServiceImpl implements ReviewService{
 	public ReviewDTO getReviewDetail(int no) throws Exception {
 	return reviewRepository.getReviewDetail(no);
 	}
+	
+	
+	//파일 포함 상세조회
+	@Override
+	public Map reviewDetail(int no) throws Exception {
+		
+		Map<String,Object> reviewMap = new HashMap<String,Object>();
+		
+		ReviewDTO reviewdto = reviewRepository.selectReviewDetail(no);
+		reviewMap.put("reviewdto", reviewdto);
+		
+		  //List : 상품이미지목록조회 
+		List<ReviewFileVO> imageList = reviewRepository.selectReviewDetailImage(no);
+		  reviewMap.put("imageList",imageList);
+		 
+		return reviewMap;
+	}
+	
+	
+	
 	
 	//전체 리뷰 목록 조회
 	@Override
@@ -85,10 +106,17 @@ public class ReviewServiceImpl implements ReviewService{
 	return reviewRepository.updateReview(reivewDTO);
 	}
 	
+	
+	//파일 수정
+	
+	
+	
 	//리뷰 삭제
 	@Override
 	public int deleteReview(int no) throws Exception {
 	return reviewRepository.deleteReview(no);
 	}
+
+
 
 }

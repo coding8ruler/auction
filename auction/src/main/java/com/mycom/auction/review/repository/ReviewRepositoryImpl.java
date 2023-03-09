@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.mycom.auction.review.domain.ReviewFileVO;
 import com.mycom.auction.review.domain.ReviewDTO;
+import com.mycom.auction.review.domain.ReviewFileVO;
 
 @Repository
 public class ReviewRepositoryImpl implements ReviewRepository{
@@ -43,6 +43,26 @@ public class ReviewRepositoryImpl implements ReviewRepository{
 		return (ReviewDTO)sqlSession.selectOne("mapper.review.reviewDetail", no);
 	}
   	
+    
+    
+    
+    //파일 포함 상세조회
+    @Override
+	public ReviewDTO selectReviewDetail(int no) throws DataAccessException {
+		return (ReviewDTO)sqlSession.selectOne("mapper.review.selectReviewDetail", no);
+	}
+	
+	  //이미지목록조회??     
+	  
+	  @Override 
+	  public List selectReviewDetailImage(int no) throws DataAccessException { 
+		  return (List)sqlSession.selectList("mapper.review.selectReviewDetailImage", no); 
+	}
+	  
+	 
+    
+    
+    
   	//전체 리뷰 목록 조회
     @Override
 	public List<ReviewDTO> getReviewAllList() throws DataAccessException {
@@ -102,6 +122,8 @@ public class ReviewRepositoryImpl implements ReviewRepository{
 		 System.out.println("cnt="+cnt);
 		 return cnt;
 	}
+
+	
   	
 }
 

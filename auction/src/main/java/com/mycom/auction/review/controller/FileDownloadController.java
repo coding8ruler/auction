@@ -19,17 +19,24 @@ public class FileDownloadController {
 	private static final String REPO_PATH = "C:\\auction\\image_repo";
 	
   	@RequestMapping("/download")
-  	public void download(@RequestParam("reviewFileName") String reviewFileName,
+  	public void download(@RequestParam("fileName") String fileName,
   			             @RequestParam("reviewNo") String reviewNo,
   			                 HttpServletResponse response) throws Exception {
   		
   		OutputStream out = response.getOutputStream();
   		//이미지저장위치에  글번호별로 폴더생성하여 다운로드할 파일을 저장
-  		String downFile = REPO_PATH +"\\"+reviewNo+"\\"+reviewFileName;
+  		String downFile = REPO_PATH +"\\"+reviewNo+"\\"+fileName;
   		File file = new File(downFile);//다운로드할 파일객체생성
 
+  		if(file.exists()) {
+  			//가로세로size를 지정하여 png썸네일이미지로 출력
+  			Thumbnails.of(file).size(300,200).outputFormat("png").toOutputStream(out);
+  		}else {
+  			return;
+  		}
+  		
   		response.setHeader("Cache-Control", "no-cache");
-  		response.addHeader("Content-disposition", "attachment; reviewFileName=" + reviewFileName);//Content-Disposition을 통해 파일명을 설정
+  		response.addHeader("Content-disposition", "attachment; fileName=" + fileName);//Content-Disposition을 통해 파일명을 설정
   		
   		//버퍼를 이용하여   파일정보를     한 번에 8byte씩  읽어들이고 
   		FileInputStream in = new FileInputStream(file);
@@ -48,18 +55,16 @@ public class FileDownloadController {
   	
   	/*여기에서는 main.jsp에서
   	 *<img
-	   src="${conPath}/thumbnails?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">*/
+	   src="${conPath}/thumbnails?goods_id=${item.goods_id}&fileName=${item.rfileName}">*/
   	//썸네일이미지로 출력=> 다수이미지를 사용한 웹페이지에서 사용하면 이미지가 신속하게 표시될 수 있다
   	@RequestMapping("/thumbnails")
-  	public void thumbnails(@RequestParam("fileName") String reviewFileName,
-	            // @RequestParam("articleNo") String articleNo,
-  				 @RequestParam("goods_id") String goods_id,
+  	public void thumbnails(@RequestParam("fileName") String fileName,
+  				 @RequestParam("reviewNo") String reviewNo,
 	             HttpServletResponse response) throws Exception {
 
 		OutputStream out = response.getOutputStream();
 		//이미지저장위치에  상품id(글번호)별로 폴더생성하여 다운로드할 파일을 저장
-		//String filePath = REPO_PATH +"\\"+articleNo+"\\"+reviewFileName;
-		String filePath = REPO_PATH +"\\"+goods_id+"\\"+reviewFileName;
+		String filePath = REPO_PATH +"\\"+reviewNo+"\\"+fileName;
 
   		File image = new File(filePath);//다운로드할 파일객체생성
 
@@ -77,7 +82,7 @@ public class FileDownloadController {
   		 -웹 브라우저가 WAS에 같은 jsp파일을 2번 이상 요청할 때 불필요한 응답 요청을 방지하기 위해 사용한다.
   		 -웹 브라우저의 응답속도 향상되는 효과가 있다.*/
   		response.setHeader("Cache-Control", "no-cache");
-  		response.addHeader("Content-disposition", "attachment; fileName=" + reviewFileName);//Content-Disposition을 통해 파일명을 설정
+  		response.addHeader("Content-disposition", "attachment; fileName=" + fileName);//Content-Disposition을 통해 파일명을 설정
   		
 
   		byte[] buffer = new byte[1024 * 8];

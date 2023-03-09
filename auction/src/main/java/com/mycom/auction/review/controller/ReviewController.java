@@ -1,12 +1,15 @@
 package com.mycom.auction.review.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
@@ -26,8 +29,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mycom.auction.review.domain.ReviewFileVO;
 import com.mycom.auction.review.domain.ReviewDTO;
+import com.mycom.auction.review.domain.ReviewFileVO;
 import com.mycom.auction.review.service.ReviewService;
 
 
@@ -37,7 +40,7 @@ public class ReviewController extends BaseController {
 	private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
 
 	@Autowired
-	private ReviewService reviewService;
+	ReviewService reviewService;
 	
 	@GetMapping("/review/listForm")
 	public String listForm(Model model, @RequestParam(name="ano",required=false,defaultValue="1") int no) throws Exception {
@@ -67,18 +70,26 @@ public class ReviewController extends BaseController {
 		//특정 리뷰의 글번호 조회
 		int ano = reviewService.getReviewNo(no);
 		
-		//특정 리뷰의 제목 조회
+		///특정 리뷰의 제목 조회
 		String title = reviewService.getTitleByReviewNo(no);
 		
 		//특정 리뷰의 상세 조회
-		ReviewDTO review = reviewService.getReviewDetail(no);
+	ReviewDTO review = reviewService.getReviewDetail(no);
 		
-		//제품상세
 		
+		
+		System.out.println("컨트롤러  detailForm no="+no);
+		//파일 포함 상세 조회
+		Map reviewMap = reviewService.reviewDetail(no);
+		System.out.println("컨트롤러  detailForm Map reviewMap.get('reviewdto') ="+reviewMap.get("reviewdto"));
+		System.out.println("컨트롤러  detailForm Map reviewMap.get(imageList) ="+reviewMap.get("imageList"));
+
+				
 		//Model
 		model.addAttribute("ReviewNo", ano);
 		model.addAttribute("title", title);
 		model.addAttribute("review", review);	
+		model.addAttribute("reviewMap", reviewMap);
 		
 		//View
 		return"review/reviewDetail";
@@ -118,7 +129,7 @@ public class ReviewController extends BaseController {
 			while( enu.hasMoreElements() ) {
 				String name = (String)enu.nextElement();
 				String value= multipartRequest.getParameter(name);
-				logger.info("컨트롤러 while문안 map.put(name,value)="+name+","+value);
+				System.out.println("컨트롤러 while문안 map.put(name,value)="+name+","+value);
 		  		map.put(name,value);
 			}
 			
@@ -138,7 +149,7 @@ public class ReviewController extends BaseController {
 			if( reviewFileList!=null && reviewFileList.size()!=0) {
 				for( ReviewFileVO reviewFileVO  : reviewFileList) {
 					reviewFileVO.setid(id);//등록자id를 set
-					logger.info("컨트롤러 for문안 reviewFileVO="+reviewFileVO);
+					System.out.println("컨트롤러 for문안 reviewFileVO="+reviewFileVO);
 				}
 				map.put("reviewFileList",reviewFileList);
 			}//if끝
@@ -147,7 +158,7 @@ public class ReviewController extends BaseController {
 			HttpHeaders responseHeaders = new HttpHeaders();
 			responseHeaders.add("Content-Type", "text/html;charset=utf-8");
 			String msg = null;
-			String reviewFileName = null;
+			String fileName = null;
 
 			try {
 				int reviewNo=reviewService.addNewReview(map);//글관련정보+첨부파일정보			
@@ -155,8 +166,8 @@ public class ReviewController extends BaseController {
 				//입력성공이 되면 
 				if( reviewFileList!=null && reviewFileList.size()!=0) {
 					for( ReviewFileVO reviewFileVO : reviewFileList) {
-						reviewFileName=reviewFileVO.getFileName();
-						File srcFile = new File(REPO_PATH+"\\temp\\"+reviewFileName);
+						fileName=reviewFileVO.getFileName();
+						File srcFile = new File(REPO_PATH+"\\temp\\"+fileName);
 						File destDir = new File(REPO_PATH+"\\"+reviewNo);
 						FileUtils.moveFileToDirectory(srcFile, destDir, true);
 					}
@@ -165,7 +176,7 @@ public class ReviewController extends BaseController {
 				//2)"글등록이 되었습니다."라는 alert띄우기
 				msg = "<script>";
 				msg+= "alert('글등록이 되었습니다.');";
-				msg+= "location.href='"+multipartRequest.getContextPath()+"/review/addForm';";
+				msg+= "location.href='"+multipartRequest.getContextPath()+"/review/listForm';";
 				msg+= "</script>";
 				//3)입력폼페이지로 이동
 			}catch(Exception e) {
@@ -174,8 +185,8 @@ public class ReviewController extends BaseController {
 				//1)업로드된 이미지삭제
 				if(reviewFileList!=null && reviewFileList.size()!=0) {
 					for( ReviewFileVO reviewFileVO : reviewFileList) {
-						reviewFileName=reviewFileVO.getFileName();
-						File srcFile = new File(REPO_PATH+"\\temp\\"+reviewFileName);
+						fileName=reviewFileVO.getFileName();
+						File srcFile = new File(REPO_PATH+"\\temp\\"+fileName);
 						srcFile.delete();
 					}
 				}//if
@@ -196,6 +207,8 @@ public class ReviewController extends BaseController {
 	  	}//입력처리 끝
 	
 	
+
+	  	
 		//특정 리뷰 글수정
 		//수정폼보여주기
 		@GetMapping("/review/updateForm")
