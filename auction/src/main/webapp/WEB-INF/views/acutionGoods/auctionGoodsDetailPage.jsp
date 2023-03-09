@@ -212,7 +212,6 @@
 });
     
    function purInsert(goods,itemSize,sellNo){
-	   alert(goods+" / "+itemSize);
 	   window.location.href = "${path}/productBuyForm?goods=" + goods + "&goodsSize=" + itemSize +"&sellNo="+sellNo;
 	 }
     
@@ -271,7 +270,7 @@
               
    <main>
    <form>
-   	<input type="text" disabled="disabled" id="goodsId" value="${goodsInfo.goods}">
+   	<input type="hidden" disabled="disabled" id="goodsId" value="${goodsInfo.goods}">
    </form>
    <div style="display: flex; justify-content: center; align-items: center;">
    	<div>
