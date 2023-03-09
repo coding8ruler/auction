@@ -52,7 +52,7 @@ public class OfferBoard {
 
 
 
-		public int getOfferno() {
+		public Integer getOfferno() {
 		return offerno;
 	}
 
@@ -61,7 +61,7 @@ public class OfferBoard {
 
 
 
-	public void setOfferno(int offerno) {
+	public void setOfferno(Integer offerno) {
 		this.offerno = offerno;
 	}
 

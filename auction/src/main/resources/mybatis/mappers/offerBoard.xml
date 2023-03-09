@@ -27,9 +27,12 @@
 	
 	<!-- 구인글 인서트문 -->
 	<insert id="insertoffer" parameterType="com.mycom.auction.offerboard.domain.OfferBoard">
+		 <selectKey resultType="Integer" keyProperty="offerno" order="BEFORE"> 
+ 		select seq_offerboard.nextval from dual 
+	   </selectKey>
 		 <![CDATA[		
 			insert into offerboard(offerno,id,offertitle,offerpoint,pay,wttime,offercontent,viewcnt,starttime)
-			values(seq_offerboard.nextval,#{id},#{offertitle},#{offerpoint},#{pay},sysdate,#{offercontent},0,#{starttime})
+			values(#{offerno},#{id},#{offertitle},#{offerpoint},#{pay},sysdate,#{offercontent},0,#{starttime})
 		  ]]>
 	
 	</insert>
@@ -46,10 +49,11 @@
 	
 	<!-- 특정글 번호로 찾는 상세 정보 조회 -->
 		<select id="offerDetail" resultType="offerBoard" parameterType="int"> 
+		
 	 	<![CDATA[
-		 	select offerno,id,offertitle,offerpoint,pay,offertime,viewcnt
+		 	select offerno,id,offertitle,offerpoint,pay,wttime,offercontent,viewcnt,starttime
 			from offerboard 
-			where offerno=#{no}
+			where offerno=#{offerno}
 		]]>
 	</select>
 	

@@ -25,9 +25,9 @@
 		    <td>제목</td>
 		    <td>거래 장소</td>
 		    <td>급여</td>
-		    <td>거래 일정</td>
+		    <td>작성일</td>
+		    <td>근무 시작 시간</td>
 		    <td>조회수</td>
-		    <td>지원자수</td>
 		  </tr>
 	  </thead>
 	  <tbody>
@@ -39,16 +39,15 @@
 		    <td>${data.offerno}</td>
 		  
 		    <td>${data.id}</td> 
-		    <td><a href="${cp}/offerBoard/offerBoardForm?offerno=${data.offerno}">
+		    <td><a href="${cp}/offerBoard/offerSelectForm?offerno=${data.offerno}">
 		    ${data.offertitle}</a>
 		    </td>
 		    <td>${data.offerpoint}</td>
 		   
 		    <td>${data.pay}</td>
-		    <td>${data.wttime}</td>
+		    <td><fmt:formatDate value="${data.wttime}" pattern="yyyy년MM월dd일 hh시mm분" /></td>
+		     <td><fmt:formatDate value="${data.starttime}" pattern="yyyy년MM월dd일 hh시mm분" /></td>
 		    <td>${data.viewcnt}</td>
-		     <td>${data.starttime}</td>
-		    
 		  </tr>
 		   
 		</c:forEach>  

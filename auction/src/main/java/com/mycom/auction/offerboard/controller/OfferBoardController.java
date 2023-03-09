@@ -2,9 +2,7 @@ package com.mycom.auction.offerboard.controller;
 
 
 
-import java.sql.Time;
-import java.time.LocalTime;
-import java.util.Date;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,10 +15,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mycom.auction.offerboard.domain.OfferBoard;
 import com.mycom.auction.offerboard.domain.Page;
 import com.mycom.auction.offerboard.service.OfferListService;
+import com.sun.org.glassfish.external.probe.provider.annotations.ProbeParam;
 
 // 구인구직컨트롤러
 @Controller
@@ -76,6 +78,7 @@ public class OfferBoardController {
   	 //입력폼보여주기
   	//요청방식 get
     //offerinsertForm 구인 등록 폼 보여주기
+  	
   	@GetMapping("/offerBoard/offerInsertForm")
     public String offerform(@ModelAttribute OfferBoard offerBoard,HttpServletRequest request)  throws Exception{
 		//1.파라미터받기 //2.비즈니스로직
@@ -93,16 +96,17 @@ public class OfferBoardController {
     	return "/offerBoard/offerInsertForm";
     }
   	
+  	
   //입력폼에서 입력 처리 담당
   	//요청방식 get
     //offerinsertForm 구인 등록 폼 보여주기 http://localhost:8081/auction/offerBoard/offerInsertForm
-	@GetMapping("/offerBoard/offerInsertForm2")
-    public String offerinsert(@ModelAttribute OfferBoard offerBoard, HttpServletRequest request,Model model) throws Exception{
+	@GetMapping("/offerBoard/offerInsertForm1")
+    public String offerinsert( @ModelAttribute OfferBoard offerBoard, HttpServletRequest request,Model model) throws Exception{
 		
 		//LocalTime starttime1 = offerBoard.getStarttime();
 		
 		offerListService.insertOffer(offerBoard);
-		System.out.println("offerBoard"+offerBoard);
+		System.out.println("offerBoard==offerinsert"+offerBoard);
 		
 		model.addAttribute("offerBoard", offerBoard);
 		//model.addAttribute("starttime",starttime1);
@@ -121,18 +125,18 @@ public class OfferBoardController {
 		return "offerBoard/offerBoardForm";
 	}
 	
-	
 	*/
-    
-    
 	  //offerSelect 입력된 구인게시글 내용폼 보여주기
 	 
 	  @GetMapping("/offerBoard/offerSelectForm") 
-	  public String offerSelect(Model model) throws Exception{
+	  public String offerSelect(Model model ,@RequestParam("offerno")int no) throws Exception{
 	
-		  offerListService.getOfferDetail(no);
-		  model.addAttribute("no",no);
 		  
+		  OfferBoard offerBoard =offerListService.getOfferDetail(no);
+		  
+	    	model.addAttribute("offerBoard",offerBoard); //전체 목록 검색
+
+	    	System.out.println("offerBoard==offerSelect=="+offerBoard);
 		  
 		  return "/offerBoard/offerSelectForm"; 
 	 }

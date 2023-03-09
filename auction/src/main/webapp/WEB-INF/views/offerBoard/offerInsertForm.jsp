@@ -44,30 +44,30 @@
   }
 </style>
 <script type="text/javascript">
-	$(document).ready(function(){
-		
-		
-
-	$("#offersave").click(function(){
-		
-		let hiddenID = $("#id").val();
-		
-		if( hiddenID != null){
-			
-			alert("작성 실패 , 재로그인이 필요합니다.");
-			return false;
-			
-		}else {
-			
-		alert("작성 완료");
-		
-		return true;
-	}
-		
+$(document).ready(function(){
+	  $("#offersave").click(function(){
+	    let hiddenID = $("#id").val();
+	    if (hiddenID !== "") {
+	      alert("작성 실패, 재로그인이 필요합니다.");
+	      return false;
+	    } else {
+	      alert("작성 완료");
+	      //offerno++;
+	      //document.getElementById("offerno").value = offerno;
+	      return true;
+	    }
+	  });
 	});
-
-});
 </script>
+<!-- <script type="text/javascript">
+function incrementOfferno() {
+	  
+	  offerno++;
+	  document.getElementById("offerno").value = offerno;
+	}
+${offerBoard.offerno}
+
+</script> -->
 </head>
 <body>
 	
@@ -79,6 +79,7 @@
 			<br>
 			  <div class="table1">
 			    	<div class="table-cell">글쓴이<br/>${sessionScope.AUTHUSER_ID}</div>
+			    	<input type="hidden" name="offerno" id="offerno" />
 			    	<input type="hidden" name="id" id="id" value="${sessionScope.AUTHUSER_ID}" />
 			  </div><br>
 			  
@@ -97,6 +98,7 @@
 			   <div class="table4">
 			   	 	<div class="table-cell">작성일<br/>
 			   	 	<input type="date" name="wttime" id="wttime"/>
+			   	 	
 			   	 	</div>
 			  </div>
 			  
