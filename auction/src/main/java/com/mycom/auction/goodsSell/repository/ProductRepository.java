@@ -44,4 +44,5 @@ public interface ProductRepository {
 	
 	//판매 완료 상태물품 목록 조회
 	public int productAutoEnd(int goodsGrade) throws DataAccessException;
+	
 }

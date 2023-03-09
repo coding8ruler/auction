@@ -111,6 +111,7 @@
     	   });
     	  
     	 });
+    
 
     </script>
   </head>
@@ -127,71 +128,64 @@
           <tr>
             <td>
               <h3>product Page</h3>
-	<form id="uploadFrm" action="${contextPath}/productAdd" enctype="multipart/form-data" method="post">
-	 <table border="1">
-	 <tr>
-	 	<th>사이즈</th>
-	 	<td>
-	 		<input type="hidden" value="1" name="goodsGrade" id="goodsGrade"/>
-	 		<input type="text" value="${goodsSize}" name="itemSize" id="itemSize" readonly="readonly"/>
-	 	</td>
-	 </tr>
-	 <tr>
-	 	<th>모델명</th>
-	 	<td>
-	 		<input type="text" value="${goods}" name="goods" id="goods" readonly="readonly"/>
-	 	</td>
-	 </tr>
-	 <tr>
-	 	<th>아이디명</th>
-	 	<td>
-	 		<input type="text" value="${sessionScope.AUTHUSER_ID}" name="id" id="id" readonly="readonly"/>
-	 	</td>
-	 </tr>
-	 	<tr>
- 		  <th>수량</th>
-		 	<td><input type="number" id="quantity" name="quantity" placeholder="수량"/></td>
-	  </tr> 
-		<tr>
-			<th>가격</th>
- 		  <td><input type="text" id="desiredSellPrice" name="desiredSellPrice" pattern="[0-9]+" title="숫자만 입력해주세요." placeholder="숫자만 입력해주세요."></td>
-		</tr> 
-		<tr>
-			<th>상품 등록 기간:</th>
-		  <td>
-        <select id="vailDate" name="vailDate" required>
-		       <option value="none">--선택--</option>
-		       <option value="3">3 days</option>
-		       <option value="5">5 days</option>
-		     </select>
- 			</td>
-		</tr>
-		<tr>
-     <th>파일첨부</th>
-     <td>
-       <input type="button" value="파일추가" id="btnAddFile"/>
-   		<input type="button" value="파일삭제" id="btnDelFile"/>
-     </td>
-    </tr>
-	  <tr>
-      <th>첨부파일</th>
-      <td><input type="file" name="file1" id="files1"/></td>
-	  </tr>
-	   <tr id="i1">
-	 		 <td colspan="2" style="text-align:center;">
-		 		 <input type="submit" value="첨부파일upload하기"/>
-		 		 <input type="reset" id="btnReset" value="취소"/>
-		 	 </td>	
-	 		</tr>
-	   </table>
-	</form>
-              
-              
-              
-              
-              
-              
-              
+							<form id="uploadFrm" action="${contextPath}/productAdd" enctype="multipart/form-data" method="post">
+							 <table border="1">
+							 <tr>
+							 	<th>사이즈</th>
+							 	<td>
+							 		<input type="hidden" value="1" name="goodsGrade" id="goodsGrade"/>
+							 		<input type="text" value="${goodsSize}" name="itemSize" id="itemSize" readonly="readonly"/>
+							 	</td>
+							 </tr>
+							 <tr>
+							 	<th>모델명</th>
+							 	<td>
+							 		<input type="text" value="${goods}" name="goods" id="goods" readonly="readonly"/>
+							 	</td>
+							 </tr>
+							 <tr>
+							 	<th>아이디명</th>
+							 	<td>
+							 		<input type="text" value="${sessionScope.AUTHUSER_ID}" name="id" id="id" readonly="readonly"/>
+							 	</td>
+							 </tr>
+							 	<tr>
+						 		  <th>수량</th>
+								 	<td><input type="number" id="quantity" name="quantity" placeholder="수량"/></td>
+							  </tr> 
+								<tr>
+									<th>가격</th>
+						 		  <td><input type="text" id="desiredSellPrice" name="desiredSellPrice" pattern="[0-9]+" title="숫자만 입력해주세요." placeholder="숫자만 입력해주세요."></td>
+								</tr> 
+								<tr>
+									<th>상품 등록 기간:</th>
+								  <td>
+						        <select id="vailDate" name="vailDate" required>
+								       <option value="none">--선택--</option>
+								       <option value="3">3 days</option>
+								       <option value="5">5 days</option>
+								     </select>
+						 			</td>
+								</tr>
+								<tr>
+						     <th>파일첨부</th>
+						     <td>
+						       <input type="button" value="파일추가" id="btnAddFile"/>
+						   		<input type="button" value="파일삭제" id="btnDelFile"/>
+						     </td>
+						    </tr>
+							  <tr>
+						      <th>첨부파일</th>
+						      <td><input type="file" name="file1" id="files1"/></td>
+							  </tr>
+							   <tr id="i1">
+							 		 <td colspan="2" style="text-align:center;">
+								 		 <input type="submit" value="첨부파일upload하기"/>
+								 		 <input type="reset" id="btnReset" value="취소"/>
+								 	 </td>	
+							 		</tr>
+							   </table>
+							</form>
             </td>
           </tr>
         </table>

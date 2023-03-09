@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,6 @@ import com.mycom.auction.goodsSell.domain.PageDTO;
 import com.mycom.auction.goodsSell.domain.Product;
 import com.mycom.auction.goodsSell.domain.ProductPurchaseDTO;
 import com.mycom.auction.goodsSell.repository.ProductRepository;
-import com.mycom.auction.goodsSell.schedule.Scheduler;
 import com.mycom.auction.goodsSell.service.ProductService;
 
 @Controller
@@ -40,14 +40,12 @@ import com.mycom.auction.goodsSell.service.ProductService;
 public class productSellController extends  BaseController implements WebMvcConfigurer{
 	
 	//파일저장경로
-  	private static final String REPO_PATH = "C:\\spring\\repo";
+  	private static final String REPO_PATH = "C:\\uploads";
 	
 	@Autowired
 	ProductService productService;
 	@Autowired
 	ProductRepository productRepository;
-	@Autowired
-	Scheduler scheduler;
 	
 	 //판매하기 글 등록 페이지
 	 @RequestMapping(value="/productAddForm", method= {RequestMethod.GET})
@@ -120,11 +118,9 @@ public class productSellController extends  BaseController implements WebMvcConf
 	public String productList(Model model,Criteria cri) throws Exception {
 		
 		int count =productService.productListCount();
-		
 		//페이징 처리 전체 목록 조회
 		model.addAttribute("list",productService.getListWithPaging(cri));
 		model.addAttribute("pageMaker",new PageDTO(cri, count));
-			
 		
 		return "auctionGoodsSell/productList";
 	}
@@ -168,31 +164,20 @@ public class productSellController extends  BaseController implements WebMvcConf
 	
 	//구매하기 페이지
 	@GetMapping("/productBuyForm")
-	public String productBuy(Model model,String goodsSize,String goods, HttpServletRequest request) throws Exception {
+	public String productBuy(Model model,String goodsSize,String goods,int sellNo, HttpServletRequest request) throws Exception {
 		
 		//임시 아이디
 		HttpSession session = request.getSession();
 		session.setAttribute("AUTHUSER_ID", "hongid");//임시
 		
-		
-		/*
 		Map map = new HashMap();
 		map.put("itemSize",goodsSize);
 		map.put("goods",goods);
-		*/
-		
-		//임시 데이터
-		
-		Map map = new HashMap();
-		map.put("itemSize",goodsSize);
-		map.put("goods",goods);
-		System.out.println(map);
 		
 		//물품 상제 정보 조회
 		Product product =productService.productBuyDetail(map);
-		
 		model.addAttribute("product",product);
-		
+		model.addAttribute("sellNo",sellNo);
 		return "auctionGoodsSell/productBuyForm";
 	}
 	
@@ -200,7 +185,6 @@ public class productSellController extends  BaseController implements WebMvcConf
 	//구매하기 상품 등록
 	@PostMapping("/productBuy")
 	public String productBuy(Model model,@ModelAttribute ProductPurchaseDTO productPurchaseDTO) throws Exception {
-		
 		
 		Map map = new HashMap();
 		map.put("desiredPurPrice", productPurchaseDTO.getDesiredPurPrice());
@@ -210,14 +194,31 @@ public class productSellController extends  BaseController implements WebMvcConf
 		map.put("id", productPurchaseDTO.getId());
 		map.put("sellNo", productPurchaseDTO.getSellNo());
 		
-		int cnt=productService.productBuy(map);
-		
-		return "redirect:/productList";
+		int result = productService.productBuy(map);
+		int comment = 0;
+		if(result==3) {
+		    comment = 3;
+		} else if(result==2) {
+		    comment = 2;
+		} else {
+		    comment = 1;
+		    return "redirect:/goodsListForm";
+		}
+		model.addAttribute("comment", comment);
+		return "redirect:/alertForm";
 	}
 	
+		@RequestMapping("/alertForm")
+		public String alert() {
+			
+			return "auctionGoodsSell/alertForm";
+		}
 	
 	   // 초 분 시 일 월 주 (연도)
-		@Scheduled(cron = "*/6 * * * * *")
+                                                              		@Scheduled(cron = "*/6 * * * * *")
+=======
+		@Scheduled(cron = "* */20 * * * *")
+>>>>>>> refs/remotes/origin/main
 		public void autoUpdate() throws Exception {
 			System.out.println("실행중");
 		   LocalDate now = LocalDate.now();
@@ -232,10 +233,6 @@ public class productSellController extends  BaseController implements WebMvcConf
 		   }
 		}
 		
-	
-	
-	
-	
 }
 
 

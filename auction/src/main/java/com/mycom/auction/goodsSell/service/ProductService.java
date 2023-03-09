@@ -37,5 +37,8 @@ public interface ProductService {
 	
 	//판매 완료 상태물품 목록 조회
 	public int productAutoEnd(int goodsGrade) throws Exception;
+	
+	//판매상품 최고가 조회
+	//public int checkDesiredSellPrice(Map map2) throws Exception;
 		
  }
