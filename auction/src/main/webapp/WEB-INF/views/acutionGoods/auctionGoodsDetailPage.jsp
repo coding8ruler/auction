@@ -159,7 +159,7 @@ th {
 
 		      let goodsSellObj = jsonInfo;
 		      let table =
-		        "<table><thead><tr><th>판매자명</th><th>모델명</th><th>상품명</th><th>판매시작가</th><th>판매시작일</th><th>판매종료일</th><th>구매목록 보기</th><th>구매하기</th><th>남은 시간</th></tr></thead><tbody>";
+		        "<table><thead><tr><th>판매자명</th><th>상품명</th><th>판매시작가</th><th>판매시작일</th><th>판매종료일</th><th>구매목록 보기</th><th>구매하기</th><th>남은 시간</th></tr></thead><tbody>";
 		        var tab2Link = document.querySelector('a[href="#tab2"]');
 
 		      for (let i = 0; i < goodsSellObj.goodsSell.length; i++) {
@@ -180,7 +180,6 @@ th {
 		        // 결과 출력
 		        let countdownText = days + "일 " + hours + "시간 " + minutes + "분 " + seconds + "초";
 		        table += "<tr class='table-row'>" +
-                "<td class='table-data'>" + goods.category + "</td>" +
                 "<td class='table-data'>" + goods.id + "</td>" +
                 "<td class='table-data'>" + goods.goods + "</td>" +
                 "<td class='table-data'>" + goods.desiredSellPrice + "</td>" +

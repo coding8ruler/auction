@@ -117,6 +117,7 @@
 		select sellNo,goodsSize,desiredPurPrice,purchaseNo,goodsName,id,desireQuantity
 		from productPurchase
 		where sellNo =#{sellNo}
+		order by desiredPurPrice desc
 	 ]]>	
 	</select>
 	
