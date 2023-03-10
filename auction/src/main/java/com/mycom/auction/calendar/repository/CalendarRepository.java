@@ -27,5 +27,11 @@ public interface CalendarRepository {
 		//일정등록
 		public int insertCalendar(Calendar calendar);
 
+		//특정번호 조회
+		public Calendar getCalendarDetail(int no);
+
+		//수정처리
+		public int undateCalendar(Calendar calendar);
+
 		
 }

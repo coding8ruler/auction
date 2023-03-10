@@ -8,9 +8,82 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+ <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+      
+      #container {
+        position: relative;
+        min-height: 100vh;
+      }
+      
+      #header1 {
+        height: 130px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        z-index: 1;
+      }
+      
+      #header2 {
+        height: 70px;
+        position: fixed;
+        top: 130px;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        z-index: 1;
+      }
+      
+      #content {
+        margin-top: 200px;
+        margin-bottom: 100px;
+      }
+      
+      #footer {
+        height: 70px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        z-index: 1;
+      }
+      
+      table {
+        width: 95%;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+      }
+      
+      tr {
+        border: 1px solid #ccc;
+      }
+      
+      td {
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+    </style>
 <body>
 <h3>addForm.jsp</h3>
-
+<div id="container">
+      <div id="header1">
+        <jsp:include page="../module/banner.jsp" flush="false"/>
+      </div>
+      <div id="header2">
+        <jsp:include page="../module/top.jsp" flush="false"/>
+      </div>
+      <div id="content">
+        <table>
+          <tr>
+            <td>
 
 <form id="insertFrm" 
   		method="post"
@@ -41,5 +114,13 @@
  	  </tbody>
   	</table>
   </form>
+  </td>
+          </tr>
+        </table>
+      </div>
+      <div id="footer">
+        <jsp:include page="../module/bottom.jsp" flush="false"/>
+      </div>
+    </div>
 </body>
 </html>
