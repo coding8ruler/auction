@@ -71,13 +71,15 @@ background-color: white;
  <div class="dropdown">
   <button class="dropbtn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;상품 경매 확인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
   <div class="dropdown-content">
+  <c:if test="${sessionScope.AUTHUSER.grade == 999}">
     <a href="<%=request.getContextPath()%>/goodsRegisterForm">상품등록</a>
+  </c:if>
     <a href="<%=request.getContextPath()%>/goodsListForm">상품리스트</a>
     <a href="<%=request.getContextPath()%>/productList">상품 결재 리스트</a>
-   <c:if test="">
-    <a href="<%=request.getContextPath()%>/productPurMessage">구매자용 결재 쪽지함</a>
-    <a href="<%=request.getContextPath()%>/productSellMessage">판매자용 결재 쪽지함</a>
-   </c:if>
+<c:if test="${sessionScope.AUTHUSER != null}">
+  <a href="<%=request.getContextPath()%>/productPurMessage">구매자용 결재 쪽지함</a>
+  <a href="<%=request.getContextPath()%>/productSellMessage">판매자용 결재 쪽지함</a>
+</c:if>
   </div>
 </div>
 
