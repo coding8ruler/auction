@@ -89,6 +89,59 @@
   .tab_content.active {
     display: block;
   }
+  
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 1400px;
+  margin: auto;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.table-row:hover {
+  background-color: #f5f5f5;
+}
+
+.button-1 {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button-2 {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.countdown {
+  color: #f44336;
+  font-size: 16px;
+  font-weight: bold;
+}
     </style>
     <script>
     
@@ -106,7 +159,7 @@
 
 		      let goodsSellObj = jsonInfo;
 		      let table =
-		        "<table><thead><tr><th>판매자명</th><th>상품명</th><th>판매시작가</th><th>판매시작일</th><th>판매종료일</th><th>구매목록 보기</th><th>구매하기</th><th>남은 시간</th></tr></thead><tbody>";
+		        "<table><thead><tr><th>판매자명</th><th>모델명</th><th>상품명</th><th>판매시작가</th><th>판매시작일</th><th>판매종료일</th><th>구매목록 보기</th><th>구매하기</th><th>남은 시간</th></tr></thead><tbody>";
 		        var tab2Link = document.querySelector('a[href="#tab2"]');
 
 		      for (let i = 0; i < goodsSellObj.goodsSell.length; i++) {
@@ -126,24 +179,23 @@
 
 		        // 결과 출력
 		        let countdownText = days + "일 " + hours + "시간 " + minutes + "분 " + seconds + "초";
-		        table +=
-		        		"</td><td>" +
-		        	  goods.id +
-		        	  "</td><td>" +
-		        	  goods.goods +
-		        	  "</td><td>" +
-		        	  goods.desiredSellPrice +
-		        	  "</td><td>" +
-		        	  startTimeFormatted +
-		        	  "</td><td>" +
-		        	  endTimeFormatted +
-		              "</td><td> <button  id=find onclick='selectPurList(" + goods.sellNo + ")'>구매목록보기</button>" +
-		              "</td><td> <button  onclick='purInsert(" + '"' + goods.goods + '"' + ","+ goods.itemSize +"," + '"' + goods.sellNo + '"' + ")'>구매하기</button>" +
-		              "</td><td><span class='countdown' data-time='" +
-		              distance +
-		              "'>" +
-		              countdownText +
-		              "</span></td></tr>";
+		        table += "<tr class='table-row'>" +
+                "<td class='table-data'>" + goods.category + "</td>" +
+                "<td class='table-data'>" + goods.id + "</td>" +
+                "<td class='table-data'>" + goods.goods + "</td>" +
+                "<td class='table-data'>" + goods.desiredSellPrice + "</td>" +
+                "<td class='table-data'>" + startTimeFormatted + "</td>" +
+                "<td class='table-data'>" + endTimeFormatted + "</td>" +
+                "<td class='table-data'>" +
+                "<button class='button-1' id='find' onclick='selectPurList(" + goods.sellNo + ")'>구매목록보기</button>" +
+                "</td>" +
+                "<td class='table-data'>" +
+                "<button class='button-2' onclick='purInsert(" + '"' + goods.goods + '"' + "," + '"' + goods.itemSize + '"' + "," + '"' + goods.sellNo + '"' + ")'>구매하기</button>" +
+                "</td>" +
+                "<td class='table-data'>" +
+                "<span class='countdown' data-time='" + distance + "'>" + countdownText + "</span>" +
+                "</td>" +
+                "</tr>";
 		      }
 
 		      table += "</tbody></table>";
@@ -233,17 +285,19 @@
 			        let goods = sellNoObj.sellNoSearch[i];
 			        // 결과 출력
 			        table +=
-			        		"<td>" +
-			        	  goods.id +
-			        	  "</td><td>" +
-			        	  goods.goodsName +
-			        	  "</td><td>" +
-			        	  goods.desiredPurPrice +
-			        	  "</td><td>" +
-			        	  goods.goodsSize +
-			        	  "</td><td>" +
-			        	  goods.desireQuantity +
-			        	  "</td></tr>";
+			        	"<tr class='table-row'>" +
+			        		"<td class='table-data'>" +
+			        			goods.id +
+			        		"</td><td class='table-data'>" +
+			        			goods.goodsName +
+			        		"</td><td class='table-data'>" +
+			        			goods.desiredPurPrice +
+			        		"</td><td class='table-data'>" +
+			        			goods.goodsSize +
+			        		"</td><td class='table-data'>" +
+			        			goods.desireQuantity +
+			        		"</td>" +
+			        	"</tr>";
 			      }
 			      table += "</tbody></table>";
 			      document.getElementById("purchTableContainer").innerHTML = table;
@@ -278,8 +332,7 @@
 			<ul  style="display: inline-block; margin-left: 10px; vertical-align: top;">
 				<li>상품명 : ${goodsInfo.goodsName}</li>
 				<li>모델명: ${goodsInfo.goods}</li>
-				<li>출시일 : ${goodsInfo.releaseDate}</li>
-				<li>출시가격: ${goodsInfo.firstPrice}</li>
+				<li>출시가격: ${goodsInfo.firstPrice}원</li>
 				<li>
 					<label for="size-select">Size:</label>
 		  <select name="size-select" id="size-select" onchange="sizeSearch(this.value)">
@@ -338,13 +391,9 @@
 		</section>
 	</div>	
 </div>
-			
 			</div>
 	</div>	
-   
-   
 </main>
-
 
             </td>
           </tr>
