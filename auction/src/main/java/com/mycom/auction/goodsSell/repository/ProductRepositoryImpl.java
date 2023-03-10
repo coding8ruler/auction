@@ -96,20 +96,12 @@ public class ProductRepositoryImpl implements ProductRepository{
 		int sellPrice=sqlSession.selectOne("mapper.product.selectSellNoPrice",map);
 		int purPrice =(int) map.get("desiredPurPrice");
 	
-		/* String buyPrice=null; */
-		
 		
 		Optional<Integer> optionalBuyPrice = Optional.ofNullable(sqlSession.selectOne("mapper.product.selectBuyPrice", map.get("sellNo")));
 		int buyPrice = optionalBuyPrice.orElse(0); // null일 경우 0을 반환
 		// int 타입으로 변환한 값(buyPrice)을 사용하여 처리
 
 		
-		/*
-		 * if(buyPrice ==null || buyPrice.equals("")) { buyPrice ="0"; } int buyPrice1 =
-		 * Integer.parseInt(buyPrice);
-		 */
-		System.out.println("sellPrice========="+sellPrice);
-		System.out.println("purPrice====="+purPrice);
 		if(buyPrice==0 && purPrice > sellPrice) {
 			result=sqlSession.insert("mapper.product.productBuyInsert",map);
 			return result;

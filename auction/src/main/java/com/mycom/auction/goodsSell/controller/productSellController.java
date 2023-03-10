@@ -40,7 +40,7 @@ import com.mycom.auction.goodsSell.service.ProductService;
 public class productSellController extends  BaseController implements WebMvcConfigurer{
 	
 	//파일저장경로
-  	private static final String REPO_PATH = "C:\\uploads";
+  	private static final String REPO_PATH = "C:\\uploads\\";
 	
 	@Autowired
 	ProductService productService;
@@ -204,10 +204,10 @@ public class productSellController extends  BaseController implements WebMvcConf
 		    return "redirect:/alertForm";
 		} else if(result==1){
 		    comment = 1;
-		    return "redirect:/goodsListForm";
+		    return "redirect:/alertSuccessForm";
 		}
 		model.addAttribute("comment", comment);
-		return "redirect:/alertForm";
+		return null;
 		}
 	
 		@RequestMapping("/alertForm")
@@ -216,7 +216,7 @@ public class productSellController extends  BaseController implements WebMvcConf
 			return "auctionGoodsSell/alertForm";
 		}
 	
-		@Scheduled(cron = "*/6 * * * * *")
+		@Scheduled(cron = "* */20 * * * *")
 		public void autoUpdate() throws Exception {
 			System.out.println("실행중");
 		   LocalDate now = LocalDate.now();

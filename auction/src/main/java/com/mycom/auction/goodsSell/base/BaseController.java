@@ -23,7 +23,7 @@ public class BaseController {
 	
 
   	//파일저장경로
-	private static final String REPO_PATH = "C:\\uploads";
+	private static final String REPO_PATH = "C:\\uploads\\";
 
   	
   	//업로드하기 : 첨부파일에 대한 정보+upload
@@ -52,7 +52,7 @@ public class BaseController {
   			
   		  //upload------------------------------------------
   			//지정위치 하위에 파일객체생성
-  			File file = new File(REPO_PATH+"\\temp\\"+fileName);
+  			File file = new File(REPO_PATH+fileName);
   			if(mFile.getSize()!=0) {  //첨부된 파일이 존재한다면. empty이면 0반환
   			 System.out.println("첨부된 파일이 존재한다면");
   			 if( !file.exists() ) { //경로에 파일이 없으면
@@ -60,9 +60,9 @@ public class BaseController {
   			 		file.createNewFile();//파일생성한다
   			 	}//if3끝
   			  }//if2끝
-  			 mFile.transferTo(new File(REPO_PATH+"\\temp\\"+originalFileName));
+  			 mFile.transferTo(new File(REPO_PATH+originalFileName));
   			}else if(file.exists()) {
-  				mFile.transferTo(new File(REPO_PATH+"\\temp\\"+System.currentTimeMillis()+originalFileName));//if1끝
+  				mFile.transferTo(new File(REPO_PATH+System.currentTimeMillis()+originalFileName));//if1끝
   			 } 
   			}//while끝
   		return fileList;
@@ -74,7 +74,7 @@ public class BaseController {
   	
   	//파일삭제 추가
   	private void deleteFile(String fileName) {
-  		File file = new File(REPO_PATH+"\\"+fileName);
+  		File file = new File(REPO_PATH+fileName);
   		try {
 	  		//리턴값 :true if and only if the file or directory issuccessfully deleted; false otherwise
 	  		file.delete();
