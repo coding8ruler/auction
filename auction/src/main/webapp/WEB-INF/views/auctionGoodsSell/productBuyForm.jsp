@@ -131,7 +131,7 @@
 						    </tr>
 						    <tr>
 						      <th>아이디명</th>
-						      <td><input type="text" value="${sessionScope.AUTHUSER_ID}" name="id" id="id" readonly="readonly" /></td>
+						      <td><input type="text" value="${sessionScope.AUTHUSER.id}" name="id" id="id" readonly="readonly" /></td>
 						    </tr>
 						    <tr>
 						      <th>낙찰 희망가</th>
