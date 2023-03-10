@@ -64,6 +64,20 @@ public class CalendarRepositoryImpl implements CalendarRepository{
 	return cnt;
 	}
 	
+	//특정 게시물 조회
+	@Override
+	public Calendar getCalendarDetail(int no) {
+		return (Calendar)sqlSession.selectOne("mapper.calendar.selectCalenNoList",no);
+		
+	}
+	
+	//특정 게시물 수정
+	@Override
+	public int undateCalendar(Calendar calendar) {
+		return sqlSession.update("mapper.calendar.updateCalendar", calendar);
+		
+	}
+	
 	
 
 	

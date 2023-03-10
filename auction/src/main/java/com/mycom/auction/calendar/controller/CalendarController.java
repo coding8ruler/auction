@@ -16,6 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,7 +40,7 @@ public class CalendarController {
 		
 	//private final ScheduleService sheduleService;
 	@Autowired
-	private CalendarService calendarService;
+	CalendarService calendarService;
 	
 	//사용자의 일정 조회를 위한 메서드 R
 	@GetMapping("/calendarView")
@@ -53,24 +54,19 @@ public class CalendarController {
 		public List<Map<String, Object>> getEvent(){
 			String format = "yyyy-MM-dd";
 			SimpleDateFormat sdf = new SimpleDateFormat(format);
-			System.out.println("진입");
 			JSONArray jsonArr = new JSONArray();
 	        JSONObject jsonObj = new JSONObject();
 	        HashMap<String, Object> hash = new HashMap<>();
 			List<Calendar> list= calendarService.getCalendarAllList2();	
 			for(Calendar calendar : list) {
-				System.out.println(sdf.format(calendar.getCalenStart()));
-				System.out.println(sdf.format(calendar.getCalenEnd()));
 				
 				hash.put("title", calendar.getCalenTitle());
 				hash.put("id", calendar.getCalenNo());
 				hash.put("end", sdf.format(calendar.getCalenEnd()));
 				hash.put("start", sdf.format(calendar.getCalenStart()));
-			System.out.println("hash"+hash);
 				jsonObj.putAll(hash);
 	            jsonArr.add(jsonObj);
 			}
-			System.out.println(jsonArr);
 			log.info("jsonArrCheck: {}", jsonArr);
 			return jsonArr;
 	    }
@@ -144,32 +140,28 @@ public class CalendarController {
 		}
 		//수정처리
 		//수정페이지에서 <form action="${contextPath}/article/updateForm" method="post">
-		    @PostMapping("/calendar/updateForm")
-		    public ModelAndView submitUpdateForm(Calendar calendar, 
+		@PostMapping("/calendar/updateForm")
+		    public ModelAndView submitUpdateForm(Calendar calendar,
 		    		ModelAndView mv) throws Exception {
-		    /* ModelAndView에서의 view지정하기	
-		    	mv.setView("redirect용 view명");
-		    	mv.setViewName("일반view");
-		    	mv.setViewName("redirect:요청주소"); //redirect용 view */
-		    	//1.파라미터받기
+		    System.out.println("진입post");	
+			//1.파라미터받기
 		    	//2.비즈니스로직수행
-		    	int cnt = calendarService.updateCalendar(calendar);
-		    	//update가 적용된 레코드수를 반환받는다
-		    	//여기에서는 1이면 수정성공, 0이면 실패
-		    	if(cnt==1) { //성공이면 목록보기(여기에서는 resultView)
-		    		/*아래는  요청메서드의 리턴유형이 String인경우의 redirect처리방법
-		    		 * return redirect:요청주소
-		    		   return "redirect:/article/req1";*/
-		    		mv.setViewName("redirect:/adminCalendar"); //redirect용 view
-		    	}else { //실패이면 수정폼을 보여주기
-		    		/*아래는  요청메서드의 리턴유형이 String인경우의 redirect처리방법
-		    		 * return redirect:요청주소
-		    		   return "redirect:/article/updateForm?ano="+article.getArticleNo();*/
-		    		mv.setViewName("redirect:/calendar/updateForm?ano="+calendar.getCalenNo());
-		    	}
+		    int cnt = calendarService.updateCalendar(calendar);
+		    if(cnt==1) { //성공이면 목록보기(여기에서는 resultView)
+	    		/*아래는  요청메서드의 리턴유형이 String인경우의 redirect처리방법
+	    		 * return redirect:요청주소
+	    		   return "redirect:/article/req1";*/
+	    		mv.setViewName("redirect:/calendar/updateForm?ano="+calendar.getCalenNo()); //redirect용 view
+	    	}else { //실패이면 수정폼을 보여주기
+	    		/*아래는  요청메서드의 리턴유형이 String인경우의 redirect처리방법
+	    		 * return redirect:요청주소
+	    		   return "redirect:/article/updateForm?ano="+article.getArticleNo();*/
+	    		mv.setViewName("redirect:/adminCalendar");
+	    	}
+	    	//3.Model //4.View
+	    	return mv;
 		    	//3.Model //4.View
-		    	return mv;
-		    }
+		}
 		    //삭제를 위한 메서드 D
 		    //삭제하기  
 		    //get방식,post방식
