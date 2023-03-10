@@ -15,6 +15,7 @@
 	 margin: auto;
     width: 30%;
     text-align: center;
+     border-radius:8px;
    }
   .table1 {
     display: table-row;
@@ -47,36 +48,65 @@
   .table8 {
     display: table-row;
     text-align: center;
+   
+  }
+  #offersave{
+	border-radius:8px;
+      button-size: 100px;
+      padding: 15px 30px;
+        text-align: center;
+        font-size: 18px;
+        background-color: beige;
+        margin: 4px 2px;
+        border: none;
+        line-height: 1.2rem;
+         margin: auto;
+   
   }
   
-  
 </style>
-<!-- <script type="text/javascript">
-$(document).ready(function(){
-	  $("#offersave").click(function(){
-	    let hiddenID = $("#id").val();
-	    if (hiddenID !== "") {
-	      alert("작성 실패, 재로그인이 필요합니다.");
-	      return false;
-	    } else {
-	      alert("작성 완료");
-	      //offerno++;
-	      //document.getElementById("offerno").value = offerno;
-	      return true;
-	    }
-	  });
-	});
-</script> -->
-<!-- <script type="text/javascript">
-function incrementOfferno() {
-	  
-	  offerno++;
-	  document.getElementById("offerno").value = offerno;
+ <script type="text/javascript">
+	window.onload = function() {
+		today = new Date();
+		console.log("today.toISOString() >>>" + today.toISOString());
+		today = today.toISOString().slice(0, 10);
+		console.log("today >>>> " + today);
+		bir = document.getElementById("wttime");
+		bir.value = today;
 	}
-${offerBoard.offerno}
+	
+</script>
+<script>
+$(document).ready(function(){
+	$("#offersave").click(function(){
+		
+		let contentCK =$("$id").val();
+		let titleCK =$("$title").val();
+		
+		if(contentCK == ""){
+			alert("재 로그인 후 작성 가능합니다.");
+			return false;
+		}
+		if(titleCK == ""){
+			alert("제목 입력은 필수입니다.");
+			return false;
+		}
+		
+	});
+	
+	
+	
+});
 
-</script> -->
+
+</script>
+
+
+
+
+
 </head>
+
 <body>
 	
 		<h3 style="text-align: center;">구인 게시글 (입력 폼)</h3>
@@ -94,40 +124,39 @@ ${offerBoard.offerno}
 			  
 			  <div class="table2">
 			    	<div class="table-cell">구인 글제목<br/>
-			    	<input type="text" name="offertitle" id="offertitle" />
+			    	<input type="text" name="offertitle" id="offertitle"  required="required"/>
 			    	</div>
 			  </div>
 			
 			  <div class="table3">
 			   	 	<div class="table-cell">급여<br/>
-			   	 	<input type="text" name="pay" id="pay"/>원
+			   	 	<input type="text" name="pay" id="pay" />원
 			   	 	</div>
 			  </div>
 			  
-			   <div class="table4">
-			   	 	<div class="table-cell">작성일<br/>
-			   	 	<input type="date" name="wttime" id="wttime"/>
-			   	 	</div>
-			   	 </div>
+			   
+			   	 
+			   	 	<input type="hidden" name="wttime" id="wttime" />
+			   
 			 
 			  
 			    <div class="table5">
 			   	 	<div class="table-cell">대행 시작일시<br/>
-			   	 	<input type="datetime-local" name="starttime" id="starttime"/>
+			   	 	<input type="datetime-local" name="starttime" id="starttime" required="required"/>
 			   	 	</div>
 			  </div>
 			  
 			   <div class="table6">
 			    	<div class="table-cell">내용<br/>
-			    	<textarea  name="offercontent" id="offercontent" cols="30" rows="5" ></textarea>
+			    	<textarea  name="offercontent" id="offercontent" cols="30" rows="5" required="required"></textarea>
 			    	</div>
 			   </div>
 			    
-			  <br>
+		
 			   <div class="table7">
 			    	<div class="table-cell" >상세주소
 			    	<br/>
-			    	<input type="text" name="offerpoint" id="offerpoint"/>
+			    	<input type="text" name="offerpoint" id="offerpoint" required="required"/>
 			    	</div>
 			  </div>
 			

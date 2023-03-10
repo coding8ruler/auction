@@ -64,12 +64,24 @@
       }
       
       td {
+      
         border: 1px solid #ccc;
         padding: 10px;
       }
       #GOoffer{
-      
+      button-size: 100px;
+      padding: 15px 30px;
+        text-align: center;
+        font-size: 18px;
+        background-color: beige;
+        margin: 4px 2px;
+        border: none;
+         margin: auto;
+         display: flex; 
+         justify-content: center;
+          border-radius:8px;
       }
+     
          body {
         margin: 0;
         padding: 0;
@@ -105,7 +117,7 @@
 		    <td>거래 장소</td>
 		    <td>급여</td>
 		    <td>작성일</td>
-		    <td>근무 시작 시간</td>
+		    <td>대행 시작 시간</td>
 		    <td>조회수</td>
 		  </tr>
 	  </thead>
@@ -133,27 +145,27 @@
 	
 		 <%-- paging출력 부분 --%>
    <tr>
-  	<td colspan="5" style="text-align:center;">
+  	<td colspan="8" style="text-align:center;  ">
      <%-- JSTL if조건문: 이전출력 --%>
-     <c:if test="${offerBoard.startpage>5}">
-       <a href="${cp}/offerBoard/offerBoardForm?pageNo=${offerBoard.startpage-5}">prev</a>
-     </c:if>  
+	     <c:if test="${offerBoard.startpage>5}">
+	       <a href="${cp}/offerBoard/offerBoardForm?pageNo=${offerBoard.startpage-5}">prev</a>
+	     </c:if>  
      <%-- JSTL forEch조건문: 페이지번호출력 --%>  
-     <c:forEach var="pNo"                       
-     			begin="${offerBoard.startpage}" 
-     			end="${offerBoard.endpage}">
-      <a href="${cp}/offerBoard/offerBoardForm?pageNo=${pNo}">${pNo}</a> 
-     </c:forEach>  
+	     <c:forEach var="pNo"                       
+	     			begin="${offerBoard.startpage}" 
+	     			end="${offerBoard.endpage}">
+	      <a href="${cp}/offerBoard/offerBoardForm?pageNo=${pNo}">${pNo}</a> 
+	     </c:forEach>  
                                       
      <%-- JSTL if조건문: 다음출력 --%>  
-     <c:if test="${offerBoard.endpage<offerBoard.totalpages}">
-       <a href="${cp}/offerBoard/offerBoardForm?pageNo=${offerBoard.startpage+5}">next</a>
-     </c:if> 
-   </td>
+	     <c:if test="${offerBoard.endpage<offerBoard.totalpages}">
+	       <a href="${cp}/offerBoard/offerBoardForm?pageNo=${offerBoard.startpage+5}">next</a>
+	     </c:if> 
+	   </td>
    </tr>
 	  </tbody>
 </table>
-	<a href="${cp}/offerBoard/offerInsertForm" ><input type="button" name="GOoffer" id="GOoffer" value="오픈런 구인 글쓰기"/></a>
+	<a href="${cp}/offerBoard/offerInsertForm" ><input type="button" name="GOoffer" id="GOoffer" value="구인 글쓰기"/></a>
 	 </form>
 	 </div>
     </div>    
