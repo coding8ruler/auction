@@ -72,7 +72,6 @@
       }
     </style>
 <body>
-<h3>addForm.jsp</h3>
 <div id="container">
       <div id="header1">
         <jsp:include page="../module/banner.jsp" flush="false"/>

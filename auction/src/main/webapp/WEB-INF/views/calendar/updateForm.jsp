@@ -82,8 +82,10 @@
         <jsp:include page="../module/top.jsp" flush="false"/>
       </div>
       <div id="content">
-<form id="updateForm1" 
-  		action="${conPath}/calendar/updateForm" method="post">      
+      <table>
+          <tr>
+            <td>
+<form id="updateFrm" method="post"	action="${conPath}/calendar/updateForm">      
    	<input type="hidden" name="calenNo" id = "calenNo" value="${calendar.calenNo}">
    	<table border="1">
  	  <tbody>
@@ -95,17 +97,17 @@
  		<tr>
 	     <th>시작일</th>
 	     <td>
-	        기존 시작일 :<fmt:formatDate type="both" pattern="yyyy/MM/dd"  value="${calendar.calenStart}" />
-	        <br/>
-	        수정할 시작일 :<input type="date" name="calenStart" id="calenStart"/>
+		       기존 시작일 :<fmt:formatDate type="both" pattern="yyyy/MM/dd"  value="${calendar.calenStart}" />
+		    <br/>
+		       수정할 시작일 :<input type="date" name="calenStart" id="calenStart"/>
 	     </td>
 	    </tr>
 	    <tr>
 	     <th>종료일</th>
 	     <td>
-    기존 종료일 :   <fmt:formatDate type="both" pattern="yyyy/MM/dd"  value="${calendar.calenEnd}" />
-     <br/>   
-       수정할 종료일 : <input type="date"  name="calenEnd" id="calenEnd"/>
+			기존 종료일 : <fmt:formatDate type="both" pattern="yyyy/MM/dd"  value="${calendar.calenEnd}" />
+			<br/>   
+			수정할 종료일 : <input type="date"  name="calenEnd" id="calenEnd"/>
 	     </td>
 	    </tr>
  		<tr id="i1">
@@ -117,6 +119,8 @@
   	</table>
   </form>
   
+      </tr>
+        </table>
       </div>
       <div id="footer">
         <jsp:include page="../module/bottom.jsp" flush="false"/>

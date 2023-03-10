@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mycom.auction.calendar.domain.Calendar;
 import com.mycom.auction.calendar.service.CalendarService;
+import com.mycom.auction.member.domain.Member;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -44,14 +45,23 @@ public class CalendarController {
 	
 	//사용자의 일정 조회를 위한 메서드 R
 	@GetMapping("/calendarView")
-	public String calendar2() {
+	public String calendar2(Model model, HttpServletRequest httpServletRequest) {
+		HttpSession session = httpServletRequest.getSession();
+		Member authUser = (Member) session.getAttribute("AUTHUSER");
+		String id = authUser.getId();
+		model.addAttribute("AUTHUSER",authUser);
 		return "/calendar/fullcalendar";
 	}
 	
 	//사용자 일정 조회 캘린더 
 		@ResponseBody
 		@RequestMapping(value="/events",params="method=data") //ajax 데이터 전송 URL
-		public List<Map<String, Object>> getEvent(){
+		public List<Map<String, Object>> getEvent(Model model, HttpServletRequest httpServletRequest){
+			HttpSession session = httpServletRequest.getSession();
+			Member authUser = (Member) session.getAttribute("AUTHUSER");
+			String id = authUser.getId();
+			model.addAttribute("AUTHUSER",authUser);
+			
 			String format = "yyyy-MM-dd";
 			SimpleDateFormat sdf = new SimpleDateFormat(format);
 			JSONArray jsonArr = new JSONArray();
@@ -67,7 +77,6 @@ public class CalendarController {
 				jsonObj.putAll(hash);
 	            jsonArr.add(jsonObj);
 			}
-			log.info("jsonArrCheck: {}", jsonArr);
 			return jsonArr;
 	    }
 	
@@ -85,8 +94,11 @@ public class CalendarController {
 	  //관리자의 일정관리를 위한 목록 조회 메서드 R
 		@GetMapping("/adminCalendar")
 	  public String adminCaelndar(Model model,
-				@RequestParam(name="ano",required=false,defaultValue="1") int no) throws Exception {
-		  
+				@RequestParam(name="ano",required=false,defaultValue="1") int no,HttpServletRequest httpServletRequest) throws Exception {
+			HttpSession session = httpServletRequest.getSession();
+			Member authUser = (Member) session.getAttribute("AUTHUSER");
+			String id = authUser.getId();
+			model.addAttribute("AUTHUSER",authUser);
 		  List<Calendar> list=calendarService.getCalendarAllList();
 		  
 		                             
@@ -100,14 +112,16 @@ public class CalendarController {
 		//요청방식 get
 		//요청주소 ~컨페/article/addForm
 		@GetMapping("/calendar/addForm")
-		public String insertCalendarForm(HttpServletRequest request) {
+		public String insertCalendarForm(Model model, HttpServletRequest httpServletRequest) {
 			//1.파라미터받기 //2.비즈니스로직
 			//3.model
 			//원칙적으로는 (로그인한 user가) 글입력 권한을 가진 사용자가 글입력해야지만
 			//여기에서는 임시로 세션에 정보를 저장하여 진행하겠다
-			HttpSession session = request.getSession();
-			session.setAttribute("isLogOn",true);
-			session.setAttribute("AUTHUSER_ID", "hongid");//임시
+			HttpSession session = httpServletRequest.getSession();
+			Member authUser = (Member) session.getAttribute("AUTHUSER");
+			model.addAttribute("AUTHUSER",authUser);
+			//session.setAttribute("isLogOn",true);
+			//session.setAttribute("AUTHUSER_ID", "hongid");//임시
 			//4.view
 			return "/calendar/addForm";
 		}
@@ -115,13 +129,16 @@ public class CalendarController {
 		public String insertCalendarForm(Model model,
 				String calenTitle,
 				@DateTimeFormat(pattern="yyyy-MM-dd") Date calenStart,
-				@DateTimeFormat(pattern="yyyy-MM-dd") Date calenEnd) {
+				@DateTimeFormat(pattern="yyyy-MM-dd") Date calenEnd,HttpServletRequest httpServletRequest) {
+			HttpSession session = httpServletRequest.getSession();
+			Member authUser = (Member) session.getAttribute("AUTHUSER");
+			String id = authUser.getId();
+			model.addAttribute("AUTHUSER",authUser);
 			Calendar calendar = new Calendar();
 			
 			calendar.setCalenTitle(calenTitle);
 			calendar.setCalenStart(calenStart);
 			calendar.setCalenEnd(calenEnd);
-			System.out.println("calendar"+calendar);
 			calendarService.insertCalendar(calendar);
 			return "redirect:/adminCalendar";
 		}
@@ -131,9 +148,13 @@ public class CalendarController {
 		//요청주소 ~컨페/article/updateForm?ano=글번호 U
 		@GetMapping("/calendar/updateForm")
 		public String updateArticleForm(@RequestParam("ano") int no,
-				Model model) throws Exception {
+				Model model,HttpServletRequest httpServletRequest) throws Exception {
 			//db에서 특정게시글의 상세정보를 가져오기  진행예정
 			Calendar calendar=calendarService.getCalendarDetail(no);
+			HttpSession session = httpServletRequest.getSession();
+			Member authUser = (Member) session.getAttribute("AUTHUSER");
+			String id = authUser.getId();
+			model.addAttribute("AUTHUSER",authUser);
 			model.addAttribute("calendar",calendar);
 			return "/calendar/updateForm";
 		}
@@ -141,8 +162,11 @@ public class CalendarController {
 		//수정페이지에서 <form action="${contextPath}/article/updateForm" method="post">
 		@PostMapping("/calendar/updateForm")
 		    public ModelAndView submitUpdateForm(Calendar calendar,
-		    		ModelAndView mv) throws Exception {
-		    System.out.println("진입post");	
+		    		ModelAndView mv,Model model,HttpServletRequest httpServletRequest) throws Exception {
+			HttpSession session = httpServletRequest.getSession();
+			Member authUser = (Member) session.getAttribute("AUTHUSER");
+			String id = authUser.getId();
+			model.addAttribute("AUTHUSER",authUser);
 			//1.파라미터받기
 		    	//2.비즈니스로직수행
 		    int cnt = calendarService.updateCalendar(calendar);
@@ -167,8 +191,12 @@ public class CalendarController {
 		    //요청주소 ~컨페/article/delete?ano=글번호
 		    @RequestMapping(value="/calendar/delete", 
 		    		        method= {RequestMethod.POST,RequestMethod.GET})
-			public ModelAndView deleteCalendar(@RequestParam("ano") int no) throws Exception {
-				int cnt=calendarService.deleteCalendar(no);
+			public ModelAndView deleteCalendar(@RequestParam("ano") int no,Model model,HttpServletRequest httpServletRequest) throws Exception {
+		    	HttpSession session = httpServletRequest.getSession();
+				Member authUser = (Member) session.getAttribute("AUTHUSER");
+				String id = authUser.getId();
+				model.addAttribute("AUTHUSER",authUser);
+		    	int cnt=calendarService.deleteCalendar(no);
 				System.out.println("cnt="+cnt);
 				//delete가 적용된 레코드수를 반환받는다
 				ModelAndView mv = new ModelAndView();
@@ -176,4 +204,5 @@ public class CalendarController {
 				return mv;
 			}
 	
+		    
 }
