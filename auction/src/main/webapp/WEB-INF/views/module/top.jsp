@@ -110,7 +110,7 @@ background-color: white;
 
 <c:if test="${empty AUTHUSER}">
 	<div class="dropdown">
-	  <button class="dropbtn">sign up</button>
+	  <button class="dropbtn">회원가입</button>
 	  <div class="dropdown-content">
 	    <a href="<%=request.getContextPath()%>/member/join">회원가입</a>
 	    <a href="<%=request.getContextPath()%>/member/findId">아이디 찾기</a>

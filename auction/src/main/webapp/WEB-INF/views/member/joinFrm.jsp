@@ -373,7 +373,7 @@ $(document).ready(function(){
  	<br>
  	<div class="join-btn" style="text-align: center;">
 		<f:button type="submit">가입</f:button>
-		<button type="button" onclick="location.href='/auction/main'">취소</button>
+		<button type="button" onclick="location.href='${cp}/goodsListForm'">취소</button>
  	</div>
  </f:form>
  </div>
