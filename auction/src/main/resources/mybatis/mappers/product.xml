@@ -179,7 +179,7 @@
 	 	<![CDATA[
 	 		SELECT *
 			FROM productsell
-			WHERE itemSize=#{itemSize} and goods=#{goods}
+			WHERE sellNo=#{sellNo}
 	 	]]>
  	</select>
  

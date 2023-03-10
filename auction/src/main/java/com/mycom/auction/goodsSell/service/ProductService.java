@@ -30,7 +30,7 @@ public interface ProductService {
 	 
 	
 	//구매 상품상세 정보
-	public Product productBuyDetail(Map map) throws Exception;
+	public Product productBuyDetail(int sellNo) throws Exception;
 	
 	//구매 상품 등록
 	public int productBuy(Map map) throws Exception;

@@ -72,8 +72,8 @@ public class ProductServiceImpl implements ProductService{
 
 	//구매 상품상세 정보
 	@Override
-	public Product productBuyDetail(Map map) throws Exception {
-		return productRepository.productBuyDetail(map);
+	public Product productBuyDetail(int sellNo) throws Exception {
+		return productRepository.productBuyDetail(sellNo);
 	}
 	
 	//구매 상품 등록

@@ -86,7 +86,7 @@
 </script>
 <style>
 #calendar-container {
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     left: 5;
     right: 5;
@@ -102,12 +102,16 @@
   color: blue;
   text-decoration: none;
 }
+
 </style>
 </head>
 <body>
  <div id="container">
-      <div id="header1">
+     <%--  <div id="header1">
         <jsp:include page="../module/banner.jsp" flush="false"/>
+      </div> --%>
+      <div id="header1">
+      <img src="<%=request.getContextPath()%>/resources/image/logo.png" style="height: 130px; width: 220px;">
       </div>
       <div id="header2">
         <jsp:include page="../module/top.jsp" flush="false"/>

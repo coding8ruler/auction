@@ -37,7 +37,7 @@ public interface ProductRepository {
 	public List<Product> getListWithPaging(Criteria cri) throws DataAccessException;
 	
 	//구매 상품 정보 조회
-	public Product productBuyDetail(Map map) throws DataAccessException;
+	public Product productBuyDetail(int sellNo) throws DataAccessException;
 	
 	//구매 상품 등록
 	public int productBuyInsert(Map map) throws DataAccessException;

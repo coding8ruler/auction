@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mycom.auction.member.domain.Member;
 import com.mycom.auction.offerboard.domain.OfferBoard;
 import com.mycom.auction.offerboard.domain.Page;
 import com.mycom.auction.offerboard.service.OfferListService;
@@ -86,7 +87,9 @@ public class OfferBoardController {
   		//원칙적으로는 (로그인한 user가) 글입력 권한을 가진 사용자가 글입력해야지만
   		//여기에서는 임시로 세션에 정보를 저장하여 진행하겠다
 	  		HttpSession session = request.getSession();
-	  		
+	  		 Member authUser = (Member) session.getAttribute("AUTHUSER");
+	  		String id = authUser.getId();
+	  		 
 	  		//session.setAttribute("isLogOn",true);
 	  		//session.setAttribute("AUTHUSER_ID", "hongid");//임시 글번호
 	  		session.setAttribute("AUTHUSER_ID", "hongid");//임시
