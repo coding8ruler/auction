@@ -83,8 +83,8 @@ public class ProductRepositoryImpl implements ProductRepository{
 	
 	//구매하기 상품 상세 정보
 	@Override
-	public Product productBuyDetail(Map map) throws DataAccessException {
-		Product product = sqlSession.selectOne("mapper.product.productBuyDetail",map);
+	public Product productBuyDetail(int sellNo) throws DataAccessException {
+		Product product = sqlSession.selectOne("mapper.product.productBuyDetail",sellNo);
 		return product;
 	}
 	
@@ -133,9 +133,10 @@ public class ProductRepositoryImpl implements ProductRepository{
 				List<ProductPurchaseDTO> productPurchaseDTOList = sqlSession.selectList("mapper.product.selectMaxDesiredPurPricePurchaseNo", product);
 				System.out.println("5"+productPurchaseDTOList);
 				for(ProductPurchaseDTO productPurchaseDTO : productPurchaseDTOList) {
+					System.out.println(productPurchaseDTO);
 					System.out.println("6");
 					sqlSession.insert("mapper.product.insertEndSellMessage",productPurchaseDTO);
-					System.out.println("7");
+					System.out.println("7"+productPurchaseDTO);
 					ProductPurchaseDTO productPurchaseDTO2 = sqlSession.selectOne("mapper.product.selectPurOne", productPurchaseDTO);
 					System.out.println("8"+productPurchaseDTO2);
 					sqlSession.insert("mapper.product.insertEndPurMessage",productPurchaseDTO2);

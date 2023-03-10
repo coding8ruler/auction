@@ -163,12 +163,13 @@ public class productSellController extends  BaseController implements WebMvcConf
 	public String productBuy(Model model,String goodsSize,String goods,int sellNo, HttpServletRequest request) throws Exception {
 		
 		
-		Map map = new HashMap();
-		map.put("itemSize",goodsSize);
-		map.put("goods",goods);
+		/*
+		 * Map map = new HashMap(); map.put("itemSize",goodsSize);
+		 * map.put("goods",goods);
+		 */
 		
 		//물품 상제 정보 조회
-		Product product =productService.productBuyDetail(map);
+		Product product =productService.productBuyDetail(sellNo);
 		model.addAttribute("product",product);
 		model.addAttribute("sellNo",sellNo);
 		return "auctionGoodsSell/productBuyForm";
@@ -215,7 +216,7 @@ public class productSellController extends  BaseController implements WebMvcConf
 			return "auctionGoodsSell/alertSuccessForm";
 		}
 	
-		@Scheduled(cron = "* */20 * * * *")
+		@Scheduled(cron = "*/5 * * */5 * *")
 		public void autoUpdate() throws Exception {
 			System.out.println("실행중");
 		   LocalDate now = LocalDate.now();
