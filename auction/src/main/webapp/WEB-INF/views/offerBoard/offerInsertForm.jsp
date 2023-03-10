@@ -116,9 +116,9 @@ $(document).ready(function(){
 			<br>
 			<br>
 			  <div class="table1">
-			    	<div class="table-cell">글쓴이<br/>${sessionScope.AUTHUSER_ID}
+			    	<div class="table-cell">글쓴이<br/>${sessionScope.AUTHUSER.id}
 			    <!-- 	<input type="hidden" name="offerno" id="offerno" /> -->
-			    	<input type="hidden" name="id" id="id" value="${sessionScope.AUTHUSER_ID}" />
+			    	<input type="hidden" name="id" id="id" value="${sessionScope.AUTHUSER.id}" />
 			  <br></div>
 			  </div>
 			  
