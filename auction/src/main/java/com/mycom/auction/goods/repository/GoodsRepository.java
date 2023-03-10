@@ -104,4 +104,14 @@ public class GoodsRepository{
 			ProductMessPurMap.put("selectPurList",selectPurList);
 		return ProductMessPurMap;
 	}
+	
+	
+	public Map<String,List> selectMessageList2(String id) {
+		Map<String,List> ProductMessPurMap = new HashMap();
+		List<ProductFinally> selectMessageList= sqlSession.selectList("mapper.auctionGoods.selectMessageList", id);
+		List<ProductPurchaseDTO> selectPurList = new ArrayList<ProductPurchaseDTO>();
+			ProductMessPurMap.put("selectMessageList",selectMessageList);
+			ProductMessPurMap.put("selectPurList",selectPurList);
+		return ProductMessPurMap;
+	}
 }

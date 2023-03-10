@@ -129,14 +129,18 @@
     }
     </script>
   </head>
+  
   <body>
     <div id="container">
+    
       <div id="header1">
         <jsp:include page="../module/banner.jsp" flush="false"/>
       </div>
+      
       <div id="header2">
         <jsp:include page="../module/top.jsp" flush="false"/>
       </div>
+      
       <div id="content">
         <table>
           <tr>
@@ -145,76 +149,46 @@
             
  
  
-   게시물수:
-  <select name="rowSize" id="rowSize">
-		<option value="3">선택</option>
-		<option value="3">3</option>
-		<option value="5">5</option>
-		<option value="10">10</option>
-  </select>
-  
-  
-  
- <c:set  var="goods_count" value="0" /> 
- <c:forEach var="message" items="${messageList}" begin="0" end="0">
-  <div class="table">
-  	<div class="cell">Message No</div>
-  	<div class="cell">Title</div>
-  	<div class="cell">content</div>
-  	<div class="cell">Send ID</div>
-  	<div class="cell">Receive ID</div>
-  	
-   <c:forEach var="purList" items="${PurList}">
-   <c:set  var="goods_count" value="${goods_count+1 }" />
-  	<div class="row">
-    <div class="cell">${goods_count}</div>
-    <div class="cell">${message.title}</div>
-    <div class="cell">
-    ${message.content}
-          구매하신 상품명은 ${purList.goodsName} 이며 
-          구매하신 사이즈는 ${purList.goodsSize} 이고,
-          낙찰된 가격은 ${purList.desiredPurPrice} 입니다.
-         구매자는 버튼을 누르시면 결재가 진행됩니다.
-  		<button onclick="requestPay('${purList.goodsName}', ${purList.desiredPurPrice},${purList.purchaseNo})">결제하기</button> <!-- 결제하기 버튼 생성 -->
-    </div>
-    <div class="cell">${message.sendId}</div>
-    <div class="cell">${message.receiveId}</div>
-    </div>
-   </c:forEach>
-  </div>
-</c:forEach>
-  </tbody>
- </table>   
-            
-            
-            
-            
-            
-            
-            
-            
-            
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
+  <table>
+  <tr>
+    <td>
+      <c:set var="goods_count" value="0" /> 
+      <c:forEach var="message" items="${messageList}" begin="0" end="0">
+        <div class="table">
+          <div class="cell">Message No</div>
+          <div class="cell">Title</div>
+          <div class="cell">content</div>
+          <div class="cell">Send ID</div>
+          <div class="cell">Receive ID</div>
+          
+          <c:forEach var="purList" items="${PurList}">
+            <c:set var="goods_count" value="${goods_count+1 }" />
+            <div class="row">
+              <div class="cell">${goods_count}</div>
+              <div class="cell">${message.title}</div>
+              <div class="cell">
+                ${message.content} <br/>
+					                체결된 상품명은 ${purList.goodsName} 이며  사이즈는 ${purList.goodsSize} 이고, 가격은 ${purList.desiredPurPrice}원 입니다.
+					                구매자는 버튼을 누르시면 결재가 진행됩니다.
+                <button onclick="requestPay('${purList.goodsName}', ${purList.desiredPurPrice},${purList.purchaseNo})">결제하기</button>
+              </div>
+              <div class="cell">${message.sendId}</div>
+              <div class="cell">${message.receiveId}</div>
+            </div> <!-- row끝 -->
+          </c:forEach>
+          
+        </div> <!-- table 끝 -->
+      </c:forEach>
+    </td>
+  </tr>
+</table>
+</tbody>
               
             </td>
           </tr>
         </table>
       </div>
+      
       <div id="footer">
         <jsp:include page="../module/bottom.jsp" flush="false"/>
       </div>

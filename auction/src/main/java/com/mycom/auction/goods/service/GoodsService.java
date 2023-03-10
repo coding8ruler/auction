@@ -84,7 +84,11 @@ public class GoodsService{
 		Map<String,List> selectMessagePurList=goodsRepository.selectMessageList(id);
 		return selectMessagePurList;
 	}
-
+	
+	public Map<String,List> selectMessageSellList(String id) {
+		Map<String,List> selectMessagePurList=goodsRepository.selectMessageList2(id);
+		return selectMessagePurList;
+	}
 	
 }
 

@@ -137,25 +137,24 @@
  goodsContent=test, firstPrice=32, imageNo=0, releaseDate=Wed Mar 29 00:00:00 KST 2023, goodsSize=null, image=null], 
   -->
  
- <c:set  var="goods_count" value="2" />
-<c:forEach items="${goodsInfo}" var="item">
-	   <c:set var="goods_count" value="${goods_count+1 }" />
-	   
-	<c:if test="${goods_count%3 == 0}">
-		<div class="row">
-	</c:if>
-	  <div class="column">
-	  <a href="${path}/goodsDetail?goods=${item.goods}">
-	    <img src="${path}/download?goods=${item.goods}">
-		</a> 
-	    <h3>${item.goods}</h3>
-	    <p>${item.goodsName}</p>
-	    <p>${item.firstPrice}원</p>
-	  </div>
-	<c:if test="${goods_count%3 ==2}">
-		</div>
-	</c:if>
-</c:forEach>
+<table>
+  <tr>
+    <td>
+      <div class="row">
+        <c:forEach items="${goodsInfo}" var="item">
+          <div class="column">
+            <a href="${path}/goodsDetail?goods=${item.goods}">
+              <img src="${path}/download?goods=${item.goods}">
+            </a> 
+            <h3>모델명 ${item.goods}</h3>
+            <p>상품명 ${item.goodsName}</p>
+            <p>출시가격 : ${item.firstPrice}원</p>
+          </div>
+        </c:forEach>
+      </div>
+    </td>
+  </tr>
+</table>
 
 
 
