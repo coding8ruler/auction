@@ -54,15 +54,13 @@
         background-color: #fff;
         z-index: 1;
       }
-      
       table {
         width: 95%;
         margin: 0 auto;
         border: 1px solid #ccc;
         border-collapse: collapse;
       }
-      
-      tr {
+   	tr {
         border: 1px solid #ccc;
       }
       
@@ -70,6 +68,7 @@
         border: 1px solid #ccc;
         padding: 10px;
       }
+     
     </style>
   </head>
   <body>
@@ -83,14 +82,14 @@
       <div id="content">
         <table>
           <tr>
-            <td>
+            <td class="mainlogo">
             
             
             
             
             
-            
- 레이아웃               
+            공지사항
+
               
               
               

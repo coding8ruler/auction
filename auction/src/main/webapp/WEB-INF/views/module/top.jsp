@@ -83,7 +83,7 @@ background-color: white;
   </div>
 </div>
 
-<div class="dropdown">
+<!-- <div class="dropdown">
   <button class="dropbtn">Button 2</button>
   <div class="dropdown-content">
     <a href="#">Option 2-1</a>
@@ -99,7 +99,7 @@ background-color: white;
     <a href="#">Option 2-2</a>
     <a href="#">Option 2-3</a>
   </div>
-</div>
+</div> -->
 
 <div class="dropdown">
   <button class="dropbtn">오픈런 구인</button>
