@@ -82,7 +82,6 @@ public class CalendarController {
 		 */
 	
 	
-	
 	  //관리자의 일정관리를 위한 목록 조회 메서드 R
 		@GetMapping("/adminCalendar")
 	  public String adminCaelndar(Model model,
@@ -96,7 +95,7 @@ public class CalendarController {
 		  return "/calendar/adminCalendar";
 	  }
 
-	  	//생성을 위한 메서드 C
+	  	//생성을 위한 메서드 
 	  	//입력폼보여주기
 		//요청방식 get
 		//요청주소 ~컨페/article/addForm
