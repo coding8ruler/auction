@@ -166,9 +166,6 @@ public class productSellController extends  BaseController implements WebMvcConf
 	@GetMapping("/productBuyForm")
 	public String productBuy(Model model,String goodsSize,String goods,int sellNo, HttpServletRequest request) throws Exception {
 		
-		//임시 아이디
-		HttpSession session = request.getSession();
-		session.setAttribute("AUTHUSER_ID", "hongid");//임시
 		
 		Map map = new HashMap();
 		map.put("itemSize",goodsSize);
@@ -214,6 +211,12 @@ public class productSellController extends  BaseController implements WebMvcConf
 		public String alert() {
 			
 			return "auctionGoodsSell/alertForm";
+		}
+		
+		@RequestMapping("/alertSuccessForm")
+		public String alertSuccess() {
+			
+			return "auctionGoodsSell/alertSuccessForm";
 		}
 	
 		@Scheduled(cron = "* */20 * * * *")
