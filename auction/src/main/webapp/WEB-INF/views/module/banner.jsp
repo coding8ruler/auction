@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>베너</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
 <style>
@@ -14,8 +14,9 @@
 <body>
 
 
+<img src="<%=request.getContextPath()%>/resources/image/logo.png" style="height: 100%; width: auto%;">
 
-여기에는 그림을 넣어 줄거에요
+
 
 </body>
 </html>
