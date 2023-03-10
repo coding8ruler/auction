@@ -6,8 +6,8 @@
 </head>
 <body>
 <h1>
-	Hello world!  ㅊㅊㅊㅊㅊddddddddfdf
-</h1>test sdsdsdssdkjgkjgkakjkljFSFSFSDss
+	Hello world!  ��
+</h1>test sdsdsdssdkjgkjgkakjkljFSFSFSDssssdd
 <P>  The time on the server is ${serverTime}. </P>
 <P>  The time on the server is ${serverTime}. </P>
 <P>  The time on the server is ${serverTime}. </P>

@@ -49,24 +49,33 @@ background-color: white;
 </head>
 <body>
 
-
-
+  <c:if test="${empty AUTHUSER}">
 <div class="dropdown">
-  <button class="dropbtn">Button 1</button>
+  <button class="dropbtn">공지/일정</button>
   <div class="dropdown-content">
-    <a href="#">Option 1-1</a>
-    <a href="#">Option 1-2</a>
-    <a href="#">Option 1-3</a>
+    <a href="<%=request.getContextPath()%>/calendarView">공지/일정</a>
+  </div>
+</div>
+</c:if>
+<%-- 관리자가 로그인했을 때 보여지는 메뉴 --%>
+	<c:if test="${not empty AUTHUSER && (AUTHUSER.grade==999)}">  
+<div class="dropdown">
+  <button class="dropbtn">공지/일정</button>
+  <div class="dropdown-content">
+    <a href="<%=request.getContextPath()%>/calendarView">공지/일정</a>
+    <a href="<%=request.getContextPath()%>/adminCalendar">일정관리</a>
   </div>
 </div>
 
+</c:if>
  <div class="dropdown">
   <button class="dropbtn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;상품&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
   <div class="dropdown-content">
     <a href="<%=request.getContextPath()%>/goodsRegisterForm">상품등록</a>
     <a href="<%=request.getContextPath()%>/goodsListForm">상품리스트</a>
     <a href="<%=request.getContextPath()%>/productList">상품 결재 리스트</a>
-    <a href="<%=request.getContextPath()%>/productMessage">결재 쪽지함</a>
+    <a href="<%=request.getContextPath()%>/productPurMessage">구매자용 결재 쪽지함</a>
+    <a href="<%=request.getContextPath()%>/productSellMessage">판매자용 결재 쪽지함</a>
   </div>
 </div>
 
@@ -89,11 +98,9 @@ background-color: white;
 </div>
 
 <div class="dropdown">
-  <button class="dropbtn">Button 2</button>
+  <button class="dropbtn">오픈런 구인</button>
   <div class="dropdown-content">
-    <a href="#">Option 2-1</a>
-    <a href="#">Option 2-2</a>
-    <a href="#">Option 2-3</a>
+    <a href="<%=request.getContextPath()%>/offerBoard/offerBoardForm">구인 게시판</a>
   </div>
 </div>
 
