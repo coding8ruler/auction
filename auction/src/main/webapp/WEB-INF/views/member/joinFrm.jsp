@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="f" uri="http://www.springframework.org/tags/form" %>
+<c:set var="cp" value="<%=request.getContextPath()%>"/>
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -297,29 +298,29 @@ $(document).ready(function(){
 	</colgroup>
 	<tbody>
 	 <tr>
-      <td>아이디</td>
-      <td colspan="5"><f:input path="id" name="id" id="id" />
+      <td>&nbsp;&nbsp;아이디</td>
+      <td colspan="5">&nbsp;&nbsp;<f:input path="id" name="id" id="id" />
       &nbsp;&nbsp;<button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
       </td>
   	 </tr>
 	 <tr>
-      <td>비밀번호</td>
-      <td colspan="5"><f:password path="password" name="password" id="password" />
+      <td>&nbsp;&nbsp;비밀번호</td>
+      <td colspan="5">&nbsp;&nbsp;<f:password path="password" name="password" id="password" />
       &nbsp;&nbsp;&nbsp;<span>비밀번호는 영어대소문자를 포함해 4~12자 이내로 입력하세요.</span>
       </td>
    	 </tr>
      <tr>
-      <td>비밀번호 확인</td>
-      <td colspan="5"><input type="password" name="password2" id="password2" /></td>
+      <td>&nbsp;&nbsp;비밀번호 확인</td>
+      <td colspan="5">&nbsp;&nbsp;<input type="password" name="password2" id="password2" /></td>
    	 </tr>
 	 <tr>
-      <td>이름</td>
-      <td colspan="5"><f:input path="name" name="name" id="name"/>
+      <td>&nbsp;&nbsp;이름</td>
+      <td colspan="5">&nbsp;&nbsp;<f:input path="name" name="name" id="name"/>
       </td>
    	 </tr>
    	 <tr>
-      <td>핸드폰 번호</td>
-      <td colspan="5"><f:select path="phone1" name="phone1" id="phone1">
+      <td>&nbsp;&nbsp;핸드폰 번호</td>
+      <td colspan="5">&nbsp;&nbsp;<f:select path="phone1" name="phone1" id="phone1">
 		                <option value="010">010</option>
 		                <option value="011">011</option>
 		                <option value="016">016</option>
@@ -328,8 +329,8 @@ $(document).ready(function(){
       </td>   
     </tr>
 	<tr class="e-mail">
-     <td>이메일</td>
-     <td colspan="5"><f:input path="email1" name="email1" id="email1"/> @ <f:input path="email2" name="email2" id="email2"/> 
+     <td>&nbsp;&nbsp;이메일</td>
+     <td colspan="5">&nbsp;&nbsp;<f:input path="email1" name="email1" id="email1"/> @ <f:input path="email2" name="email2" id="email2"/> 
        <select class="email-select" name="email_op" id="email_op">
 	   	<option value="직접입력" selected>직접입력</option>
 	  	<option value="naver.com">naver.com</option>
@@ -340,41 +341,40 @@ $(document).ready(function(){
      </td>
     </tr> 
     <tr>
-     <td>성별 </td>
-     <td colspan="5"><label class="radiobox"><f:radiobutton path="gender" id="gender" value="남성" style="width:15px;height:15px;cursor:pointer;"/><span class="fm">남</span></label>
-     <label class="radiobox"><f:radiobutton path="gender" value="여성" id="gender" style="width:15px;height:15px;cursor:pointer;"/><span class="fm">여</span></label>
+     <td>&nbsp;&nbsp;성별 </td>
+     <td colspan="5">&nbsp;&nbsp;<label class="radiobox"><f:radiobutton path="gender" id="gender" value="남성" style="width:15px;height:15px;cursor:pointer;"/><span class="fm">남</span></label>
+     <label class="radiobox">&nbsp;<f:radiobutton path="gender" value="여성" id="gender" style="width:15px;height:15px;cursor:pointer;"/><span class="fm">여</span></label>
      </td>
  	</tr>	
 	<tr>
-     <td>생년월일 </td>
-     <td class="birth-box" colspan="5"><f:select path="birthyear" name="yy" id="year"/>년 <f:select path="birthmonth" name="mm" id="month"/>월  <f:select path="birthday" name="dd" id="day"/>일 </td>
+     <td>&nbsp;&nbsp;생년월일 </td>
+     <td class="birth-box" colspan="5">&nbsp;&nbsp;<f:select path="birthyear" name="yy" id="year"/>년 <f:select path="birthmonth" name="mm" id="month"/>월  <f:select path="birthday" name="dd" id="day"/>일 </td>
     </tr>
 	<tr>
-	 <td>우편번호</td>
-	 <td colspan="5"><f:input path="zipcode" name="zipcode" id="zipcode" />
+	 <td>&nbsp;&nbsp;우편번호</td>
+	 <td colspan="5">&nbsp;&nbsp;<f:input path="zipcode" name="zipcode" id="zipcode" />
 	 &nbsp;&nbsp;<f:button type="button" onclick="findAddr()">우편변호 찾기</f:button>
 	 </td>
 	</tr>
 	<tr>
-	 <td>주소</td>
-	 <td colspan="5" class="adress-box"><f:input path="roadaddress" name="roadaddress" id="roadaddress" placeholder="도로명주소"/>
+	 <td>&nbsp;&nbsp;주소</td>
+	 <td colspan="5" class="adress-box">&nbsp;&nbsp;<f:input path="roadaddress" name="roadaddress" id="roadaddress" placeholder="도로명주소"/>
 	 <br>
 	 <br>
-	 <f:input path="jibunaddress" name="jibunaddress" id="jibunaddress" placeholder="지번주소"/></td>
+	 &nbsp;&nbsp;<f:input path="jibunaddress" name="jibunaddress" id="jibunaddress" placeholder="지번주소"/></td>
 	</tr>
 	<tr>
-	 <td>상세주소</td>
-	 <td colspan="5" class="adress-box"><f:input path="detailaddress" name="detailaddress" id="address"/>
+	 <td>&nbsp;&nbsp;상세주소</td>
+	 <td colspan="5" class="adress-box">&nbsp;&nbsp;<f:input path="detailaddress" name="detailaddress" id="address"/>
 	 </td>
-	</tr>
-	 <tr>
-		<td colspan="5" style="text-align:center;">
-		<f:button type="submit">가입</f:button>
-		<button type="button" onclick="location.href='/auction/main'">취소</button>
-		</td>
 	</tr>
  </tbody>
  </table>
+ 	<br>
+ 	<div class="join-btn" style="text-align: center;">
+		<f:button type="submit">가입</f:button>
+		<button type="button" onclick="location.href='/auction/main'">취소</button>
+ 	</div>
  </f:form>
  </div>
 </article>            
