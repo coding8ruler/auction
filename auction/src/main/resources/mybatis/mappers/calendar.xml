@@ -25,14 +25,24 @@
 	<select id="selectAllList" resultMap="calendarResult">
 		<![CDATA[
 		select * from calendar
+		order by calenno asc
 		]]>
 	</select>
 		
+		
+	<!-- 특정글 조회 -->
+	<select id="selectCalenNoList" resultMap="calendarResult">
+		<![CDATA[
+		select * 
+		from calendar
+		where calenno=#{calenNO}
+		]]>
+	</select>	
 	<!-- 특정글 수정 -->
 	<update id="updateCalendar" parameterType="com.mycom.auction.calendar.domain.Calendar">
 		<![CDATA[
 		update calendar 
-		set calenTitle=#{title},calenStart=#{calenStart} ,calenEnd=#{calenEnd}
+		set calentitle=#{calenTitle},calenstart=#{calenStart} ,calenend=#{calenEnd}
 		where calenno=#{calenNO}
 		]]>
 	</update>

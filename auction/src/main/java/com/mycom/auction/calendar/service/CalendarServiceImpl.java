@@ -32,16 +32,15 @@ public class CalendarServiceImpl implements CalendarService{
 	}
 
 
+	//수정폼을 위한 조회
 	public Calendar getCalendarDetail(int no) {
-		// TODO Auto-generated method stub
-		return null;
+		return calendarRepository.getCalendarDetail(no);
 	}
 
 
 
 	public int updateCalendar(Calendar calendar) {
-		// TODO Auto-generated method stub
-		return 0;
+		return calendarRepository.undateCalendar(calendar);
 	}
 
 
@@ -53,6 +52,8 @@ public class CalendarServiceImpl implements CalendarService{
 	public int insertCalendar(Calendar calendar) {
 		return calendarRepository.insertCalendar(calendar);
 	}
+
+	
 
 	
 

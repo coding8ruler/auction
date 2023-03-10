@@ -17,8 +17,6 @@ public interface CalendarService {
 	//해당 월 일정 조회
 
 	
-	//특정 일정의 일정조회
-	
 	//특정 일정의 상세 데이터 조회 특정 번호의 셀렉트문
 	public Calendar getCalendarDetail(int no);
 	
@@ -27,7 +25,6 @@ public interface CalendarService {
 	//특정 일정 수정
 	public int updateCalendar(Calendar calendar);
 	
-	//특정 일정 수정 처리
 	
 	//특정 일정 삭제
 	//public abstract int 딜리트 where 특정번호
