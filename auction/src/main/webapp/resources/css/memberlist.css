@@ -40,6 +40,7 @@ button {
 }
 button:hover {
   color: #000000;
+  color: white;
   cursor: pointer;
 }
 
@@ -47,7 +48,7 @@ table th ,table th, table td {
     text-align: center;
 }
 .search_wrap{
-  width: 34%;
+  width: 50%;
   float:right;
 }
   
@@ -143,7 +144,7 @@ table th ,table th, table td {
 }
 
 .join-t tr> :nth-child(5) {
-  width: 30px;
+  width: 60px;
 }
 .join-t tr> :nth-child(6) {
   width: 100px;
