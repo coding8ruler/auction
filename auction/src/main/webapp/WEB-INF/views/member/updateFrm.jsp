@@ -154,7 +154,7 @@ $(function(){
 		</tr>
 		<tr class="e-mail">
 		<td>&nbsp;&nbsp;이메일</td>
-		<td>&nbsp;&nbsp; <f:input path="email1" name="email1" id="email1" value="${member.email1}"/> @ <f:input path="email2" name="email2" id="email2" value="${member.email2}"/>
+		<td>&nbsp;&nbsp;<f:input path="email1" name="email1" id="email1" value="${member.email1}"/> @ <f:input path="email2" name="email2" id="email2" value="${member.email2}"/>
 				<select name="email_op" id="email_op">
 	 				<option value="">직접입력</option>
 	 				<option value="gmail.com">gmail.com</option>
@@ -182,7 +182,7 @@ $(function(){
 		<td class="adress-box">&nbsp;&nbsp;<f:input path="roadaddress" name="roadaddress" value="${member.roadaddress}"/>
 		<br>
 	 	<br>
-		<f:input path="jibunaddress" name="jibunaddress" value="${member.jibunaddress}"/></td>
+		&nbsp;&nbsp;<f:input path="jibunaddress" name="jibunaddress" value="${member.jibunaddress}"/></td>
 		</tr>
 		<tr>
 		<td>&nbsp;&nbsp;상세주소</td>
