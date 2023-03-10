@@ -54,8 +54,6 @@ public class productSellController extends  BaseController implements WebMvcConf
 		 	//임시 userId
 		 System.out.println("goodsSize"+goodsSize);
 		 System.out.println("goods"+goods);
-		 	HttpSession session = request.getSession();
-			session.setAttribute("AUTHUSER_ID", "hongid");//임시
 			model.addAttribute("goodsSize",goodsSize);
 			model.addAttribute("goods", goods);
 			return "auctionGoodsSell/productAddForm";
@@ -64,8 +62,6 @@ public class productSellController extends  BaseController implements WebMvcConf
 	 //판매동의 페이지
 	 @GetMapping("/productSalesAgreement")
 	 public String productSalesAgreement(HttpServletRequest request, String goodsSize,String goods,Model model) {
-		 	HttpSession session = request.getSession();
-			session.setAttribute("AUTHUSER_ID", "hongid");//임시
 			model.addAttribute("goodsSize",goodsSize);
 			model.addAttribute("goods", goods);
 		 
