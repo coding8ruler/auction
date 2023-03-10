@@ -43,7 +43,7 @@
 		<![CDATA[
 		update calendar 
 		set calentitle=#{calenTitle},calenstart=#{calenStart} ,calenend=#{calenEnd}
-		where calenno=#{calenNO}
+		where calenno=#{calenNo}
 		]]>
 	</update>
 	

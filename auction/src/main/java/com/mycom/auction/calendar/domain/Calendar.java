@@ -2,10 +2,15 @@ package com.mycom.auction.calendar.domain;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Calendar {
+	
 	private int calenNo;
 	private String calenTitle;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date calenStart;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date calenEnd;
     
 	/*set/get메서드*/

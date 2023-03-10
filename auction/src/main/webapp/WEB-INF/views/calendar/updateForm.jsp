@@ -92,14 +92,14 @@
  		<tr>
  		 <th>일정 제목</th>
  		 <td>
- 		 <input type="text" name="calenTitle" id="calenTitle" value="${calendar.calenTitle}" required="required"/></td>	
- 		</tr>
+ 		  <input type="text" name="calenTitle" id="calenTitle" value="${calendar.calenTitle}" required="required"/></td>	
+  		</tr>
  		<tr>
 	     <th>시작일</th>
 	     <td>
 		       기존 시작일 :<fmt:formatDate type="both" pattern="yyyy/MM/dd"  value="${calendar.calenStart}" />
 		    <br/>
-		       수정할 시작일 :<input type="date" name="calenStart" id="calenStart"/>
+		       수정할 시작일 : <input type="date" name="calenStart" id="calenStart"/>
 	     </td>
 	    </tr>
 	    <tr>
@@ -107,7 +107,7 @@
 	     <td>
 			기존 종료일 : <fmt:formatDate type="both" pattern="yyyy/MM/dd"  value="${calendar.calenEnd}" />
 			<br/>   
-			수정할 종료일 : <input type="date"  name="calenEnd" id="calenEnd"/>
+			수정할 종료일 : <input type="date"  name="calenEnd" id="calenEnd"/> 
 	     </td>
 	    </tr>
  		<tr id="i1">
