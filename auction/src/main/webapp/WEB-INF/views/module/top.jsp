@@ -49,14 +49,6 @@ background-color: white;
 </head>
 <body>
 
-  <c:if test="${empty AUTHUSER}">
-<div class="dropdown">
-  <button class="dropbtn">공지/일정</button>
-  <div class="dropdown-content">
-    <a href="<%=request.getContextPath()%>/calendarView">공지/일정</a>
-  </div>
-</div>
-</c:if>
 <%-- 관리자가 로그인했을 때 보여지는 메뉴 --%>
 	<c:if test="${not empty AUTHUSER && (AUTHUSER.grade==999)}">  
 <div class="dropdown">
@@ -108,6 +100,16 @@ background-color: white;
   </div>
 </div>
 
+
+
+<div class="dropdown">
+  <button class="dropbtn">후기</button>
+  <div class="dropdown-content">
+<a href="<%=request.getContextPath()%>/review/listForm">후기</a>
+  </div>
+</div>
+
+
 <c:if test="${empty AUTHUSER}">
 	<div class="dropdown">
 	  <button class="dropbtn">회원가입</button>
@@ -118,6 +120,7 @@ background-color: white;
 	  </div>
 	</div>
 </c:if>
+
 
 <%-- 일반user가 로그인했을 때 보여지는 메뉴 --%>
 	<c:if test="${! empty AUTHUSER && (AUTHUSER.grade eq 1)}">  

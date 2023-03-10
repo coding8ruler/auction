@@ -126,7 +126,7 @@ public class MemberController {
 		}else{
 			session.setAttribute("AUTHUSER", loginmember);
 		}
-		return "/acutionGoods/auctionGoodsListPage";
+		return "/calendar/fullcalendar";
 	}
 	//로그아웃
 	@GetMapping("/member/logout")
@@ -134,7 +134,7 @@ public class MemberController {
 		if(session!=null) {
 			session.invalidate();
 		}
-		return "/acutionGoods/auctionGoodsListPage";
+		return "/calendar/fullcalendar";
 	}
 	//아이디찾기 폼
 	@GetMapping("/member/findId")

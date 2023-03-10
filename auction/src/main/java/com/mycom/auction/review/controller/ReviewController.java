@@ -111,7 +111,7 @@ public class ReviewController extends BaseController {
 					}
 					
 			 * */
-			session.setAttribute("AUTHUSER_ID", "hongid");//임시
+			session.setAttribute("AUTHUSER_ID", "adminid");//임시
 			return "review/addForm";
 	}
 	
@@ -137,7 +137,7 @@ public class ReviewController extends BaseController {
 			/* 
 			AuthUser authUser = session.getAttribute("AUTHUSER");
 			String id=authUser.getUserId();*/
-			session.setAttribute("AUTHUSER_ID","hongId");//임시
+			session.setAttribute("AUTHUSER_ID","adminid");//임시
 			String id = (String)session.getAttribute("AUTHUSER_ID");
 			
 			List<ReviewFileVO> reviewFileList = upload(multipartRequest);
@@ -217,7 +217,7 @@ public class ReviewController extends BaseController {
 			/* String userId = (String) session.getAttribute("AUTHUSER_ID"); 
 			 \	
 			 * */
-			session.setAttribute("AUTHUSER_ID", "hongid");//임시
+			session.setAttribute("AUTHUSER_ID", "adminid");//임시
 			
 			ReviewDTO reviewDTO=reviewService.getReviewDetail(no);
 			
@@ -256,7 +256,7 @@ public class ReviewController extends BaseController {
 			/* String userId = (String) session.getAttribute("AUTHUSER_ID"); 
 			 \	
 			 * */
-			session.setAttribute("AUTHUSER_ID", "hongid");//임시
+			session.setAttribute("AUTHUSER_ID", "adminid");//임시
 			
 			
 			int cnt = reviewService.deleteReview(no);

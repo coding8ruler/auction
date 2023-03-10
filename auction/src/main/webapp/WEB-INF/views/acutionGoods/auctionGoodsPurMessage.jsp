@@ -167,7 +167,6 @@
               <div class="cell">${goods_count}</div>
               <div class="cell">${message.title}</div>
               <div class="cell">
-                ${message.content} <br/>
 					                체결된 상품명은 ${purList.goodsName} 이며  사이즈는 ${purList.goodsSize} 이고, 가격은 ${purList.desiredPurPrice}원 입니다.
 					                구매자는 버튼을 누르시면 결재가 진행됩니다.
                 <button onclick="requestPay('${purList.goodsName}', ${purList.desiredPurPrice},${purList.purchaseNo})">결제하기</button>

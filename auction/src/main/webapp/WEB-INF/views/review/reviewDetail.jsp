@@ -1,31 +1,90 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="<%=request.getContextPath()%>"/>
 <c:set var="mreviewdto"  value="${reviewMap.reviewdto}" />
 <c:set var="mimageList"  value="${reviewMap.imageList}" />
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false" %>
 <!DOCTYPE html>
-<head>
-<meta charset="UTF-8">
-	<title>리뷰게시판 글 상세보기</title>
-</head>
- <body>
-<%--  
-reviewMap.put("reviewdto", reviewdto);
-		
-		  //List : 상품이미지목록조회 
-List<ReviewFileVO> imageList = reviewRepository.selectReviewDetailImage(no);
-  reviewMap.put("imageList",imageList);
-
-model.addAttribute("reviewMap", reviewMap); --%>
-컨트롤러가 넘겨준 모델속성명 : reviewMap=${reviewMap}<br/><br/>
-reviewMap.키명=reviewMap.reviewdto=${reviewMap.reviewdto.reviewNo}<br/><br/>
-reviewMap.키명=reviewMap.imageList=<br/><br/>
-
- mreviewdto=${mreviewdto}<br/>
- mimageList=${mimageList}
-<h2>리뷰 상세</h2>
+<html lang="ko">
+  <head>
+    <title>리뷰게시판 글 상세보기</title>
+    <meta charset="UTF-8">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+      
+      #container {
+        position: relative;
+        min-height: 100vh;
+      }
+      
+      #header1 {
+        height: 130px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        z-index: 1;
+      }
+      
+      #header2 {
+        height: 70px;
+        position: fixed;
+        top: 130px;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        z-index: 1;
+      }
+      
+      #content {
+        margin-top: 200px;
+        margin-bottom: 100px;
+      }
+      
+      #footer {
+        height: 70px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        z-index: 1;
+      }
+      table {
+        width: 95%;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+      }
+   	tr {
+        border: 1px solid #ccc;
+      }
+      
+      td {
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
+     
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header1">
+        <jsp:include page="../module/banner.jsp" flush="false"/>
+      </div>
+      <div id="header2">
+        <jsp:include page="../module/top.jsp" flush="false"/>
+      </div>
+      <div id="content">
+       <h2>리뷰 상세</h2>
     <c:if test="${not empty review}">
        <table border="1">
             <tr>
@@ -63,21 +122,13 @@ reviewMap.키명=reviewMap.imageList=<br/><br/>
             
         </table>
         <a href="${contextPath}/review/listForm">목록</a>
-       <!-- 관리자 글수정&삭제 -->
-    	<%-- <c:if test="${authUser.grade == 9999 && (AUTHUSER_ID == review.id)}"> --%>
-    	<%-- <c:if test="${AUTHUSER_ID =='adminid'}">
-        	<a href="${contextPath}/review/updateForm?ano=${ReviewNo}">관리자 수정</a>
-        	<a href="${contextPath}/review/delete?ano=${review.reviewNo}">관리자 삭제</a>
-		</c:if> --%>
-	    <!-- 글작성자일 경우 메뉴 -->
-    <%--   	<c:if test="${sessionScope.AUTHUSER_ID == review.id}">
-        	<a href="${contextPath}/review/updateForm?ano=${ReviewNo}">수정</a>
-       		<a href="${contextPath}/review/delete?ano=${review.reviewNo}">삭제</a>
-    <c:if test="${sessionScope.AUTHUSER_ID == 'hongid'}">
-	    </c:if>
-	    </c:if> --%>
         	<a href="${contextPath}/review/updateForm?ano=${ReviewNo}">수정</a>
        		<a href="${contextPath}/review/delete?ano=${review.reviewNo}">삭제</a>
     </c:if>
-</body>
+      </div>
+      <div id="footer">
+        <jsp:include page="../module/bottom.jsp" flush="false"/>
+      </div>
+    </div>
+  </body>
 </html>

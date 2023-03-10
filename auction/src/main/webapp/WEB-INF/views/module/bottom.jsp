@@ -10,14 +10,5 @@
 </head>
 <body>
 
-<div align="center">
-	<span><a href="#">1번목록</a></span>
-	<span><a href="#">1번목록</a></span>
-	<span><a href="#">1번목록</a></span>
-</div>
-
-
-
-
 </body>
 </html>
