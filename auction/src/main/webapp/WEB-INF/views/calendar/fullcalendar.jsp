@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>fullcalendar</title>
 
- <!-- jquery CDN -->
+ 	<!-- jquery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- fullcalendar CDN -->
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet'/>
@@ -22,11 +22,13 @@
 	   
 	   var calendarEl = document.getElementById('calendar');
      var calendar = new FullCalendar.Calendar(calendarEl, {
-	      headerToolbar: {
-	        left: 'prev,next today',
-	        center: 'title',
-	        right: 'dayGridMonth,dayGridWeek,dayGridDay'
-	      },
+    		 height: '700px', // calendar 높이 설정
+    	    expandRows: true, // 화면에 맞게 높이 재설정
+    		 headerToolbar: {
+	      	 	 left: 'prev,next today',
+	       		 center: 'title',
+	        	 right: 'dayGridMonth,dayGridWeek,dayGridDay'
+	   		   },
 	      locale: 'ko' ,
 	      initialView: 'dayGridMonth', // 초기 로딩 날짜.
 	      navLinks: true, // 달력 내부의 날짜 (숫자)를 클릭할 수 있게 해주는 설정
@@ -83,6 +85,13 @@
 	  });
 </script>
 <style>
+#calendar-container {
+    position: fixed;
+    top: 0;
+    left: 5;
+    right: 5;
+    bottom: 0;
+  }
 .fc-day-sun a {
   color: red;
   text-decoration: none;
@@ -96,7 +105,25 @@
 </style>
 </head>
 <body>
-
+ <div id="container">
+      <div id="header1">
+        <jsp:include page="../module/banner.jsp" flush="false"/>
+      </div>
+      <div id="header2">
+        <jsp:include page="../module/top.jsp" flush="false"/>
+      </div>
+      <div id="content">
+       <br/> 
+       <br/>
+        <br/>
 <div id='calendar'></div>
+<br/> 
+       <br/>
+        <br/>
+      </div>
+      <div id="footer">
+        <jsp:include page="../module/bottom.jsp" flush="false"/>
+      </div>
+    </div>
 </body>
 </html>

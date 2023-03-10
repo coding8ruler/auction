@@ -114,12 +114,23 @@ public class ProductRepositoryImpl implements ProductRepository{
 	@Override
 	public int productAutoEnd(int goodsGrade) throws DataAccessException {
 		List<Product> productList = sqlSession.selectList("mapper.product.productAutoSelectList", goodsGrade);
+		System.out.println("1"+productList);
 		if (productList.size() > 0) {
+			System.out.println("2");
 			for(int i=0; i<productList.size(); i++) {
+				System.out.println("3");
 				Product product=(Product)productList.get(i);
+				System.out.println("4");
 				List<ProductPurchaseDTO> productPurchaseDTOList = sqlSession.selectList("mapper.product.selectMaxDesiredPurPricePurchaseNo", product);
+				System.out.println("5"+productPurchaseDTOList);
 				for(ProductPurchaseDTO productPurchaseDTO : productPurchaseDTOList) {
-					sqlSession.insert("mapper.product.insertEndMessage",productPurchaseDTO);
+					System.out.println("6");
+					sqlSession.insert("mapper.product.insertEndSellMessage",productPurchaseDTO);
+					System.out.println("7");
+					ProductPurchaseDTO productPurchaseDTO2 = sqlSession.selectOne("mapper.product.selectPurOne", productPurchaseDTO);
+					System.out.println("8"+productPurchaseDTO2);
+					sqlSession.insert("mapper.product.insertEndPurMessage",productPurchaseDTO2);
+					System.out.println("9");
 				}
 			}
 		}

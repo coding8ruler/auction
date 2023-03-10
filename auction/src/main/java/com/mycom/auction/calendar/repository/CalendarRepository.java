@@ -11,7 +11,7 @@ import com.mycom.auction.calendar.domain.Calendar;
 public interface CalendarRepository {
 
 	
-	//전체 게시물수 조회
+		//전체 게시물수 조회
 		public int getTotalCnt() throws DataAccessException;
 		
 		//전체일정 캘린더 조회(사용자용)
