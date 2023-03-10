@@ -16,6 +16,39 @@
     <title>W3.CSS Template</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+    var IMP = window.IMP; 
+    IMP.init("imp67011510"); 
+  
+    var today = new Date();   
+    var hours = today.getHours(); // 시
+    var minutes = today.getMinutes();  // 분
+    var seconds = today.getSeconds();  // 초
+    var milliseconds = today.getMilliseconds();
+    var makeMerchantUid = hours +  minutes + seconds + milliseconds;
+    
+
+    function requestPay(goodsName, desiredPurPrice,purchaseNo) {
+        IMP.request_pay({
+            pg : 'kcp',
+            pay_method : 'card',
+            merchant_uid: "IMP"+purchaseNo, 
+            name : goodsName,
+            amount : desiredPurPrice,
+            buyer_email : 'Iamport@chai.finance',
+            buyer_name : '아임포트 기술지원팀',
+            buyer_tel : '010-1234-5678',
+            buyer_addr : '서울특별시 강남구 삼성동',
+            buyer_postcode : '123-456'
+        }, function (rsp) { // callback
+            if (rsp.success) {
+                console.log(rsp);
+            } else {
+                console.log(rsp);
+            }
+        });
+    }
+    </script>
     <style>
       body {
         margin: 0;
@@ -112,13 +145,6 @@
             
  
  
-   게시물수:
-  <select name="rowSize" id="rowSize">
-		<option value="3">선택</option>
-		<option value="3">3</option>
-		<option value="5">5</option>
-		<option value="10">10</option>
-  </select>
   
   
   
@@ -131,29 +157,18 @@
   	<div class="cell">Send ID</div>
   	<div class="cell">Receive ID</div>
   	
-   <c:forEach var="purList" items="${PurList}">
    <c:set  var="goods_count" value="${goods_count+1 }" />
   	<div class="row">
     <div class="cell">${goods_count}</div>
     <div class="cell">${message.title}</div>
-    <div class="cell">
-    ${message.content}
-          구매하신 상품명은 ${purList.goodsName} 이며 
-          구매하신 사이즈는 ${purList.goodsSize} 이고,
-          낙찰된 가격은 ${purList.desiredPurPrice} 입니다.
-         구매자는 버튼을 누르시면 결재가 진행됩니다.
-  		 <!-- 결제하기 버튼 생성 -->
-    </div>
+    <div class="cell"> ${message.content}</div>
 	    <div class="cell">${message.sendId}</div>
 	    <div class="cell">${message.receiveId}</div>
     </div>
-   </c:forEach>
   </div>
 </c:forEach>
   </tbody>
  </table>   
-            
-              
               
             </td>
           </tr>

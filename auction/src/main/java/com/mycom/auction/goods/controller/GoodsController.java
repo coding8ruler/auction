@@ -311,20 +311,17 @@ public class GoodsController {
 	
 	@GetMapping("/productPurMessage")
 	public String productGetPurMessage(Model model,HttpServletRequest httpServletRequest) {
-	   HttpSession session = httpServletRequest.getSession();
-	   //Member authUser = (Member) session.getAttribute("AUTHUSER");
-	   // String id = authUser.getId();
-	   
-	   session.setAttribute("id","hongid");
-	   String id = (String)session.getAttribute("id");
+	 	HttpSession session = httpServletRequest.getSession();
+	   Member authUser = (Member) session.getAttribute("AUTHUSER");
+	   String id = authUser.getId();
 	   
 	   Map<String,List> selectMessagePur=goodsService.selectMessageList(id);
 	   
 	   List<ProductFinally> messageList = selectMessagePur.get("selectMessageList");
 	   List<ProductPurchaseDTO> PurList = selectMessagePur.get("selectPurList");
 	   
-	   System.out.println("messageList222"+messageList);
-	   System.out.println("PurList222"+PurList);
+	   System.out.println("messageList1"+messageList);
+	   System.out.println("PurList1"+PurList);
 	   
 	   model.addAttribute("messageList", messageList);
 	   model.addAttribute("PurList", PurList);
@@ -339,13 +336,13 @@ public class GoodsController {
 	   Member authUser = (Member) session.getAttribute("AUTHUSER");
 	   String id = authUser.getId();
 	   
-	   Map<String,List> selectMessagePur=goodsService.selectMessageList(id);
+	   Map<String,List> selectMessagePur=goodsService.selectMessageSellList(id);
 	   
 	   List<ProductFinally> messageList = selectMessagePur.get("selectMessageList");
 	   List<ProductPurchaseDTO> PurList = selectMessagePur.get("selectPurList");
 	   
-	   System.out.println("messageList222"+messageList);
-	   System.out.println("PurList222"+PurList);
+	   System.out.println("messageList2"+messageList);
+	   System.out.println("PurList2"+PurList);
 	   
 	   model.addAttribute("messageList", messageList);
 	   model.addAttribute("PurList", PurList);

@@ -62,6 +62,7 @@
 	 <![CDATA[			
 		select goods,goodsName,firstPrice,releaseDate,color,goodsContent
 		from product
+		order by releaseDate desc
 	 ]]>	
 	</select>
 	
@@ -127,11 +128,20 @@
 	 ]]>	
 	</select>
 	
+	
 	<select id="selectPurList" parameterType="com.mycom.auction.goods.domain.ProductFinally" resultType="com.mycom.auction.goods.domain.ProductPurchaseDTO">
 	 <![CDATA[			
 		select sellNo,goodsSize,desiredPurPrice,purchaseNo,goodsName,id,desireQuantity
 		from productPurchase
-		where sellNo =#{sellNo} and purchaseNo=#{purchaseNo}
+		where purchaseNo=#{purchaseNo}
+	 ]]>	
+	</select>
+	
+	<select id="selectSellList" parameterType="com.mycom.auction.goods.domain.ProductFinally" resultType="com.mycom.auction.goods.domain.ProductPurchaseDTO">
+	 <![CDATA[			
+		select sellNo,goodsSize,desiredPurPrice,purchaseNo,goodsName,id,desireQuantity
+		from productPurchase
+		where sellNo =#{sellNo} and 
 	 ]]>	
 	</select>
 	
