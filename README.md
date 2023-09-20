@@ -56,7 +56,7 @@ $("#btnAddFile").click(function(){
 });
 </script>
 ```
-#### 파일첨부 - <a href="https://github.com/coding8ruler/auction/blob/main/auction/src/main/webapp/WEB-INF/views/review/addForm.jsp >상세보기 - 이동</a>
+#### 파일첨부 - <a href="https://github.com/coding8ruler/auction/blob/main/auction/src/main/webapp/WEB-INF/views/review/addForm.jsp" >상세보기 - 이동</a>
 
 ## 📌 
 - 기본 CRUD 구현
