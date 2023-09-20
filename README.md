@@ -2,7 +2,7 @@
 SPRING STS + JSP_명품 경매 사이트
 
 ## 🖥️ 프로젝트 소개
-KREAM을 참고하여 만든 명품 경 사이트입니다.
+KREAM을 참고하여 만든 명품 경매 사이트입니다.
 <br>
 
 ## 🕰️ 개발 기간 & 참여인원
@@ -29,32 +29,32 @@ KREAM을 참고하여 만든 명품 경 사이트입니다.
 ## ✨ 핵심 기능
 ```
 <script>
-		 let count=1; 
-		 $(document).ready(function(){
-		   $("#btnDelFile").click(function(){ 
-		   	if(count==1){ //유지해야하는 파일수보다 적다면
-		   		alert("반드시 한개는 있어야 합니다.");
-		   		return;
-		   	}
+let count=1; 
+$(document).ready(function(){
+ $("#btnDelFile").click(function(){ 
+   if(count==1){ //유지해야하는 파일수보다 적다면
+           alert("반드시 한개는 있어야 합니다.");
+           return;
+}
 		   	
-		   	let tr = $("#files"+count).parents("tr");
-		    $(tr).remove();
-		   	count--; 
-		   });
+   let tr = $("#files"+count).parents("tr");
+ $(tr).remove();
+    count--; 
+});
 		   
-		   $("#btnAddFile").click(function(){ 
-		    count++;
-		    if(count==4){ //허용된 첨부파일수(3개)보다 크다면
-		    	alert("첨부파일은 최대 3개까지 가능합니다.");
-		    	count=3;
-		    	return; //함수종료
-		    }
-		    let tr = "<tr><th>첨부파일</th><td>";
-		     	tr+="<input type='file' name='file"+count+"' id='files"+count+"'/></td></tr>";
-		    $("#i1").before(tr);	
-		   });
-		 });
-		</script>
+$("#btnAddFile").click(function(){ 
+ count++;
+ if(count==4){ //허용된 첨부파일수(3개)보다 크다면
+     alert("첨부파일은 최대 3개까지 가능합니다.");
+     count=3;
+     return; //함수종료
+}
+ let tr = "<tr><th>첨부파일</th><td>";
+     tr+="<input type='file' name='file"+count+"' id='files"+count+"'/></td></tr>";
+ $("#i1").before(tr);	
+ });
+});
+</script>
 ```
 #### 파일첨부 - <a href="https://github.com/coding8ruler/auction/blob/main/auction/src/main/webapp/WEB-INF/views/review/addForm.jsp >상세보기 - 이동</a>
 
